@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Certificados Spa</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- INTRO -->
+
+<div id="intro">
+<img src="imagenes/Logo1.png">
+<div class="intro-logo">
+</div>
+
+</div>
+
+<header>
+
+<div class="logo">
+<img src="imagenes/Logo.png"style="max-width:120px;height:auto;">
+</div>
+
+<h1>Certificados de regalo Spa</h1>
+
+</header>
+
+<div class="especial">
+
+<h2>Especial del Mes</h2>
+<h3>Semana de poder</h3>
+
+<button class="boton-dorado" onclick="agregar('Semana de poder')">
+Agregar
+</button>
+
+<button class="detalle" onclick="detalle('Facial de primavera','Agenda 2 faciales en marzo y recibe el 50% de descuento en el tercer facial.')">
+Detalle
+</button>
+
+</div>
+
+<!-- MENU -->
+
+<div class="menu">
+
+<div class="categoria" onclick="mostrar('bienestar')">
+<img src="imagenes/Bienestar.jpg">
+<h3>Bienestar</h3>
+</div>
+
+<div class="categoria" onclick="mostrar('masajes')">
+<img src="imagenes/Masajes.jpg">
+<h3>Masajes</h3>
+</div>
+
+<div class="categoria" onclick="mostrar('faciales')">
+<img src="imagenes/Facial.jpg">
+<h3>Faciales</h3>
+</div>
+
+<div class="categoria" onclick="mostrar('corporales')">
+<img src="imagenes/Corporales.jpg">
+<h3>Corporales</h3>
+</div>
+
+<div class="categoria" onclick="mostrar('mejoras')">
+<img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35">
+<h3>Mejoras</h3>
+</div>
+
+</div>
+
+<div class="servicios" id="servicios"></div>
+
+<!-- CARRITO -->
+
+<div class="carrito">
+
+<h2>Servicios elegidos</h2>
+
+<div id="lista"></div>
+
+<div class="total">
+Total: $<span id="total">0</span>
+</div>
+
+<!-- CERTIFICADO CON VALOR -->
+
+<div class="especial">
+
+<h2>Certificado con valor</h2>
+
+<input type="number" id="valorCertificado" placeholder="Ejemplo 3000">
+
+<div>
+
+<button class="boton-dorado" onclick="seleccionarValor(2400)">$2,400</button>
+<button class="boton-dorado" onclick="seleccionarValor(3600)">$3,600</button>
+<button class="boton-dorado" onclick="seleccionarValor(7600)">$7,600</button>
+
+</div>
+
+<button class="boton-dorado" onclick="agregarCertificado()">Agregar certificado</button>
+
+</div>
+
+<form>
+
+<input id="nombre" placeholder="Nombre">
+<input id="destinatario" placeholder="Destinatario del certificado">
+<input id="telefono" placeholder="Teléfono">
+<input id="correo" placeholder="Correo">
+
+<!-- PROPINA -->
+<div>
+<label>¿Desea incluir propina?</label>
+
+<label>
+<input type="radio" name="propina" value="si" onclick="togglePropina(true)"> Sí
+</label>
+
+<label>
+<input type="radio" name="propina" value="no" onclick="togglePropina(false)"> No
+</label>
+
+<div id="montoPropina" style="display:none;">
+<input type="number" id="propinaMonto" placeholder="Monto de propina">
+</div>
+
+</div>
+
+<button type="button" class="boton-dorado" onclick="enviar()">
+Solicitar link de pago
+</button>
+
+</form>
+
+<p class="nota-legal">
+Todos los tratamientos incluyen I.V.A (16%) y cargo por servicio (15%), la propina es opcional.
+</p>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+<div class="modal-contenido">
+
+<h2 id="titulo"></h2>
+<p id="descripcion"></p>
+
+<button class="boton-dorado" onclick="cerrar()">Cerrar</button>
+
+</div>
+</div>
+
+<!-- MODAL RECOMENDACIONES -->
+
+<div class="modal" id="modalMejoras">
+
+<div class="modal-contenido">
+
+<h2 id="tituloMejoras">Mejora tu experiencia</h2>
+
+<p>Puedes potenciar tu tratamiento añadiendo una mejora.</p>
+
+<div id="opcionesMejoras"></div>
+
+<br>
+
+<button class="detalle" onclick="cerrarMejoras()">Continuar sin mejora</button>
+
+</div>
+</div>
+
+<script src="script.js">
+
+</body>
