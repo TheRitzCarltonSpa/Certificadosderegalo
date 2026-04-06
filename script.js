@@ -88,7 +88,7 @@ html+=`
 html+=`
 <div class="card">
 <h3>${s.nombre}</h3>
-<button class="agregar" onclick="agregar('${s.nombre},${s.precio})">$${s.precio}</button>
+<button class="agregar" onclick="agregar('${s.nombre},${s.precio}')">$${s.precio}</button>
 <button class="detalle" onclick="detalle('${s.nombre}','${s.desc}')">Detalle</button>
 </div>
 `
@@ -158,7 +158,7 @@ sugerenciaMostrada=false
 }
 
 function agregar(nombre,precio){
-if(typeof precio !== "number" || isNaN(precio))
+if(typeof precio !== "number" || isNaN(precio)) return
 
 carrito.push({nombre,precio})
 actualizar()
