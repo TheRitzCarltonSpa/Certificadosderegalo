@@ -88,8 +88,8 @@ html+=`
 html+=`
 <div class="card">
 <h3>${s.nombre}</h3>
-<button class="agregar" onclick="agregar('${s.nombre},${s.precio}')">$${s.precio}</button>
-<button class="detalle" onclick="detalle('${s.nombre}','${s.desc}')">Detalle</button>
+<button class="agregar" onclick="agregar('${s.nombre}',${s.precio}')">$${s.precio}</button>
+<button class="detalle" onclick="detalle('${s.nombre}',${s.desc}')">Detalle</button>
 </div>
 `
 
