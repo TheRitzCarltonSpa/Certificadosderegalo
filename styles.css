@@ -1,7 +1,13 @@
 <style>
 
-body{
+/* RESET */
+*{
 margin:0;
+padding:0;
+box-sizzing:border-box;
+}
+
+body{
 font-family:"Georgia",serif;
 background:#b2dafa;
 }
@@ -29,6 +35,11 @@ font-size:36px;
 letter-spacing:4px;
 opacity:0;
 animation:fadeIn 2s forwards;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 @keyframes fadeOut{
@@ -60,7 +71,7 @@ height:auto;
 /* ESPECIAL */
 
 .especial{
-background-image:url("Imagenes/Alberca.jpg");
+background-image:url("Imagenes/alberca.jpg");
 background-size:cover;
 background-position:center;
 position:relative;
@@ -94,10 +105,12 @@ font-size:22px;
 margin:10px;
 }
 
-.boton-dorado{
+.boton-dorado,
+.agegar,
+.detalle{
 background:#ccb9a5;
 border:none;
-padding:12px 20px;
+padding:10px 14px;
 border-radius:6px;
 cursor:pointer;
 margin:5px;
@@ -133,7 +146,6 @@ padding:20px;
 .categoria{
 width:180px;
 text-align:center;
-color:black;
 cursor:pointer;
 }
 
@@ -142,6 +154,7 @@ width:180px;
 height:120px;
 object-fit:cover;
 border-radius:10px;
+transition:.3s;
 }
 
 .categoria:hover img{
@@ -165,31 +178,12 @@ border-radius:10px;
 padding:20px;
 text-align:center;
 box-shadow:0 6px 18px rgba(0,0,0,.2);
+transition:.3s;
 }
 
 .card:hover{
 transform:translateY(-6px);
 box-shadow:0 12px 28px rgba(0,0,0,.3);
-transition:.3s;
-}
-
-.detalle{
-background:#ccb9a5;
-border:none;
-padding:10px 14px;
-border-radius:6px;
-cursor:pointer;
-margin:5px;
-}
-
-.agregar{
-background:#ccb9a5;
-color:white;
-border:none;
-padding:10px 14px;
-border-radius:6px;
-cursor:pointer;
-margin:5px;
 }
 
 /* CARRITO */
