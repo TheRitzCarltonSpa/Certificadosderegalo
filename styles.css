@@ -105,6 +105,11 @@ font-size:22px;
 margin:10px;
 }
 
+.boton-base
+min-width:140px;
+height:42px;
+}
+
 .boton-dorado,
 .agegar,
 .detalle{
