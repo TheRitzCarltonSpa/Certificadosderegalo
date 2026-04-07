@@ -157,6 +157,9 @@ document.getElementById("modalMejoras").style.display="none"
 sugerenciaMostrada=false
 }
 
+window._tranquilidadPrecio = 5600 // o el que corresponda
+}
+
 function agregar(nombre,precio){
 if(typeof precio !== "number" || isNaN(precio)) return
 
