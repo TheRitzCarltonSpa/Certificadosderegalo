@@ -108,27 +108,28 @@ margin:10px;
 /* GRID DE BOTONES */
 
 .botones-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit,minmax(120px, auto));
-  gap:6px;
-  justify-content:center;
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  justify-content:flex-start;
 }
 
 /* BOTON BASE UNIFICADO */
 
 .boton-base{
-  width:120%;
-  height:36px;
-  padding:6px 10px;
+  width:auto;
+  min-width:unset;
+  height:auto;
+  padding:4px 8px;
+  font-size:11px;
   border:none;
-  border-radius:6px;
+  border-radius:14px;
   cursor:pointer;
-  font-size:13px;
-  font-weight:bold;
-  display:flex;
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  transition:0.3s;
+  transition:all 0.2s ease;
+  white-space:nowrap;
 }
 
 .boton-base:hover{
@@ -212,9 +213,9 @@ padding:30px;
 
 .card{
 background:white;
-width:220px;
+width:200px;
 border-radius:10px;
-padding:20px;
+padding:15px;
 text-align:center;
 box-shadow:0 6px 18px rgba(0,0,0,.2);
 transition:.3s;
