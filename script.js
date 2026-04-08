@@ -79,8 +79,10 @@ html+=`
 <button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>  
 <button class="agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90})">90 min $${s.precio90}</button>  
 <button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
-</div>  
-`  }else if(s.precio25 && s.precio40){
+</div> 
+
+`
+}else if(s.precio25 && s.precio40){
 
 html+=`
 
@@ -89,8 +91,10 @@ html+=`
 <button class="agregar" onclick="agregar('${s.nombre} 25 min',${s.precio25})">25 min $${s.precio25}</button>  
 <button class="agregar" onclick="agregar('${s.nombre} 40 min',${s.precio40})">40 min $${s.precio40}</button>  
 <button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
-</div>  
-`  }else if(s.precio60 && !s.precio90){
+</div> 
+
+` 
+}else if(s.precio60 && !s.precio90){
 
 html+=`
 
@@ -98,17 +102,19 @@ html+=`
 <h3>${s.nombre}</h3>  
 <button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>  
 <button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
-</div>  
-`  }else{
+</div> 
+
+` 
+}else{
 
 html+=`
-
 <div class="card">  
 <h3>${s.nombre}</h3>  
 <button class="agregar" onclick="agregar('${s.nombre}',${s.precio})">$${s.precio}</button>  
 <button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
 </div>  
-`  }
+`
+}
 
 })
 
@@ -174,7 +180,9 @@ ${item.nombre} $${item.precio}
 <button class="eliminar" onclick="eliminar(${i})">X</button>  
 </div>  
 `  
-})  lista.innerHTML=html
+}) 
+
+lista.innerHTML=html
 document.getElementById("total").innerText=total
 }
 
