@@ -222,9 +222,21 @@ function togglePropina(mostrar){
 document.getElementById("montoPropina").style.display=mostrar?"block":"none"
 }
 
-function detalle(t,d){
+function detalle(t,d,img){
+
 document.getElementById("titulo").innerText=t
 document.getElementById("descripcion").innerText=d
+
+// 🔥 NUEVO: imagen
+let imagen = document.getElementById("imagenDetalle")
+
+if(img){
+  imagen.src = img
+  imagen.style.display = "block"
+}else{
+  imagen.style.display = "none"
+}
+
 document.getElementById("modal").style.display="flex"
 }
 
