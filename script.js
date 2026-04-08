@@ -85,9 +85,12 @@ if(s.precio60 && s.precio90){
 html+=`
 <div class="card">
 <h3>${s.nombre}</h3>
-<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>
-<button class="agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90})">90 min $${s.precio90}</button>
-<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
+
+<div class="botones-grid">
+
+<button class="boton-base agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>
+<button class="boton-base agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90})">90 min $${s.precio90}</button>
+<button class="boton-base detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
 </div>
 `
 
@@ -96,9 +99,12 @@ html+=`
 html+=`
 <div class="card">
 <h3>${s.nombre}</h3>
-<button class="agregar" onclick="agregar('${s.nombre} 25 min',${s.precio25})">25 min $${s.precio25}</button>
-<button class="agregar" onclick="agregar('${s.nombre} 40 min',${s.precio40})">40 min $${s.precio40}</button>
-<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
+
+<div class="botones-grid">
+
+<button class="boton-base agregar" onclick="agregar('${s.nombre} 25 min',${s.precio25})">25 min $${s.precio25}</button>
+<button class="boton-base agregar" onclick="agregar('${s.nombre} 40 min',${s.precio40})">40 min $${s.precio40}</button>
+<button class="boton-base detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
 </div>
 `
 
@@ -107,8 +113,11 @@ html+=`
 html+=`
 <div class="card">
 <h3>${s.nombre}</h3>
-<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>
-<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
+
+<div class="botones-grid">
+
+<button class="boton-base agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>
+<button class="boton-base detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
 </div>
 `
 
@@ -117,8 +126,11 @@ html+=`
 html+=`
 <div class="card">
 <h3>${s.nombre}</h3>
-<button class="agregar" onclick="agregar('${s.nombre}',${s.precio})">$${s.precio}</button>
-<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
+
+<div class="botones-grid">
+
+<button class="boton-base agregar" onclick="agregar('${s.nombre}',${s.precio})">$${s.precio}</button>
+<button class="boton-base detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
 </div>
 `
 
@@ -142,8 +154,11 @@ if(texto.includes("facial") || texto.includes("hydrafacial")){
 document.getElementById("tituloMejoras").innerText="Potencia tu facial"
 
 document.getElementById("opcionesMejoras").innerHTML=`
-<button class="boton-dorado" onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">Mascarilla 111skin $500</button>
-<button class="boton-dorado" onclick="agregar('Rodillo de jade',300); cerrarMejoras()">Rodillo de jade $300</button>
+
+<div class="botones-grid">
+
+<button class="boton-base boton-dorado" onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">Mascarilla 111skin $500</button>
+<button class="boton-base boton-dorado" onclick="agregar('Rodillo de jade',300); cerrarMejoras()">Rodillo de jade $300</button>
 `
 
 }else{
@@ -151,8 +166,11 @@ document.getElementById("opcionesMejoras").innerHTML=`
 document.getElementById("tituloMejoras").innerText="Mejora tu masaje"
 
 document.getElementById("opcionesMejoras").innerHTML=`
-<button class="boton-dorado" onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
-<button class="boton-dorado" onclick="agregar('Piedras calientes',300); cerrarMejoras()">Piedras calientes $300</button>
+
+<div class="botones-grid">
+
+<button class="boton-base boton-dorado" onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
+<button class="boton-base boton-dorado" onclick="agregar('Piedras calientes',300); cerrarMejoras()">Piedras calientes $300</button>
 `
 }
 
