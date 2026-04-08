@@ -105,20 +105,53 @@ font-size:22px;
 margin:10px;
 }
 
-.boton-base
-min-width:140px;
-height:42px;
+/* GRID DE BOTONES */
+
+.botones-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr); /
+  gap:10px;
+  margin-top:10px;
 }
 
-.boton-dorado,
-.agegar,
+/* BOTON BASE UNIFICADO */
+
+.boton-base{
+  width:100%;
+  height:45px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:bold;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:0.3s;
+}
+
+.boton-base:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 14px rgba(0,0,0,.2);
+}
+
+.boton-dorado{
+  background#ccb9a5;
+  color:black;
+}
+
+.boton-mejora{
+
+background:linear-gradient(135deg,#ccb9a5, #d4af37);
+  color:white;
+}
 .detalle{
-background:#ccb9a5;
-border:none;
-padding:10px 14px;
-border-radius:6px;
-cursor:pointer;
-margin:5px;
+  background:#6c9bd2;
+  color.:white;
+}
+.agregar{
+  background:#4caf50;
+  color:white;
 }
 
 .boton-mejora{
