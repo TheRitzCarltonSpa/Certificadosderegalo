@@ -73,38 +73,35 @@ servicios[cat].forEach(s=>{
 if(s.precio60 && s.precio90){
 
 html+=`
-
 <div class="card">  
 <h3>${s.nombre}</h3>  
 <button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>  
 <button class="agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90})">90 min $${s.precio90}</button>  
 <button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
-</div> 
-
+</div>
 `
+  
 }else if(s.precio25 && s.precio40){
 
 html+=`
-
 <div class="card">  
 <h3>${s.nombre}</h3>  
 <button class="agregar" onclick="agregar('${s.nombre} 25 min',${s.precio25})">25 min $${s.precio25}</button>  
 <button class="agregar" onclick="agregar('${s.nombre} 40 min',${s.precio40})">40 min $${s.precio40}</button>  
 <button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
 </div> 
-
-` 
+`
+  
 }else if(s.precio60 && !s.precio90){
 
 html+=`
-
 <div class="card">  
 <h3>${s.nombre}</h3>  
 <button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>  
 <button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
 </div> 
-
 ` 
+  
 }else{
 
 html+=`
@@ -114,11 +111,13 @@ html+=`
 <button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
 </div>  
 `
+  
 }
 
 })
 
 document.getElementById("servicios").innerHTML=html
+
 }
 
 /* RECOMENDACION */
@@ -133,13 +132,19 @@ if(texto.includes("facial") || texto.includes("hydrafacial")){
 
 document.getElementById("tituloMejoras").innerText="Potencia tu facial"
 
-document.getElementById("opcionesMejoras").innerHTML=  <button class="boton-dorado" onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">Mascarilla 111skin $500</button>   <button class="boton-dorado" onclick="agregar('Rodillo de jade',300); cerrarMejoras()">Rodillo de jade $300</button>  
+document.getElementById("opcionesMejoras").innerHTML=
+<button class="boton-dorado" onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">Mascarilla 111skin $500</button>
+<button class="boton-dorado" onclick="agregar('Rodillo de jade',300); cerrarMejoras()">Rodillo de jade $300</button>  
+`
 
 }else{
 
 document.getElementById("tituloMejoras").innerText="Mejora tu masaje"
 
-document.getElementById("opcionesMejoras").innerHTML=  <button class="boton-dorado" onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>   <button class="boton-dorado" onclick="agregar('Piedras calientes',300); cerrarMejoras()">Piedras calientes $300</button>  
+document.getElementById("opcionesMejoras").innerHTML=
+<button class="boton-dorado" onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
+<button class="boton-dorado" onclick="agregar('Piedras calientes',300); cerrarMejoras()">Piedras calientes $300</button>
+`
 }
 
 document.getElementById("modalMejoras").style.display="flex"
@@ -174,7 +179,6 @@ carrito.forEach((item,i)=>{
 total+=item.precio
 
 html+=`
-
 <div class="item-carrito">  
 ${item.nombre} $${item.precio}  
 <button class="eliminar" onclick="eliminar(${i})">X</button>  
