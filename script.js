@@ -26,7 +26,7 @@ bienestar:[
 ],
 
 masajes:[
-{nombre:"Tranquilidad para dos",precio60:5600,precio90:7400,desc:"Tranquilidad para dos",precio60:5600,precio90:7400,desc:"Comparta una maravillosa experiencia de masaje lado a lado de una persona especial en nuestra cabina de parejas."},
+{nombre:"Tranquilidad para dos",precio60:5600,precio90:7400,desc:"Comparta una maravillosa experiencia de masaje lado a lado de una persona especial en nuestra cabina de parejas."},
 {nombre:"Masaje relajante",precio60:2400,precio90:3300,desc:"Masaje de presion suave para una relajación profunda."},
 {nombre:"Masaje tejido profundo",precio60:2800,precio90:3700,desc:"Masaje de presion profunda para aliviar la tension muscular."},
 {nombre:"Masaje antiestrés",precio60:2600,precio90:3500,desc:"Masaje tradicional de presión moderada a firme, que deja una sensacion de revitalizacion y relajacion."},
@@ -84,9 +84,9 @@ if(s.precio60 && s.precio90){
 html+=`
 <div class="card">
 <h3>${s.nombre}</h3>
-<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60}')">60 min $${s.precio60}</button>
-<button class="agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90}')">90 min $${s.precio90}</button>
-<button class="detalle" onclick="detalle('${s.nombre}','${s.desc}')">Detalle</button>
+<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>
+<button class="agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90})">90 min $${s.precio90}</button>
+<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
 </div>
 `
   
@@ -183,7 +183,8 @@ sugerenciaMostrada=false
 }
 
 function agregar(nombre,precio){
-if(typeof precio !== "number" || isNaN(precio)) return
+if(isNaN(valor)){
+  alert("Monto invalido")return
 
 carrito.push({nombre,precio})
 actualizar()
@@ -234,7 +235,6 @@ document.getElementById("modal").style.display="flex"
 
 function cerrar(){
 document.getElementById("modal").style.display="none"
-
 }
 
 // ✅ Precio definido correctamente
@@ -273,7 +273,7 @@ let propinaSeleccion=document.querySelector('input[name="propina"]:checked')
 
 if(propinaSeleccion){
 if(propinaSeleccion.value==="si"){
-let monto=document.getElementById("propinaMonto").value || 0
+let monto=document.getElementById("montoPropina").value || 0
 mensaje+="Propina: Sí $" + monto + "\n"
 }else{
 mensaje+="Propina: No\n"
@@ -283,6 +283,6 @@ mensaje+="Propina: No\n"
 let numero="5215580952588"
 
 // ✅ encoding correcto
-window.open(https://wa.me/${numero}?text=${encodeURIComponent(mensaje)})
+window.open('https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}')
 
 }
