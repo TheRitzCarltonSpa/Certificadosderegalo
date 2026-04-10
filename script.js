@@ -126,12 +126,6 @@ html+=`
 })
 
 document.getElementById("servicios").innerHTML=html
-
-}
-
-/* SEGURIDAD */
-detalle('${escapeHTML(s.nombre)}','$
-{escapeHTML(s.desc)}')
 }
 
 /* RECOMENDACION */
@@ -183,8 +177,10 @@ sugerenciaMostrada=false
 }
 
 function agregar(nombre,precio){
-if(isNaN(valor)){
-  alert("Monto invalido")return
+if(isNaN(precio)){
+  alert("Monto inválido")
+  return
+}
 
 carrito.push({nombre,precio})
 actualizar()
@@ -283,6 +279,5 @@ mensaje+="Propina: No\n"
 let numero="5215580952588"
 
 // ✅ encoding correcto
-window.open('https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}')
-
+window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`)
 }
