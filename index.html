@@ -13,30 +13,34 @@
   
 <div id="intro">  
 <img src="imagenes/logo1.png">  
-<div class="intro-logo"></div>  
+<div class="intro-logo">
+</div>
+
 </div>
   
-<header>  
+<header>
+
 <div class="logo">  
 <img src="imagenes/logo.png" style="max-width:120px;height:auto;">  
 </div>  
+
 <h1>Certificados de regalo Spa</h1>  
+
 </header>
   
 <div class="especial">
+
 <h2>Especial del Mes</h2>  
 <h3>Spring reset ritual</h3>
   
-<button class="boton-dorado" onclick="agregar('',4000)">  
+<button class="boton-dorado" onclick="agregar('',)">  
 Agregar  
 </button> 
 
-<button class="detalle" onclick="detalle('Spring reset ritual','Un delicado recorrido de renovación que envuelve el  
-cuerpo en toques suaves y cuidados nutritivos. Movimientos cálidos y envolventes se combinan para liberar  
-la tensión, restaurar la vitalidad y dejarte con una sensación  
-de ligereza y renovación.')">
+<button class="detalle" onclick="detalle('Spring reset ritual','Un delicado recorrido de renovación que envuelve el cuerpo en toques suaves y cuidados nutritivos. Movimientos cálidos y envolventes se combinan para liberar la tensión, restaurar la vitalidad y dejarte con una sensación de ligereza y renovación.')">
 Detalle
 </button>
+  
 </div>
 
 <!-- MENU -->
@@ -69,11 +73,11 @@ Detalle
 
 </div>  
 
-<div class="servicios" id="servicios">
-</div>
+<div class="servicios" id="servicios"></div>
   
 <!-- CARRITO --> 
 <div class="carrito">
+
 <h2>Servicios elegidos</h2>
   
 <div id="lista"></div>
@@ -82,7 +86,8 @@ Detalle
 Total: $<span id="total">0</span>  
 </div>
   
-<!-- CERTIFICADO -->
+<!-- CERTIFICADO CON VALOR -->
+  
 <div class="especial">
   
 <h2>Certificado con valor</h2>
@@ -96,7 +101,6 @@ Total: $<span id="total">0</span>
 </div>
   
 <button onclick="agregarCertificado()">Agregar certificado</button>
-
 </div>
   
 <form>
@@ -129,23 +133,30 @@ Todos los tratamientos incluyen I.V.A (16%) y cargo por servicio (15%), la propi
   
 </div>
   
-</div>
-  
 <!-- MODAL -->
 <div class="modal" id="modal">  
-<div class="modal-contenido">  
+<div class="modal-contenido">
+  
 <h2 id="titulo"></h2>  
-<p id="descripcion"></p>  
+<p id="descripcion"></p>
+
 <button onclick="cerrar()">Cerrar</button>  
+
 </div> 
 </div>
   
 <!-- MODAL MEJORAS -->
+
 <div class="modal" id="modalMejoras">  
+
 <div class="modal-contenido">  
-<h2 id="tituloMejoras"></h2>  
+
+<h2 id="tituloMejoras"></h2>
+
 <div id="opcionesMejoras"></div>  
+
 <button onclick="cerrarMejoras()">Continuar</button>  
+
 </div>  
 </div>
 
