@@ -161,7 +161,7 @@ padding:30px;
 .card{
 background:white;
 width:260px;
-border-radius:10px;
+border-radius:12px;
 padding:20px;
 text-align:center;
 box-shadow:0 6px 18px rgba(0,0,0,.2);
@@ -184,7 +184,7 @@ margin:5px;
 }
   
 .agregar{
-background:#ccb9a5;
+background:#debf9e;
 color:white;
 border:none;
 padding:10px 14px;
