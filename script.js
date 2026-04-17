@@ -1,6 +1,7 @@
 let carrito=[]
 let total=0
 let sugerenciaMostrada=false
+let contadorSugerencias = 0
 
 function seleccionarValor(valor){
 document.getElementById("valorCertificado").value=valor
@@ -73,6 +74,8 @@ mejoras:[
 // ✅ Validación de categoría
 function mostrar(cat){
 
+window.categoriaAcrual = cat
+  
 if(!servicios[cat]) return
 
 let html=""
@@ -132,6 +135,10 @@ document.getElementById("servicios").innerHTML=html
 
 function recomendarMejoras(nombre){
 
+const categoriasValidas.includes(window.categoriaActual)) return
+
+if(contadorSugerencias >=2) return
+
 if(sugerenciaMostrada) return
 
 let texto=nombre.toLowerCase()
@@ -168,6 +175,8 @@ Cepillado corporal $300</button>
 
 document.getElementById("modalMejoras").style.display="flex"
 sugerenciaMostrada=true
+
+contadorSugeremcias++
   
 }
 
