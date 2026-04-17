@@ -1,7 +1,6 @@
 let carrito=[]
 let total=0
 let sugerenciaMostrada=false
-let contadorSugerencias = 0
 
 function seleccionarValor(valor){
 document.getElementById("valorCertificado").value=valor
@@ -135,10 +134,6 @@ document.getElementById("servicios").innerHTML=html
 
 function recomendarMejoras(nombre){
 
-const categoriasValidas.includes(window.categoriaActual)) return
-
-if(contadorSugerencias >=2) return
-
 if(sugerenciaMostrada) return
 
 let texto=nombre.toLowerCase()
@@ -169,15 +164,11 @@ document.getElementById("opcionesMejoras").innerHTML=`
 Piedras calientes $300</button>
 <button class="boton-dorado" onclick="agregar('Cepillado corporal',300); cerrarMejoras()">
 Cepillado corporal $300</button>
-
 `
 }
 
 document.getElementById("modalMejoras").style.display="flex"
 sugerenciaMostrada=true
-
-contadorSugeremcias++
-  
 }
 
 function cerrarMejoras(){
