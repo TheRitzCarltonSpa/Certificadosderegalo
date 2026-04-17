@@ -1,9 +1,9 @@
 <style>
   
 body{
-background:#b2dafa;
 margin:0;
 font-family:"Georgia",serif;
+background:#b2dafa;
 }
   
 /* INTRO ANIMADO */
@@ -21,7 +21,7 @@ justify-content:center;
 flex-direction:column;
 color:black;
 z-index:9999;
-animation:fadeOut 1.5s ease 2s forwards;
+animation:fadeOut 1.5s ease 2.5s forwards;
 }
 
 .intro-logo{
