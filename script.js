@@ -13,6 +13,12 @@ if(valor==""){alert("Ingrese un monto");return}
 // ✅ Sanitizar comas
 valor = valor.toString().replace(/,/g,'')
 
+let numero = parseFloat(valor)
+if(isNaN(numero)){
+alert("Monto invalido")
+return
+}
+
 agregar("Certificado $" + valor,parseFloat(valor))
 document.getElementById("valorCertificado").value=""
 }
@@ -73,7 +79,7 @@ mejoras:[
 // ✅ Validación de categoría
 function mostrar(cat){
 
-window.categoriaAcrual = cat
+window.categoriaActual = cat
   
 if(!servicios[cat]) return
 
@@ -150,7 +156,6 @@ Mascarilla 111skin $500</button>
 Tonificacion facial con rodillo de jade $300</button>
 <button class="boton-dorado" onclick="agregar('Mascarilla plástica',400); cerrarMejoras()">
 Mascarilla plastica $400</button>
-
 `
 
 }else{
@@ -206,11 +211,8 @@ html+=`
 <div class="item-carrito">  
 
 ${item.nombre} $${item.precio}  
-
 <button class="eliminar" onclick="eliminar(${i})">X</button>
-
 </div>
-
 `  
 }) 
 
@@ -233,12 +235,12 @@ function cerrar(){
 document.getElementById("modal").style.display="none"
 }
 
-// ✅ Precio definido correctamente
-function seleccionarMasaje(tipo){
-document.getElementById("modalTranquilidad").style.display="none"
-let precio = window._tranquilidadPrecio || 5600
-agregar('Tranquilidad para dos - '+tipo,precio)
+function agregar(nombre,precio){
+if(!nombre || isNaN(precio)){
+  alert("Monto invalido")
+  return
 }
+
 
 function enviar(){
 
