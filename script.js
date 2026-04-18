@@ -19,7 +19,7 @@ alert("Monto invalido")
 return
 }
 
-agregar("Certificado $" + valor,parseFloat(valor))
+agregar("Certificado $" + valor,numero)
 document.getElementById("valorCertificado").value=""
 }
 
@@ -92,9 +92,9 @@ if(s.precio60 && s.precio90){
 html+=`
 <div class="card">
 <h3>${s.nombre}</h3>
-<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>
-<button class="agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90})">90 min $${s.precio90}</button>
-<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
+<button class="boton boton-agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>
+<button class="boton boton-agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90})">90 min $${s.precio90}</button>
+<button class="boton boton-detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
 </div>
 `
   
@@ -103,9 +103,9 @@ html+=`
 html+=`
 <div class="card">  
 <h3>${s.nombre}</h3>  
-<button class="agregar" onclick="agregar('${s.nombre} 25 min',${s.precio25})">25 min $${s.precio25}</button>  
-<button class="agregar" onclick="agregar('${s.nombre} 40 min',${s.precio40})">40 min $${s.precio40}</button>  
-<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
+<button class="boton boton-agregar" onclick="agregar('${s.nombre} 25 min',${s.precio25})">25 min $${s.precio25}</button>  
+<button class="boton boton-agregar" onclick="agregar('${s.nombre} 40 min',${s.precio40})">40 min $${s.precio40}</button>  
+<button class="boton boton-detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
 </div> 
 `
   
@@ -114,8 +114,8 @@ html+=`
 html+=`
 <div class="card">  
 <h3>${s.nombre}</h3>  
-<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>  
-<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
+<button class="boton boton-agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>  
+<button class="boton boton-detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
 </div> 
 ` 
   
@@ -124,8 +124,8 @@ html+=`
 html+=`
 <div class="card">  
 <h3>${s.nombre}</h3>  
-<button class="agregar" onclick="agregar('${s.nombre}',${s.precio})">$${s.precio}</button>  
-<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
+<button class="boton boton-agregar" onclick="agregar('${s.nombre}',${s.precio})">$${s.precio}</button>  
+<button class="boton boton-detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
 </div>  
 `
   
@@ -144,18 +144,18 @@ if(sugerenciaMostrada) return
 
 let texto=nombre.toLowerCase()
 
+let html=""
+
 if(texto.includes("facial") || texto.includes("hydrafacial")){
 
+let html=`
 document.getElementById("tituloMejoras").innerText="Potencia tu facial"
 
 document.getElementById("opcionesMejoras").innerHTML=`
 
-<button class="boton-dorado" onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">
-Mascarilla 111skin $500</button>
-<button class="boton-dorado" onclick="agregar('Tonificacion facial con rodillo de jade',300); cerrarMejoras()">
-Tonificacion facial con rodillo de jade $300</button>
-<button class="boton-dorado" onclick="agregar('Mascarilla plástica',400); cerrarMejoras()">
-Mascarilla plastica $400</button>
+<button class="boton boton-dorado" onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">Mascarilla 111skin $500</button>
+<button class="boton boton-dorado" onclick="agregar('Tonificacion facial con rodillo de jade',300); cerrarMejoras()">Tonificacion facial con rodillo de jade $300</button>
+<button class="boton boton-dorado" onclick="agregar('Mascarilla plástica',400); cerrarMejoras()">Mascarilla plastica $400</button>
 `
 
 }else{
@@ -164,14 +164,13 @@ document.getElementById("tituloMejoras").innerText="Mejora tu masaje"
 
 document.getElementById("opcionesMejoras").innerHTML=`
 
-<button class="boton-dorado" onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
-<button class="boton-dorado" onclick="agregar('Piedras calientes',300); cerrarMejoras()">
-Piedras calientes $300</button>
-<button class="boton-dorado" onclick="agregar('Cepillado corporal',300); cerrarMejoras()">
-Cepillado corporal $300</button>
+<button class="boton boton-dorado" onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
+<button class="boton boton-dorado" onclick="agregar('Piedras calientes',300); cerrarMejoras()">Piedras calientes $300</button>
+<button class="boton boton-dorado" onclick="agregar('Cepillado corporal',300); cerrarMejoras()">Cepillado corporal $300</button>
 `
 }
 
+document.getElementById("opcionesMejoras").innerHTML=html
 document.getElementById("modalMejoras").style.display="flex"
 sugerenciaMostrada=true
 }
@@ -179,6 +178,13 @@ sugerenciaMostrada=true
 function cerrarMejoras(){
 document.getElementById("modalMejoras").style.display="none"
 sugerenciaMostrada=false
+}
+
+funcion agregar(nombre,precio)){
+
+if(!nombre || isNaN(precio)){
+alert("Monto invalido")
+return
 }
 
 carrito.push({nombre,precio})
@@ -198,12 +204,10 @@ let html=""
 total=0
 
 carrito.forEach((item,i)=>{
-  
 total+=item.precio
 
 html+=`
-<div class="item-carrito">  
-
+<div class="item-carrito">
 ${item.nombre} $${item.precio}  
 <button class="eliminar" onclick="eliminar(${i})">X</button>
 </div>
