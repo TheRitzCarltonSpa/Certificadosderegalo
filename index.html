@@ -24,13 +24,13 @@
   
 <div class="especial">
 <h2>Especial del Mes</h2>  
-<h3></h3>
+<h3>Mothers radiance experince</h3>
   
-<button class="boton-dorado" onclick="agregar('Spring reset ritual',5100)">  
+<button class="boton boton-dorado" onclick="agregar('Mothers radiance experince',5100)">  
 Agregar  
 </button> 
 
-<button class="detalle" onclick="detalle('Spring reset ritual','Un delicado recorrido de renovación que envuelve el cuerpo en toques suaves y cuidados nutritivos. Movimientos cálidos y envolventes se combinan para liberar la tensión, restaurar la vitalidad y dejarte con una sensación de ligereza y renovación.')">
+<button class="boton boton-detalle" onclick="detalle('Mothers radiance experince','Un ritual luminoso diseñado para restaurar y revitalizar. El cuidado profundo y el toque nutritivo se unen para realzar la luminosidad natural, liberar el cansancio y regalar un momento de bienestar absoluto.')">
 Detalle
 </button>
 </div>
@@ -86,26 +86,31 @@ Total: $<span id="total">0</span>
 <input type="number" id="valorCertificado" placeholder="Ejemplo 3000">
 <div>
 
-<button onclick="seleccionarValor(2400)">$2,400</button>  
-<button onclick="seleccionarValor(3600)">$3,600</button>  
-<button onclick="seleccionarValor(7600)">$7,600</button>  
+<button class="boton boton-agregar" onclick="seleccionarValor(2400)">$2,400</button>  
+<button class="boton boton-agregar" onclick="seleccionarValor(3600)">$3,600</button>  
+<button class="boton boton-agregar" onclick="seleccionarValor(7600)">$7,600</button>  
 </div>
   
-<button onclick="agregarCertificado()">Agregar certificado</button>
+<button class="boton boton-agregar" onclick="agregarCertificado()">Agregar certificado</button>
 </div>
   
 <form>
   
-<input id="nombre" placeholder="Nombre">  
-<input id="destinatario" placeholder="Destinatario">  
-<input id="telefono" placeholder="Teléfono">  
-<input id="correo" placeholder="Correo">  
-<div>
-  
+<input id="nombre" type="text" placeholder="Nombre">  
+<input id="destinatario" type="text" placeholder="Destinatario">  
+<input id="telefono" type="tel" placeholder="Teléfono">  
+<input id="correo" type="email" placeholder="Correo">
+
+<div>  
 <label>¿Desea incluir propina?</label>
   
-<label><input type="radio" name="propina" onclick="togglePropina(true)"> Sí</label>
-<label><input type="radio" name="propina" onclick="togglePropina(false)"> No</label>
+<label>
+<input type="radio" name="propina" onclick="togglePropina(true)"> Sí
+</label>
+
+<label>
+<input type="radio" name="propina" onclick="togglePropina(false)"> No
+</label>
 
 <div id="montoPropina" style="display:none;">  
 <input id="propinaMonto" placeholder="Monto">  
@@ -113,12 +118,13 @@ Total: $<span id="total">0</span>
   
 </div> 
   
-<button type="button" onclick="enviar()">Solicitar link</button>
+<button type="button" class="boton boton-agregar" onclick="enviar()">
+Solicitar link
+</button>
 
 </form>
 
-<p class="nota-legal">  
-  
+<p class="nota-legal">
 Todos los tratamientos incluyen I.V.A (16%) y cargo por servicio (15%), la propina es opcional.  
 </p>
   
@@ -127,30 +133,18 @@ Todos los tratamientos incluyen I.V.A (16%) y cargo por servicio (15%), la propi
 <!-- MODAL -->
 <div class="modal" id="modal">  
 <div class="modal-contenido">
-  
 <h2 id="titulo"></h2>  
 <p id="descripcion"></p>
-
-<button onclick="cerrar()">Cerrar</button>  
-
+<button class="boton boton-detalle" onclick="cerrar()">Cerrar</button>  
 </div> 
 </div>
   
 <!-- MODAL MEJORAS -->
-
 <div class="modal" id="modalMejoras">  
-
 <div class="modal-contenido">  
-
 <h2 id="tituloMejoras"></h2>
-
 <div id="opcionesMejoras"></div>  
-
-<button onclick="cerrarMejoras()">Continuar</button>  
-
-</div>  
-</div>
-
+<button class="boton boton-agregar" onclick="cerrarMejoras()">Continuar</button>  
 </div>  
 </div>
   
