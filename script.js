@@ -181,12 +181,6 @@ document.getElementById("modalMejoras").style.display="none"
 sugerenciaMostrada=false
 }
 
-function agregar(nombre,precio){
-if(isNaN(precio)){
-  alert("Monto inválido")
-  return
-}
-
 carrito.push({nombre,precio})
 actualizar()
 recomendarMejoras(nombre)
@@ -222,7 +216,7 @@ document.getElementById("total").innerText=total
 
 /* PROPINA */
 function togglePropina(mostrar){
-document.getElementById("montoPropina").style.display=mostrar?"block":"none"
+document.getElementById("propinaMonto").style.display=mostrar?"block":"none"
 }
 
 function detalle(t,d){
@@ -234,13 +228,6 @@ document.getElementById("modal").style.display="flex"
 function cerrar(){
 document.getElementById("modal").style.display="none"
 }
-
-function agregar(nombre,precio){
-if(!nombre || isNaN(precio)){
-  alert("Monto invalido")
-  return
-}
-
 
 function enviar(){
 
