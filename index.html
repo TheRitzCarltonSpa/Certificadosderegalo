@@ -25,8 +25,9 @@
 <div class="especial">
 <h2>Especial del Mes</h2>  
 <h3>Mothers radiance experince</h3>
-  
-<button class="boton boton-dorado" onclick="agregar('Mothers radiance experince',5100)">  
+<div class="precio">$5,100</div>
+
+<button class="boton boton-agregar" onclick="agregar('Mothers radiance experince',5100)">  
 Agregar  
 </button> 
 
@@ -66,21 +67,10 @@ Detalle
 </div>  
 
 <div class="servicios" id="servicios"></div>
-  
-<!-- CARRITO --> 
-<div class="carrito">
 
-<h2>Servicios elegidos</h2>
-<div id="lista"></div>
-
-<div class="total">  
-Total: $<span id="total">0</span>  
-</div>
-  
 <!-- CERTIFICADO CON VALOR -->
   
-<div class="especial">
-  
+<div class="especial"> 
 <h2>Certificado con valor</h2>
   
 <input type="number" id="valorCertificado" placeholder="Ejemplo 3000">
@@ -94,8 +84,17 @@ Total: $<span id="total">0</span>
 <button class="boton boton-agregar" onclick="agregarCertificado()">Agregar certificado</button>
 </div>
   
-<form>
+<!-- CARRITO --> 
+<div class="carrito">
+<h2>Servicios elegidos</h2>
   
+<div id="lista"></div>
+
+<div class="total">  
+Total: $<span id="total">0</span>  
+</div>
+  
+<form>
 <input id="nombre" type="text" placeholder="Nombre">  
 <input id="destinatario" type="text" placeholder="Destinatario">  
 <input id="telefono" type="tel" placeholder="Teléfono">  
@@ -121,8 +120,8 @@ Total: $<span id="total">0</span>
 <button type="button" class="boton boton-agregar" onclick="enviar()">
 Solicitar link
 </button>
-
 </form>
+</div>
 
 <p class="nota-legal">
 Todos los tratamientos incluyen I.V.A (16%) y cargo por servicio (15%), la propina es opcional.  
@@ -149,6 +148,5 @@ Todos los tratamientos incluyen I.V.A (16%) y cargo por servicio (15%), la propi
 </div>
   
 <script src="script.js"></script>
-  
 </body>  
 </html>
