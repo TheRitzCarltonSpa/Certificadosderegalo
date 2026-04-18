@@ -179,3 +179,43 @@ border-radius:4px;
 padding:4px 10px;
 cursor:pointer;
 }
+
+.boton{
+display:inline-block;
+padding:12px 18px
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+font-weight:600;
+min-width:160px;
+text-align:center;
+transition:all ,25s ease;
+margin:5px;
+}
+
+.boton-agregar{
+background:#ccb9a5;
+color:white;
+}
+
+.boton-detalle{
+background:transparent;
+border:2px solid #ccb9a5;
+color:#ccb9a5;
+}
+
+.boton.boton-dorado{
+background:#debf9e
+color:black;
+}
+
+.boton:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 12px rgba(0,0,0,.2);
+}
+
+.boton-detalle:hover{
+background:#ccb9a5;
+color:white;
+}
