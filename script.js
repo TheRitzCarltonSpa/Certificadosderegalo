@@ -13,13 +13,7 @@ if(valor==""){alert("Ingrese un monto");return}
 // ✅ Sanitizar comas
 valor = valor.toString().replace(/,/g,'')
 
-let numero = parseFloat(valor)
-if(isNaN(numero)){
-alert("Monto invalido")
-return
-}
-
-agregar("Certificado $" + valor,numero)
+agregar("Certificado $" + valor,parseFloat(valor))
 document.getElementById("valorCertificado").value=""
 }
 
@@ -32,7 +26,7 @@ bienestar:[
 ],
 
 masajes:[
-{nombre:"Tranquilidad para dos",precio60:5600,precio90:7400,desc:"Comparta una maravillosa experiencia de masaje lado a lado de una persona especial en nuestra cabina de parejas."},
+{nombre:"Tranquilidad para dos",precio60:5600,precio90:7400,desc:"Tranquilidad para dos",precio60:5600,precio90:7400,desc:"Comparta una maravillosa experiencia de masaje lado a lado de una persona especial en nuestra cabina de parejas."},
 {nombre:"Masaje relajante",precio60:2400,precio90:3300,desc:"Masaje de presion suave para una relajación profunda."},
 {nombre:"Masaje tejido profundo",precio60:2800,precio90:3700,desc:"Masaje de presion profunda para aliviar la tension muscular."},
 {nombre:"Masaje antiestrés",precio60:2600,precio90:3500,desc:"Masaje tradicional de presión moderada a firme, que deja una sensacion de revitalizacion y relajacion."},
@@ -79,8 +73,6 @@ mejoras:[
 // ✅ Validación de categoría
 function mostrar(cat){
 
-window.categoriaActual = cat
-  
 if(!servicios[cat]) return
 
 let html=""
@@ -92,9 +84,9 @@ if(s.precio60 && s.precio90){
 html+=`
 <div class="card">
 <h3>${s.nombre}</h3>
-<button class="boton boton-agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>
-<button class="boton boton-agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90})">90 min $${s.precio90}</button>
-<button class="boton boton-detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>
+<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60}')">60 min $${s.precio60}</button>
+<button class="agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90}')">90 min $${s.precio90}</button>
+<button class="detalle" onclick="detalle('${s.nombre}','${s.desc}')">Detalle</button>
 </div>
 `
   
@@ -103,9 +95,9 @@ html+=`
 html+=`
 <div class="card">  
 <h3>${s.nombre}</h3>  
-<button class="boton boton-agregar" onclick="agregar('${s.nombre} 25 min',${s.precio25})">25 min $${s.precio25}</button>  
-<button class="boton boton-agregar" onclick="agregar('${s.nombre} 40 min',${s.precio40})">40 min $${s.precio40}</button>  
-<button class="boton boton-detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
+<button class="agregar" onclick="agregar('${s.nombre} 25 min',${s.precio25})">25 min $${s.precio25}</button>  
+<button class="agregar" onclick="agregar('${s.nombre} 40 min',${s.precio40})">40 min $${s.precio40}</button>  
+<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
 </div> 
 `
   
@@ -114,8 +106,8 @@ html+=`
 html+=`
 <div class="card">  
 <h3>${s.nombre}</h3>  
-<button class="boton boton-agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>  
-<button class="boton boton-detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
+<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">60 min $${s.precio60}</button>  
+<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
 </div> 
 ` 
   
@@ -124,8 +116,8 @@ html+=`
 html+=`
 <div class="card">  
 <h3>${s.nombre}</h3>  
-<button class="boton boton-agregar" onclick="agregar('${s.nombre}',${s.precio})">$${s.precio}</button>  
-<button class="boton boton-detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
+<button class="agregar" onclick="agregar('${s.nombre}',${s.precio})">$${s.precio}</button>  
+<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
 </div>  
 `
   
@@ -134,6 +126,12 @@ html+=`
 })
 
 document.getElementById("servicios").innerHTML=html
+
+}
+
+/* SEGURIDAD */
+detalle('${escapeHTML(s.nombre)}','$
+{escapeHTML(s.desc)}')
 }
 
 /* RECOMENDACION */
@@ -142,16 +140,21 @@ function recomendarMejoras(nombre){
 
 if(sugerenciaMostrada) return
 
-let texto = nombre.toLowerCase()
+let texto=nombre.toLowerCase()
 
 if(texto.includes("facial") || texto.includes("hydrafacial")){
 
 document.getElementById("tituloMejoras").innerText="Potencia tu facial"
 
 document.getElementById("opcionesMejoras").innerHTML=`
-<button class="boton boton-dorado" onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">Mascarilla 111skin $500</button>
-<button class="boton boton-dorado" onclick="agregar('Tonificacion facial con rodillo de jade',300); cerrarMejoras()">Tonificacion facial con rodillo de jade $300</button>
-<button class="boton boton-dorado" onclick="agregar('Mascarilla plástica',400); cerrarMejoras()">Mascarilla plastica $400</button>
+
+<button class="boton-dorado" onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">
+Mascarilla 111skin $500</button>
+<button class="boton-dorado" onclick="agregar('Tonificacion facial con rodillo de jade',300); cerrarMejoras()">
+Tonificacion facial con rodillo de jade $300</button>
+<button class="boton-dorado" onclick="agregar('Mascarilla plástica',400); cerrarMejoras()">
+Mascarilla plastica $400</button>
+
 `
 
 }else{
@@ -159,16 +162,19 @@ document.getElementById("opcionesMejoras").innerHTML=`
 document.getElementById("tituloMejoras").innerText="Mejora tu masaje"
 
 document.getElementById("opcionesMejoras").innerHTML=`
-<button class="boton boton-dorado" onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
-<button class="boton boton-dorado" onclick="agregar('Piedras calientes',300); cerrarMejoras()">Piedras calientes $300</button>
-<button class="boton boton-dorado" onclick="agregar('Cepillado corporal',300); cerrarMejoras()">Cepillado corporal $300</button>
+
+<button class="boton-dorado" onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
+<button class="boton-dorado" onclick="agregar('Piedras calientes',300); cerrarMejoras()">
+Piedras calientes $300</button>
+<button class="boton-dorado" onclick="agregar('Cepillado corporal',300); cerrarMejoras()">
+Cepillado corporal $300</button>
+
 `
 }
 
-document.getElementById("opcionesMejoras").innerHTML=html
-  
 document.getElementById("modalMejoras").style.display="flex"
 sugerenciaMostrada=true
+  
 }
 
 function cerrarMejoras(){
@@ -176,12 +182,8 @@ document.getElementById("modalMejoras").style.display="none"
 sugerenciaMostrada=false
 }
 
-function agregar(nombre,precio)){
-
-if(!nombre || isNaN(precio)){
-alert("Monto invalido")
-return
-}
+function agregar(nombre,precio){
+if(typeof precio !== "number" || isNaN(precio)) return
 
 carrito.push({nombre,precio})
 actualizar()
@@ -195,41 +197,51 @@ actualizar()
 
 function actualizar(){
 
-let lista = document.getElementById("lista")
-  if(!lista) return
-  
+let lista=document.getElementById("lista")
 let html=""
 total=0
 
 carrito.forEach((item,i)=>{
-total += item.precio
+  
+total+=item.precio
 
-html += `
-<div class="item-carrito">
+html+=`
+<div class="item-carrito">  
+
 ${item.nombre} $${item.precio}  
+
 <button class="eliminar" onclick="eliminar(${i})">X</button>
+
 </div>
+
 `  
 }) 
 
-lista.innerHTML = html
-document.getElementById("total")
-  if (totalEl) totalEl.innerText = total
+lista.innerHTML=html
+document.getElementById("total").innerText=total
 }
 
 /* PROPINA */
 function togglePropina(mostrar){
-document.getElementById("propinaMonto").style.display=mostrar? "block":"none"
+document.getElementById("montoPropina").style.display=mostrar?"block":"none"
 }
 
 function detalle(t,d){
-document.getElementById("titulo").innerText = t
-document.getElementById("descripcion").innerText = d
-document.getElementById("modal").style.display = "flex"
+document.getElementById("titulo").innerText=t
+document.getElementById("descripcion").innerText=d
+document.getElementById("modal").style.display="flex"
 }
 
 function cerrar(){
-document.getElementById("modal").style.display = "none"
+document.getElementById("modal").style.display="none"
+
+}
+
+// ✅ Precio definido correctamente
+function seleccionarMasaje(tipo){
+document.getElementById("modalTranquilidad").style.display="none"
+let precio = window._tranquilidadPrecio || 5600
+agregar('Tranquilidad para dos - '+tipo,precio)
 }
 
 function enviar(){
@@ -261,7 +273,7 @@ let propinaSeleccion=document.querySelector('input[name="propina"]:checked')
 
 if(propinaSeleccion){
 if(propinaSeleccion.value==="si"){
-let monto=document.getElementById("montoPropina").value || 0
+let monto=document.getElementById("propinaMonto").value || 0
 mensaje+="Propina: Sí $" + monto + "\n"
 }else{
 mensaje+="Propina: No\n"
@@ -271,5 +283,6 @@ mensaje+="Propina: No\n"
 let numero="5215580952588"
 
 // ✅ encoding correcto
-window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`)
+window.open(https://wa.me/${numero}?text=${encodeURIComponent(mensaje)})
+
 }
