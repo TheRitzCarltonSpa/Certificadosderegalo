@@ -11,6 +11,15 @@ let valor=document.getElementById("valorCertificado").value
 
 if(valor==""){alert("Ingrese un monto");return}
 
+  // ✅ Sanitizar comas
+valor = valor.toString().replace(/,/g,'')
+
+let numero = parseFloat(valor)
+if(isNaN(numero)){
+alert("Monto invalido")
+return
+}
+
 agregar("Certificado $" + valor,parseFloat(valor))
 
 document.getElementById("valorCertificado").value=""
