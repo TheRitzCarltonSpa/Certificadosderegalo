@@ -286,5 +286,5 @@ mensaje+="Propina: No%0A"
 }
 
 let numero="5215580952588"
-window.open(`https://wa.me/${numero}?text=${mensaje}`)
+window.open(https://wa.me/${numero}?text=${mensaje})
 }
