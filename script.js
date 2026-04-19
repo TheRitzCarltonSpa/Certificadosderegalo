@@ -1,29 +1,21 @@
 let carrito=[]
 let total=0
+let sugerenciaMostrada=false
+
+function togglePropina(mostrar){
+let campo=document.getElementById("montoPropina")
+campo.style.display=mostrar ? "block" : "none"
+}
 
 function seleccionarValor(valor){
 document.getElementById("valorCertificado").value=valor
 }
 
 function agregarCertificado(){
-
 let valor=document.getElementById("valorCertificado").value
-
 if(valor==""){alert("Ingrese un monto");return}
-
-  // ✅ Sanitizar comas
-valor = valor.toString().replace(/,/g,'')
-
-let numero = parseFloat(valor)
-if(isNaN(numero)){
-alert("Monto invalido")
-return
-}
-
 agregar("Certificado $" + valor,parseFloat(valor))
-
 document.getElementById("valorCertificado").value=""
-
 }
 
 const servicios={
@@ -271,22 +263,17 @@ let destinatario=document.getElementById("destinatario").value
 let telefono=document.getElementById("telefono").value
 let correo=document.getElementById("correo").value
 
-if(!nombre || !telefono){
-alert("Completa los datos obligatorios")
-return
-}
-
-let mensaje="Solicitar Certificado Spa \n"
+let mensaje="Solicitar Certificado Spa %0A"
 
 carrito.forEach(s=>{
-mensaje+=s.nombre+" $"+s.precio+"\n"
+mensaje+=s.nombre+" $"+s.precio+"%0A"
 })
 
-mensaje+="Total $"+total+"\n"
-mensaje+="Cliente "+nombre+"\n"
-mensaje+="Destinatario "+destinatario+"\n"
-mensaje+="Tel "+telefono+"\n"
-mensaje+="Correo "+correo+"\n"
+mensaje+="Total $"+total+"%0A"
+mensaje+="Cliente "+nombre+"%0A"
+mensaje+="Destinatario "+destinatario+"%0A"
+mensaje+="Tel "+telefono+"%0A"
+mensaje+="Correo "+correo+"%0A"
 
 /* PROPINA */
 let propinaSeleccion=document.querySelector('input[name="propina"]:checked')
@@ -294,15 +281,12 @@ let propinaSeleccion=document.querySelector('input[name="propina"]:checked')
 if(propinaSeleccion){
 if(propinaSeleccion.value==="si"){
 let monto=document.getElementById("propinaMonto").value || 0
-mensaje+="Propina: Sí $" + monto + "\n"
+mensaje+="Propina: Sí $" + monto + "%0A"
 }else{
-mensaje+="Propina: No\n"
+mensaje+="Propina: No%0A"
 }
 }
 
 let numero="5215580952588"
-
-// ✅ encoding correcto
-window.open(https://wa.me/${numero}?text=${encodeURIComponent(mensaje)})
-
+window.open(`https://wa.me/${numero}?text=${mensaje}`)
 }
