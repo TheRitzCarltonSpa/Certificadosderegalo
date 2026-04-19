@@ -120,6 +120,15 @@ text-align:center;
 box-shadow:0 6px 18px rgba(0,0,0,.2);
 }
 
+.detalle{
+background:#c9a44c;
+border:none;
+padding:10px 14px;
+border-radius:6px;
+cursor:pointer;
+margin:5px;
+}
+
 .boton-dorado{
 background:#b3812a;
 border:none;
@@ -171,6 +180,7 @@ form{
 display:flex;
 flex-direction:column;
 gap:10px;
+margin-top:15px;
 }
 
 input{
