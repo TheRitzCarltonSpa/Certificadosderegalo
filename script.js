@@ -142,17 +142,13 @@ function recomendarMejoras(nombre){
 
 if(sugerenciaMostrada) return
 
-let texto=nombre.toLowerCase()
-
-let html=""
+let texto = nombre.toLowerCase()
 
 if(texto.includes("facial") || texto.includes("hydrafacial")){
 
-let html=`
 document.getElementById("tituloMejoras").innerText="Potencia tu facial"
 
 document.getElementById("opcionesMejoras").innerHTML=`
-
 <button class="boton boton-dorado" onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">Mascarilla 111skin $500</button>
 <button class="boton boton-dorado" onclick="agregar('Tonificacion facial con rodillo de jade',300); cerrarMejoras()">Tonificacion facial con rodillo de jade $300</button>
 <button class="boton boton-dorado" onclick="agregar('Mascarilla plástica',400); cerrarMejoras()">Mascarilla plastica $400</button>
@@ -163,7 +159,6 @@ document.getElementById("opcionesMejoras").innerHTML=`
 document.getElementById("tituloMejoras").innerText="Mejora tu masaje"
 
 document.getElementById("opcionesMejoras").innerHTML=`
-
 <button class="boton boton-dorado" onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
 <button class="boton boton-dorado" onclick="agregar('Piedras calientes',300); cerrarMejoras()">Piedras calientes $300</button>
 <button class="boton boton-dorado" onclick="agregar('Cepillado corporal',300); cerrarMejoras()">Cepillado corporal $300</button>
@@ -171,6 +166,7 @@ document.getElementById("opcionesMejoras").innerHTML=`
 }
 
 document.getElementById("opcionesMejoras").innerHTML=html
+  
 document.getElementById("modalMejoras").style.display="flex"
 sugerenciaMostrada=true
 }
@@ -180,7 +176,7 @@ document.getElementById("modalMejoras").style.display="none"
 sugerenciaMostrada=false
 }
 
-funcion agregar(nombre,precio)){
+function agregar(nombre,precio)){
 
 if(!nombre || isNaN(precio)){
 alert("Monto invalido")
@@ -199,14 +195,16 @@ actualizar()
 
 function actualizar(){
 
-let lista=document.getElementById("lista")
+let lista = document.getElementById("lista")
+  if(!lista) return
+  
 let html=""
 total=0
 
 carrito.forEach((item,i)=>{
-total+=item.precio
+total += item.precio
 
-html+=`
+html += `
 <div class="item-carrito">
 ${item.nombre} $${item.precio}  
 <button class="eliminar" onclick="eliminar(${i})">X</button>
@@ -214,23 +212,24 @@ ${item.nombre} $${item.precio}
 `  
 }) 
 
-lista.innerHTML=html
-document.getElementById("total").innerText=total
+lista.innerHTML = html
+document.getElementById("total")
+  if (totalEl) totalEl.innerText = total
 }
 
 /* PROPINA */
 function togglePropina(mostrar){
-document.getElementById("propinaMonto").style.display=mostrar?"block":"none"
+document.getElementById("propinaMonto").style.display=mostrar? "block":"none"
 }
 
 function detalle(t,d){
-document.getElementById("titulo").innerText=t
-document.getElementById("descripcion").innerText=d
-document.getElementById("modal").style.display="flex"
+document.getElementById("titulo").innerText = t
+document.getElementById("descripcion").innerText = d
+document.getElementById("modal").style.display = "flex"
 }
 
 function cerrar(){
-document.getElementById("modal").style.display="none"
+document.getElementById("modal").style.display = "none"
 }
 
 function enviar(){
