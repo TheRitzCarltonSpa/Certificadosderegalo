@@ -188,8 +188,8 @@ document.getElementById("opcionesMejoras").innerHTML=`
 Piedras calientes $300</button>
 <button class="boton-dorado" onclick="agregar('Cepillado corporal',300); cerrarMejoras()">
 Cepillado corporal $300</button>
-
 `
+  
 }
 
 document.getElementById("modalMejoras").style.display="flex"
@@ -203,8 +203,6 @@ sugerenciaMostrada=false
 }
 
 function agregar(nombre,precio){
-if(typeof precio !== "number" || isNaN(precio)) return
-
 carrito.push({nombre,precio})
 actualizar()
 recomendarMejoras(nombre)
