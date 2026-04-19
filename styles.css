@@ -40,7 +40,6 @@ opacity:0;
 visibility:hidden;
 pointer-events:none;
 }
-}
 
 /* HEADER */
 
@@ -68,7 +67,7 @@ background-size:cover;
 background-position:center;
 position:relative;
 margin:40px auto;
-width:85%;
+width:80%;
 max-width:900px;
 border-radius:14px;
 padding:40px;
@@ -158,7 +157,7 @@ box-shadow:0 12px 28px rgba(0,0,0,.3);
 
 .carrito{
 background:white;
-width:85%;
+width:80%;
 max-width:800px;
 margin:30px auto;
 padding:25px;
