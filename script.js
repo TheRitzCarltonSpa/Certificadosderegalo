@@ -1,20 +1,20 @@
 let carrito=[]
 let total=0
-let sugerenciaMostrada=false
 
 function seleccionarValor(valor){
 document.getElementById("valorCertificado").value=valor
 }
 
 function agregarCertificado(){
+
 let valor=document.getElementById("valorCertificado").value
+
 if(valor==""){alert("Ingrese un monto");return}
 
-// ✅ Sanitizar comas
-valor = valor.toString().replace(/,/g,'')
-
 agregar("Certificado $" + valor,parseFloat(valor))
+
 document.getElementById("valorCertificado").value=""
+
 }
 
 const servicios={
@@ -73,8 +73,6 @@ mejoras:[
 // ✅ Validación de categoría
 function mostrar(cat){
 
-if(!servicios[cat]) return
-
 let html=""
 
 servicios[cat].forEach(s=>{
@@ -83,10 +81,19 @@ if(s.precio60 && s.precio90){
 
 html+=`
 <div class="card">
+
 <h3>${s.nombre}</h3>
-<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60}')">60 min $${s.precio60}</button>
-<button class="agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90}')">90 min $${s.precio90}</button>
-<button class="detalle" onclick="detalle('${s.nombre}','${s.desc}')">Detalle</button>
+
+<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60}')">
+60 min $${s.precio60}
+</button>
+<button class="agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90}')">
+90 min $${s.precio90}
+</button>
+<button class="detalle" onclick="detalle('${s.nombre}','${s.desc}')">
+Detalle
+</button>
+
 </div>
 `
   
@@ -95,9 +102,15 @@ html+=`
 html+=`
 <div class="card">  
 <h3>${s.nombre}</h3>  
-<button class="agregar" onclick="agregar('${s.nombre} 25 min',${s.precio25})">25 min $${s.precio25}</button>  
-<button class="agregar" onclick="agregar('${s.nombre} 40 min',${s.precio40})">40 min $${s.precio40}</button>  
-<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
+<button class="agregar" onclick="agregar('${s.nombre} 25 min',${s.precio25})">
+25 min $${s.precio25}
+</button>  
+<button class="agregar" onclick="agregar('${s.nombre} 40 min',${s.precio40})">
+40 min $${s.precio40}
+</button>  
+<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">
+Detalle
+</button>  
 </div> 
 `
   
@@ -116,9 +129,15 @@ html+=`
 html+=`
 <div class="card">  
 <h3>${s.nombre}</h3>  
-<button class="agregar" onclick="agregar('${s.nombre}',${s.precio})">$${s.precio}</button>  
-<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">Detalle</button>  
-</div>  
+<button class="agregar" onclick="agregar('${s.nombre}',${s.precio})">
+$${s.precio}
+</button>
+
+<button class="detalle" onclick="detalle(\`${s.nombre}\`,\`${s.desc}\`)">
+Detalle
+</button>
+
+</div>
 `
   
 }
@@ -198,14 +217,14 @@ actualizar()
 function actualizar(){
 
 let lista=document.getElementById("lista")
-let html=""
+let.innerHTML=""
 total=0
 
 carrito.forEach((item,i)=>{
   
 total+=item.precio
 
-html+=`
+lista.innerHTML+=`
 <div class="item-carrito">  
 
 ${item.nombre} $${item.precio}  
@@ -213,11 +232,10 @@ ${item.nombre} $${item.precio}
 <button class="eliminar" onclick="eliminar(${i})">X</button>
 
 </div>
-
 `  
+  
 }) 
 
-lista.innerHTML=html
 document.getElementById("total").innerText=total
 }
 
@@ -235,13 +253,6 @@ document.getElementById("modal").style.display="flex"
 function cerrar(){
 document.getElementById("modal").style.display="none"
 
-}
-
-// ✅ Precio definido correctamente
-function seleccionarMasaje(tipo){
-document.getElementById("modalTranquilidad").style.display="none"
-let precio = window._tranquilidadPrecio || 5600
-agregar('Tranquilidad para dos - '+tipo,precio)
 }
 
 function enviar(){
