@@ -85,10 +85,10 @@ html+=`
 
 <h3>${s.nombre}</h3>
 
-<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60}')">
+<button class="agregar" onclick="agregar('${s.nombre} 60 min',${s.precio60})">
 60 min $${s.precio60}
 </button>
-<button class="agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90}')">
+<button class="agregar" onclick="agregar('${s.nombre} 90 min',${s.precio90})">
 90 min $${s.precio90}
 </button>
 <button class="detalle" onclick="detalle('${s.nombre}','${s.desc}')">
@@ -147,11 +147,6 @@ Detalle
 
 document.getElementById("servicios").innerHTML=html
 
-}
-
-/* SEGURIDAD */
-detalle('${escapeHTML(s.nombre)}','$
-{escapeHTML(s.desc)}')
 }
 
 /* RECOMENDACION */
@@ -216,7 +211,7 @@ actualizar()
 function actualizar(){
 
 let lista=document.getElementById("lista")
-let.innerHTML=""
+lista.innerHTML=""
 total=0
 
 carrito.forEach((item,i)=>{
