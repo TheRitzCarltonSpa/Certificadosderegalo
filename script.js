@@ -1,10 +1,6 @@
 let carrito=[]
 let total=0
 let sugerenciaMostrada=false
-
-function togglePropina(mostrar){
-let campo=document.getElementById("montoPropina")
-campo.style.display=mostrar ? "block" : "none"
 }
 
 function seleccionarValor(valor){
