@@ -1,69 +1,135 @@
 body {
-    font-family: Arial;
-    background-color: #87CEEB;
     margin: 0;
+    font-family: 'Segoe UI';
+    background: #87CEEB;
 }
 
-header {
-    text-align: center;
+/* INTRO */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
 }
 
+.intro-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+    0% {opacity:1;}
+    100% {opacity:0;}
+}
+
+.hidden {
+    display: none;
+}
+
+/* HEADER */
 .logo {
     width: 120px;
+    display: block;
+    margin: auto;
 }
 
+/* ESPECIAL */
 .especial {
-    background-image: url('images/especial.jpg');
-    background-size: cover;
-    padding: 100px;
-    text-align: center;
+    background: url('images/especial.jpg') center/cover;
+    height: 300px;
+    position: relative;
+}
+
+.overlay {
+    background: rgba(0,0,0,0.4);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+
+/* BOTONES LUJO */
+.btn {
+    width: 180px;
+    padding: 12px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.luxury {
+    background: linear-gradient(45deg, #c2b280, #d4af37);
     color: white;
 }
 
-.btn-agregar {
-    background-color: khaki;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+.secondary {
+    background: linear-gradient(45deg, #e0c097, #c19a6b);
 }
 
-.btn-detalles {
-    background-color: sandybrown;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-}
-
+/* CATEGORÍAS */
 .categorias {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3,1fr);
     gap: 20px;
     padding: 20px;
 }
 
 .card {
     background: white;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.carrito {
-    padding: 20px;
-    background: white;
+.card:hover {
+    transform: scale(1.05);
 }
 
+.card.selected {
+    border: 3px solid gold;
+}
+
+.card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-width: 80%;
+}
+
+/* FORM */
 .formulario {
     padding: 20px;
 }
 
-input {
-    display: block;
-    margin: 10px 0;
-    padding: 8px;
+input, select {
     width: 100%;
-}
-
-button {
-    margin-top: 10px;
+    padding: 10px;
+    margin: 10px 0;
 }
