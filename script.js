@@ -2,11 +2,11 @@ let cart = [];
 
 /* CONFIGURACIÓN EDITABLE DE IMÁGENES */
 const categorias = [
-    { nombre: "Bienestar", img: "images/bienestar.jpg" },
-    { nombre: "Masajes", img: "images/masajes.jpg" },
-    { nombre: "Faciales", img: "images/faciales.jpg" },
-    { nombre: "Corporales", img: "images/corporales.jpg" },
-    { nombre: "Mejoras", img: "images/mejoras.jpg" }
+    { nombre: "Bienestar", img: "imagenes/bienestar.jpg" },
+    { nombre: "Masajes", img: "imagenes/masajes.jpg" },
+    { nombre: "Faciales", img: "imagenes/faciales.jpg" },
+    { nombre: "Corporales", img: "imagenes/corporales.jpg" },
+    { nombre: "Mejoras", img: "imagenes/mejoras.jpg" }
 ];
 
 /* INTRO */
