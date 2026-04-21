@@ -40,7 +40,7 @@ body {
 
 /* ESPECIAL */
 .especial {
-    background: url('images/especial.jpg') center/cover;
+    background: url('imagenes/especial.jpg') center/cover;
     height: 300px;
 }
 
@@ -119,7 +119,7 @@ body {
 
 /* CERTIFICADO */
 .certificado-bg {
-    background:url('images/certificado.jpg') center/cover;
+    background:url('imagenes/alberca.jpg') center/cover;
     padding:40px;
     color:white;
     text-align:center;
