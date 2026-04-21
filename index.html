@@ -2,25 +2,25 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Spa 5 Estrellas</title>
+<title>Certificados de regalo</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<!-- INTRO LUJO -->
+<!-- INTRO -->
 <div id="intro">
     <img src="imagenes/logo1.png" class="intro-img">
 </div>
 
-<!-- CONTENIDO -->
 <div id="app" class="hidden">
 
 <header>
     <img src="imagenes/logo.png" class="logo">
-    <h1>Especial del Mes</h1>
+    <h1 class="titulo">Certificados de regalo</h1>
 </header>
 
+<!-- ESPECIAL -->
 <section class="especial">
     <div class="overlay">
         <h2>Relajación Total</h2>
@@ -32,9 +32,25 @@
 <!-- CATEGORÍAS -->
 <section class="categorias" id="categorias"></section>
 
-<!-- MODAL ESPECIAL -->
+<!-- SERVICIOS DINÁMICOS -->
+<section class="servicios" id="servicios"></section>
+
+<!-- CERTIFICADO -->
+<section class="certificado">
+    <div class="certificado-bg">
+        <h2>Certificado de Regalo</h2>
+        <input type="number" id="certificadoCantidad" placeholder="Cantidad">
+        <div>
+            <button class="btn luxury" onclick="setCert(2400)">$2400</button>
+            <button class="btn luxury" onclick="setCert(3600)">$3600</button>
+            <button class="btn luxury" onclick="setCert(7600)">$7600</button>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL -->
 <div id="modalEspecial" class="modal">
-    <img id="imgEspecial" src="images/especial-detalle.jpg">
+    <img id="imgEspecial" src="imagenes/especial.jpg">
 </div>
 
 <!-- CARRITO -->
