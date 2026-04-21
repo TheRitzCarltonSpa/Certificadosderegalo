@@ -41,7 +41,7 @@ body {
 
 /* ESPECIAL */
 .especial {
-    background: url('images/especial.jpg') center/cover;
+    background: url('imagenes/especial.jpg') center/cover;
     height: 300px;
     position: relative;
 }
