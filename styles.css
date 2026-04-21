@@ -36,14 +36,20 @@ animation:fadeIn 2s forwards;
 }
 
 /* HEADER */
-.logo {
-    width: 120px;
-    display: block;
-    margin: auto;
+header{
+text-align:center;
+color:black;
+padding:30px;
 }
 
-.titulo {
-    text-align: center;
+.logo{
+text-align:center;
+margin-bottom:10px
+}
+
+.logo img{
+width:140px;
+height:auto;
 }
 
 /* ESPECIAL */
