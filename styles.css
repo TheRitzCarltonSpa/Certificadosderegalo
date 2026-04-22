@@ -125,6 +125,37 @@ height:auto;
     gap:10px;
 }
 
+/* CARRITO */
+
+.carrito{
+background:white;
+width:85%;
+max-width:800px;
+margin:30px auto;
+padding:25px;
+border-radius:12px;
+}
+
+.item-carrito{
+display:flex;
+justify-content:space-between;
+margin:8px 0;
+}
+
+.eliminar{
+background:red;
+color:white;
+border:none;
+border-radius:4px;
+padding:4px 10px;
+cursor:pointer;
+}
+
+.total{
+font-size:22px;
+margin-top:10px;
+}
+
 .servicio-item {
     background:white;
     padding:10px;
