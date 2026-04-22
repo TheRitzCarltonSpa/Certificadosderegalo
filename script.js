@@ -5,8 +5,8 @@ const categorias = [
     { nombre: "Bienestar", img: "imagenes/bienestar.jpg" },
     { nombre: "Masajes", img: "imagenes/masajes.jpg" },
     { nombre: "Faciales", img: "imagenes/faciales.jpg" },
-    { nombre: "Corporales", img: "imagenes/corporales.jpg" },
-    { nombre: "Mejoras", img: "imagenes/mejoras.jpg" }
+    { nombre: "Corporales", img: "imagenes/corporales.jpg"},
+    { nombre: "Mejoras", img: "https://images.unsplash.com/photo-1600334129128-685c5582fd35" }
 ];
 
 /* INTRO */
