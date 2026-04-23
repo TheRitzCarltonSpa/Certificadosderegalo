@@ -273,6 +273,58 @@ function cerrarMejoras(){
 document.getElementById("modalMejoras").style.display="none"
 sugerenciaMostrada=false
 }
+// ============================
+// FIX CERTIFICADO
+// ============================
+function agregarCertificado(){
+let valor=document.getElementById("valorCertificado").value
+if(valor==""){alert("Ingrese monto");return}
+agregar("Certificado $" + valor,parseFloat(valor))
+document.getElementById("valorCertificado").value=""
+}
+
+// ============================
+// MODAL ESPECIAL CON IMAGEN
+// ============================
+function detalleEspecial(){
+
+document.getElementById("titulo").innerText="Especial del mes"
+document.getElementById("descripcion").innerText="Disfruta nuestro especial exclusivo"
+
+let img=document.getElementById("modalImg")
+img.style.display="block"
+img.src="imagenes/especial.jpg"
+
+document.getElementById("modal").style.display="flex"
+}
+
+// ============================
+// OCULTAR IMAGEN EN DETALLES NORMALES
+// ============================
+const detalleOriginal = detalle
+
+detalle = function(t,d){
+document.getElementById("modalImg").style.display="none"
+detalleOriginal(t,d)
+}
+
+// ============================
+// MEJORAS AUTOMÁTICAS SIN CAMBIAR LÓGICA
+// ============================
+const agregarOriginal = agregar
+
+agregar = function(nombre,precio){
+agregarOriginal(nombre,precio)
+recomendarMejoras(nombre)
+}
+
+// ============================
+// PERFORMANCE INTRO
+// ============================
+setTimeout(()=>{
+let intro=document.getElementById("intro")
+if(intro) intro.style.display="none"
+},1200)
 
 // ================================
 // PROPINA
