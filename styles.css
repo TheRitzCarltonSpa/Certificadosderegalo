@@ -1,90 +1,117 @@
+/* ================================
+   BASE
+================================ */
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #87CEEB;
+    font-family: "Georgia", serif;
+    background: #b2dafa;
 }
 
-/* INTRO */
+/* ================================
+   INTRO PREMIUM
+================================ */
 #intro {
     position: fixed;
-    width: 100%;
-    height: 40vh;
-    z-index: 999;
-}
-
-.intro-img {
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    animation: fadeOut 2s forwards;
+    background: #b2dafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 9999;
+    animation: fadeOut 1.5s ease 2s forwards;
+}
+
+.intro-logo {
+    font-size: 34px;
+    letter-spacing: 4px;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
 }
 
 @keyframes fadeOut {
-    to { opacity: 0; }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
-.hidden {
-    display: none;
-}
-
-/* HEADER */
-.logo {
-    width: 180px; /* Logo más grande */
-    display: block;
-    margin: 20px auto;
-}
-
-.titulo {
+/* ================================
+   HEADER / LOGO
+================================ */
+header {
     text-align: center;
+    padding: 25px;
 }
 
-/* ESPECIAL */
+.logo img {
+    width: 200px; /* LOGO MÁS GRANDE */
+}
+
+/* ================================
+   ESPECIAL DEL MES (LUJO)
+================================ */
 .especial {
-    background: url('images/especial.jpg') center/cover;
-    height: 300px;
+    background-image: url("images/especial.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin: 40px auto;
+    width: 85%;
+    max-width: 900px;
+    border-radius: 14px;
+    padding: 40px;
+    text-align: center;
+    color: white;
 }
 
-.overlay {
-    background: rgba(0,0,0,0.4);
-    height: 100%;
+.especial::before {
+    content: "";
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(11,42,68,0.75);
+    border-radius: 14px;
+}
+
+.especial * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ================================
+   CATEGORÍAS
+================================ */
+#categorias {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: white;
-}
-
-/* BOTONES */
-.btn {
-    width: 150px;
-    padding: 10px;
-    margin: 5px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.95em;
-}
-
-.luxury {
-    background: linear-gradient(45deg, #c2b280, #d4af37);
-    color: white;
-}
-
-/* CATEGORÍAS */
-.categorias {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 25px;
     padding: 20px;
 }
 
 .card {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
+    width: 180px;
     cursor: pointer;
-    transition: 0.3s;
     text-align: center;
+    transition: 0.3s;
+}
+
+.card img {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
 .card:hover {
@@ -92,73 +119,143 @@ body {
 }
 
 .card.selected {
-    border: 3px solid gold;
+    border: 3px solid #d4af37;
 }
 
-.card img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-}
-
-/* SERVICIOS */
-.servicios {
+/* ================================
+   SERVICIOS (TARJETAS COMPACTAS)
+================================ */
+#servicios {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
     padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
 }
 
 .servicio-item {
     background: white;
-    padding: 10px;
-    border-radius: 10px;
+    width: 220px;
+    border-radius: 12px;
+    padding: 15px;
     text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-    width: 90%;
-    margin: auto;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    transition: 0.3s;
 }
 
 .servicio-item:hover {
-    transform: scale(1.02);
+    transform: translateY(-5px);
 }
 
 .servicio-item h3 {
-    font-size: 1em;
-    margin-bottom: 10px;
+    font-size: 15px;
 }
 
-/* CERTIFICADO */
-.certificado-bg {
-    background: url('images/certificado.jpg') center/cover;
-    padding: 25px; /* Menos padding */
-    color: white;
-    text-align: center;
-    border-radius: 15px;
-}
-
-.certificado-bg input {
-    width: 80%; /* Reducimos ancho del input */
-    padding: 8px; /* Reducimos padding */
-    margin: 10px 0;
-    font-size: 0.95em;
-}
-
-.certificado-bg button {
-    width: 120px;
-    padding: 8px;
+/* ================================
+   BOTONES PREMIUM
+================================ */
+.btn {
+    width: 160px;
+    padding: 10px;
     margin: 5px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* AGREGAR */
+.btn.agregar {
+    background: #c3b091; /* caqui */
+}
+
+/* DETALLES */
+.btn.detalle {
+    background: #e5cda7; /* arena */
+}
+
+/* BOTÓN LUJO */
+.boton-mejora {
+    background: linear-gradient(135deg,#ccb9a5,#d4af37);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    transition: 0.3s;
+}
+
+.boton-mejora:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,.3);
+}
+
+/* ================================
+   CARRITO
+================================ */
+.carrito {
+    background: white;
+    width: 85%;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.item-carrito {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+/* ================================
+   FORMULARIO COMPACTO
+================================ */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+input, select {
+    width: 90%;
+    padding: 8px;
+    margin: auto;
+    border-radius: 5px;
+    border: 1px solid #ccc;
     font-size: 0.9em;
 }
 
-/* MODAL LUJO */
+/* ================================
+   CERTIFICADO COMPACTO
+================================ */
+.certificado {
+    background: url("images/certificado.jpg") center/cover;
+    padding: 25px;
+    text-align: center;
+    color: white;
+    border-radius: 12px;
+    margin: 30px;
+}
+
+.certificado input {
+    width: 70%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+/* ================================
+   MODAL
+================================ */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
-    width: 100%;
-    height: 100%;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
     background: rgba(0,0,0,0.7);
     justify-content: center;
     align-items: center;
@@ -166,54 +263,13 @@ body {
 
 .modal-content {
     background: white;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 400px;
-    padding: 20px;
+    padding: 25px;
+    border-radius: 12px;
     text-align: center;
-    animation: scaleUp 0.3s ease;
+    width: 300px;
 }
 
-.modal-img {
+.modal-content img {
     width: 100%;
-    border-radius: 15px;
-}
-
-.close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-}
-
-@keyframes scaleUp {
-    from { transform: scale(0.8); }
-    to { transform: scale(1); }
-}
-
-/* FORMULARIO */
-.formulario {
-    padding: 15px; /* Menos padding */
-}
-
-.formulario input, 
-.formulario select {
-    width: 90%;
-    padding: 8px;
-    margin: 8px 0;
-    font-size: 0.95em;
-}
-
-.btn.luxury {
-    width: 140px;
-    padding: 10px;
-    font-size: 0.9em;
-}
-
-/* CARRITO */
-.carrito {
-    padding: 20px;
-    background: white;
+    border-radius: 10px;
 }
