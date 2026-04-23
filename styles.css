@@ -60,7 +60,7 @@ header {
    ESPECIAL DEL MES (LUJO)
 ================================ */
 .especial {
-    background-image: url("images/especial.jpg");
+    background-image: url("imagenes/especial.jpg");
     background-size: cover;
     background-position: center;
     position: relative;
@@ -232,7 +232,7 @@ input, select {
    CERTIFICADO COMPACTO
 ================================ */
 .certificado {
-    background: url("images/certificado.jpg") center/cover;
+    background: url("imagenes/alberca.jpg") center/cover;
     padding: 25px;
     text-align: center;
     color: white;
