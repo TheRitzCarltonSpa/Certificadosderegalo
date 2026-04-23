@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Certificads de regalo</title>
+<title>Spa 5 Estrellas</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -10,86 +10,61 @@
 
 <!-- INTRO -->
 <div id="intro">
-    <img src="imagenes/logo1.png" class="intro-img" loading="lazy">
+    <img src="imagenes/logo1.jpg" class="intro-img">
 </div>
 
+<div id="app" class="hidden">
+
 <header>
-<div class="logo">
-<img src="imagenes/logo.png" class="logo-img" loading="lazy">
-</div>
-<h1>Certificados de regalo Spa</h1>
+    <img src="imagenes/logo.png" class="logo">
+    <h1>Spa Luxury Experience</h1>
 </header>
 
 <!-- ESPECIAL -->
-<div class="especial">
-<h2>Especial del Mes</h2>
-<h3>Mothers Resilence ritual</h3>
+<section class="especial">
+    <h2>Especial del Mes</h2>
+    <h3>Ritual Premium</h3>
 
-<button class="boton-dorado" onclick="agregar('Semana de poder',0)">
-Agregar
-</button>
+    <button class="btn agregar"
+    onclick="openModal('Ritual Premium',3000,'imagenes/especial.jpg','Experiencia completa de relajación')">
+    Agregar
+    </button>
 
-<button class="detalle" onclick="detalleEspecial()">
-Detalle
-</button>
-</div>
+    <button class="btn detalle"
+    onclick="openModal('Ritual Premium',5100,'imagenes/especial mayo.png','Experiencia completa de relajación')">
+    Detalle
+    </button>
+</section>
 
 <!-- CATEGORÍAS -->
-<div class="menu">
+<section id="categorias" class="menu"></section>
 
-<div class="categoria" onclick="mostrar('bienestar')">
-<img src="imagenes/bienestar.jpg" loading="lazy">
-<h3>Bienestar</h3>
-</div>
-
-<div class="categoria" onclick="mostrar('masajes')">
-<img src="imagenes/masajes.jpg" loading="lazy">
-<h3>Masajes</h3>
-</div>
-
-<div class="categoria" onclick="mostrar('faciales')">
-<img src="imagenes/facial.jpg" loading="lazy">
-<h3>Faciales</h3>
-</div>
-
-<div class="categoria" onclick="mostrar('corporales')">
-<img src="imagenes/corporales.jpg" loading="lazy">
-<h3>Corporales</h3>
-</div>
-
-<div class="categoria" onclick="mostrar('mejoras')">
-<img src="imagenes/mejoras.jpg" loading="lazy">
-<h3>Mejoras</h3>
-</div>
-
-</div>
-
-<div id="servicios" class="servicios"></div>
+<!-- SERVICIOS -->
+<section id="servicios" class="servicios"></section>
 
 <!-- CARRITO -->
-<div class="carrito">
+<section class="carrito">
+<h2>Tu experiencia</h2>
 
-<h2>Servicios elegidos</h2>
-<div id="lista"></div>
-
-<h3>Total: $<span id="total">0</span></h3>
+<ul id="cart"></ul>
+<p>Total: $<span id="total">0</span></p>
 
 <!-- CERTIFICADO -->
-<div class="especial certificado">
-<h2>Certificado con valor</h2>
+<div class="certificado">
+<h3>Certificado abierto</h3>
 
-<input type="number" id="valorCertificado" placeholder="Ejemplo 3000">
+<input id="certificadoCantidad" type="number" placeholder="Monto">
 
 <div>
-<button onclick="seleccionarValor(1500)">$1,500</button>
-<button onclick="seleccionarValor(3000)">$3,000</button>
-<button onclick="seleccionarValor(5000)">$5,000</button>
+<button onclick="setCert(2600)">$2600</button>
+<button onclick="setCert(3000)">$3000</button>
+<button onclick="setCert(7800)">$7800</button>
 </div>
 
-<button onclick="agregarCertificado()">Agregar certificado</button>
+<button onclick="addCertificate()">Agregar certificado</button>
 </div>
 
-<!-- FORMULARIO -->
+<!-- FORM -->
 <form>
 
 <input id="nombre" placeholder="Nombre">
@@ -97,46 +72,47 @@ Detalle
 <input id="telefono" placeholder="Teléfono">
 <input id="correo" placeholder="Correo">
 
-<div>
-<label>¿Desea incluir propina?</label>
-<label><input type="radio" name="propina" value="si" onclick="togglePropina(true)"> Sí</label>
-<label><input type="radio" name="propina" value="no" onclick="togglePropina(false)"> No</label>
-</div>
+<select id="tipOption" onchange="toggleTip()">
+<option value="no">Sin propina</option>
+<option value="si">Agregar propina</option>
+</select>
 
-<div id="montoPropina" style="display:none;">
-<input type="number" id="propinaMonto" placeholder="Monto">
-</div>
+<input id="tipAmount" placeholder="Monto propina" style="display:none">
 
-<button type="button" onclick="enviar()">Solicitar link de pago</button>
+<button type="button" onclick="sendWhatsApp()">Solicitar link de pago</button>
 
 </form>
 
-<p class="nota-legal">
-Todos los tratamientos incluyen IVA 16% y servicio 15%. Propina opcional.
+<p class="nota">
+IVA 16% + servicio 15%. Propina opcional.
 </p>
+
+</section>
 
 </div>
 
-<!-- MODAL DETALLE -->
-<div class="modal" id="modal">
-<div class="modal-contenido">
+<!-- MODAL SERVICIO -->
+<div class="modal" id="modalServicio">
+<div class="modal-content">
 
-<h2 id="titulo"></h2>
+<img id="modalImg">
+<h2 id="modalTitle"></h2>
+<p id="modalDesc"></p>
+<p id="modalPrice"></p>
 
-<img id="modalImg" style="width:100%; display:none; border-radius:10px;">
-
-<p id="descripcion"></p>
-
-<button onclick="cerrar()">Cerrar</button>
+<button onclick="addFromModal()">Agregar</button>
+<button onclick="closeModal()">Cerrar</button>
 
 </div>
 </div>
 
 <!-- MODAL MEJORAS -->
 <div class="modal" id="modalMejoras">
-<div class="modal-contenido mejoras-modal">
+<div class="modal-content mejoras-modal">
 
-<h2 id="tituloMejoras">Mejora tu experiencia</h2>
+<h2>Mejora tu experiencia</h2>
+<p class="subtitulo">Recomendado para ti</p>
+
 <div id="opcionesMejoras" class="mejoras-grid"></div>
 
 <button onclick="cerrarMejoras()">Continuar</button>
