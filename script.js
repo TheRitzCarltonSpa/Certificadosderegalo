@@ -10,11 +10,11 @@ let sugerenciaMostrada = false
 // CONFIGURACIÓN CATEGORÍAS (EDITABLE)
 // ================================
 const categorias = [
-    {nombre:"bienestar", img:"images/bienestar.jpg"},
-    {nombre:"masajes", img:"images/masajes.jpg"},
-    {nombre:"faciales", img:"images/faciales.jpg"},
-    {nombre:"corporales", img:"images/corporales.jpg"},
-    {nombre:"mejoras", img:"images/mejoras.jpg"}
+    {nombre:"bienestar", img:"imagenes/bienestar.jpg"},
+    {nombre:"masajes", img:"imagenes/masajes.jpg"},
+    {nombre:"faciales", img:"imagenes/faciales.jpg"},
+    {nombre:"corporales", img:"imagenes/corporales.jpg"},
+    {nombre:"mejoras", img:"imagnees/mejoras.jpg"}
 ]
 
 // ================================
@@ -313,7 +313,7 @@ mensaje += `Propina: $${monto}%0A`
 mensaje += `Propina: No%0A`
 }
 
-let numero = "521XXXXXXXXXX"
+let numero = "5215580952588"
 
 window.open(`https://wa.me/${numero}?text=${mensaje}`)
 }
