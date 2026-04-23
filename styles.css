@@ -1,6 +1,6 @@
 body{
 margin:0;
-font-family:"Georgia",serif;
+font-family:Georgia;
 background:#b2dafa;
 }
 
@@ -9,70 +9,59 @@ background:#b2dafa;
 position:fixed;
 width:100%;
 height:100%;
-background:#b2dafa;
 display:flex;
 justify-content:center;
 align-items:center;
+background:#b2dafa;
 z-index:9999;
-animation:fadeOut 1.2s ease 1.2s forwards;
+animation:fadeOut 2s forwards;
 }
 
 .intro-img{
-width:180px;
+width:200px;
 }
 
 @keyframes fadeOut{
 to{opacity:0;visibility:hidden}
 }
 
-/* LOGO */
-.logo-img{
+/* HEADER */
+header{
+text-align:center;
+padding:20px;
+}
+
+.logo{
 width:200px;
 }
 
 /* ESPECIAL */
 .especial{
-background:url("imagenes/alberca.jpg") center/cover;
+background:url("images/especial.jpg") center/cover;
+padding:40px;
 color:white;
-padding:30px;
-margin:20px auto;
-width:85%;
-border-radius:15px;
 text-align:center;
-position:relative;
-}
-
-.especial::before{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-top:0;
-left:0;
 border-radius:15px;
+width:80%;
+margin:auto;
 }
 
-.especial *{
-position:relative;
-z-index:2;
-}
-
-/* MENU */
+/* CATEGORÍAS */
 .menu{
 display:flex;
-flex-wrap:wrap;
 justify-content:center;
 gap:20px;
+flex-wrap:wrap;
 }
 
-.categoria{
+.card{
+width:160px;
 cursor:pointer;
 text-align:center;
 }
 
-.categoria img{
-width:160px;
+.card img{
+width:100%;
 height:100px;
 object-fit:cover;
 border-radius:10px;
@@ -83,87 +72,68 @@ border-radius:10px;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:20px;
+gap:15px;
 }
 
-.card{
+.servicio-item{
 background:white;
-width:230px;
 padding:15px;
+width:220px;
 border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,.2);
 }
 
 /* BOTONES */
-.agregar{
-background:#c2b280;
+.btn{
 padding:8px;
-border:none;
 margin:5px;
+border:none;
+cursor:pointer;
+}
+
+.agregar{
+background:#c3b091;
 }
 
 .detalle{
-background:#e6c28b;
-padding:8px;
-border:none;
+background:#e6cfa7;
 }
 
 /* CARRITO */
 .carrito{
 background:white;
-padding:20px;
-width:85%;
+width:80%;
 margin:auto;
+padding:20px;
 border-radius:10px;
-}
-
-.item-carrito{
-display:flex;
-justify-content:space-between;
 }
 
 /* MODAL */
 .modal{
 display:none;
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.75);
-backdrop-filter:blur(6px);
+background:rgba(0,0,0,.7);
 justify-content:center;
 align-items:center;
-z-index:9999;
 }
 
-.modal-contenido{
+.modal-content{
 background:white;
 padding:20px;
 border-radius:10px;
-width:300px;
-animation:zoomFade .3s;
-}
-
-@keyframes zoomFade{
-from{transform:scale(.8);opacity:0}
-to{transform:scale(1);opacity:1}
+text-align:center;
 }
 
 /* MEJORAS */
-.mejoras-grid{
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
 .mejora-card{
 padding:10px;
-background:#f3f3f3;
 border-radius:8px;
+background:#eee;
+margin:5px;
 cursor:pointer;
 }
 
-.mejora-card:hover{
-background:#e0d2a3;
+.mejora-card.selected{
+border:2px solid gold;
 }
