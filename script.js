@@ -140,8 +140,8 @@ function closeModal() {
 function showEspecial() {
     openModal(
         "Especial del Mes",
-        1200,
-        "images/especial-detalle.jpg",
+        5100,
+        "imagenes/especial mayo.png",
         "Experiencia exclusiva de relajación total."
     );
 }
