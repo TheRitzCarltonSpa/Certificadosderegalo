@@ -1,275 +1,169 @@
-/* ================================
-   BASE
-================================ */
-body {
-    margin: 0;
-    font-family: "Georgia", serif;
-    background: #b2dafa;
+body{
+margin:0;
+font-family:"Georgia",serif;
+background:#b2dafa;
 }
 
-/* ================================
-   INTRO PREMIUM
-================================ */
-#intro {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #b2dafa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 9999;
-    animation: fadeOut 1.5s ease 2s forwards;
+/* INTRO */
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:#b2dafa;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+animation:fadeOut 1.2s ease 1.2s forwards;
 }
 
-.intro-logo {
-    font-size: 34px;
-    letter-spacing: 4px;
-    opacity: 0;
-    animation: fadeIn 1.5s forwards;
+.intro-img{
+width:180px;
 }
 
-@keyframes fadeIn {
-    from {opacity:0;}
-    to {opacity:1;}
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden}
 }
 
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-        visibility: hidden;
-    }
+/* LOGO */
+.logo-img{
+width:200px;
 }
 
-/* ================================
-   HEADER / LOGO
-================================ */
-header {
-    text-align: center;
-    padding: 25px;
+/* ESPECIAL */
+.especial{
+background:url("imagenes/alberca.jpg") center/cover;
+color:white;
+padding:30px;
+margin:20px auto;
+width:85%;
+border-radius:15px;
+text-align:center;
+position:relative;
 }
 
-.logo img {
-    width: 200px; /* LOGO MÁS GRANDE */
+.especial::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+top:0;
+left:0;
+border-radius:15px;
 }
 
-/* ================================
-   ESPECIAL DEL MES (LUJO)
-================================ */
-.especial {
-    background-image: url("imagenes/especial.jpg");
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    margin: 40px auto;
-    width: 85%;
-    max-width: 900px;
-    border-radius: 14px;
-    padding: 40px;
-    text-align: center;
-    color: white;
+.especial *{
+position:relative;
+z-index:2;
 }
 
-.especial::before {
-    content: "";
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: rgba(11,42,68,0.75);
-    border-radius: 14px;
+/* MENU */
+.menu{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
 }
 
-.especial * {
-    position: relative;
-    z-index: 2;
+.categoria{
+cursor:pointer;
+text-align:center;
 }
 
-/* ================================
-   CATEGORÍAS
-================================ */
-#categorias {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    padding: 20px;
+.categoria img{
+width:160px;
+height:100px;
+object-fit:cover;
+border-radius:10px;
 }
 
-.card {
-    width: 180px;
-    cursor: pointer;
-    text-align: center;
-    transition: 0.3s;
+/* SERVICIOS */
+.servicios{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
 }
 
-.card img {
-    width: 180px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 12px;
+.card{
+background:white;
+width:230px;
+padding:15px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,.2);
 }
 
-.card:hover {
-    transform: scale(1.05);
+/* BOTONES */
+.agregar{
+background:#c2b280;
+padding:8px;
+border:none;
+margin:5px;
 }
 
-.card.selected {
-    border: 3px solid #d4af37;
+.detalle{
+background:#e6c28b;
+padding:8px;
+border:none;
 }
 
-/* ================================
-   SERVICIOS (TARJETAS COMPACTAS)
-================================ */
-#servicios {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
+/* CARRITO */
+.carrito{
+background:white;
+padding:20px;
+width:85%;
+margin:auto;
+border-radius:10px;
 }
 
-.servicio-item {
-    background: white;
-    width: 220px;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-    transition: 0.3s;
+.item-carrito{
+display:flex;
+justify-content:space-between;
 }
 
-.servicio-item:hover {
-    transform: translateY(-5px);
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(6px);
+justify-content:center;
+align-items:center;
+z-index:9999;
 }
 
-.servicio-item h3 {
-    font-size: 15px;
+.modal-contenido{
+background:white;
+padding:20px;
+border-radius:10px;
+width:300px;
+animation:zoomFade .3s;
 }
 
-/* ================================
-   BOTONES PREMIUM
-================================ */
-.btn {
-    width: 160px;
-    padding: 10px;
-    margin: 5px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
+@keyframes zoomFade{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
 }
 
-/* AGREGAR */
-.btn.agregar {
-    background: #c3b091; /* caqui */
+/* MEJORAS */
+.mejoras-grid{
+display:flex;
+flex-direction:column;
+gap:10px;
 }
 
-/* DETALLES */
-.btn.detalle {
-    background: #e5cda7; /* arena */
+.mejora-card{
+padding:10px;
+background:#f3f3f3;
+border-radius:8px;
+cursor:pointer;
 }
 
-/* BOTÓN LUJO */
-.boton-mejora {
-    background: linear-gradient(135deg,#ccb9a5,#d4af37);
-    color: white;
-    border: none;
-    padding: 12px 16px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 0 4px 12px rgba(0,0,0,.2);
-    transition: 0.3s;
-}
-
-.boton-mejora:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(0,0,0,.3);
-}
-
-/* ================================
-   CARRITO
-================================ */
-.carrito {
-    background: white;
-    width: 85%;
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 20px;
-    border-radius: 12px;
-}
-
-.item-carrito {
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 0;
-}
-
-/* ================================
-   FORMULARIO COMPACTO
-================================ */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 10px;
-}
-
-input, select {
-    width: 90%;
-    padding: 8px;
-    margin: auto;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 0.9em;
-}
-
-/* ================================
-   CERTIFICADO COMPACTO
-================================ */
-.certificado {
-    background: url("imagenes/alberca.jpg") center/cover;
-    padding: 25px;
-    text-align: center;
-    color: white;
-    border-radius: 12px;
-    margin: 30px;
-}
-
-.certificado input {
-    width: 70%;
-    padding: 8px;
-    margin: 10px 0;
-}
-
-/* ================================
-   MODAL
-================================ */
-.modal {
-    display: none;
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.7);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    text-align: center;
-    width: 300px;
-}
-
-.modal-content img {
-    width: 100%;
-    border-radius: 10px;
+.mejora-card:hover{
+background:#e0d2a3;
 }
