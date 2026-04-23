@@ -1,319 +1,198 @@
-// ================================
-// ESTADO GLOBAL
-// ================================
-let cart = []
-let total = 0
-let currentItem = null
-let sugerenciaMostrada = false
+let cart=[]
+let total=0
+let currentItem=null
+let sugerenciaMostrada=false
+let mejoraSeleccionada=null
+let mejorasActuales=[]
 
-// ================================
-// CONFIGURACIÓN CATEGORÍAS (EDITABLE)
-// ================================
-const categorias = [
-    {nombre:"bienestar", img:"imagenes/bienestar.jpg"},
-    {nombre:"masajes", img:"imagenes/masajes.jpg"},
-    {nombre:"faciales", img:"imagenes/faciales.jpg"},
-    {nombre:"corporales", img:"imagenes/corporales.jpg"},
-    {nombre:"mejoras", img:"imagnees/mejoras.jpg"}
-]
+// INTRO
+window.onload=()=>{
+setTimeout(()=>{
+document.getElementById("intro").style.display="none"
+document.getElementById("app").classList.remove("hidden")
+},2000)
 
-// ================================
-// SERVICIOS
-// ================================
-const servicios = {
-
-bienestar:[
-{nombre:"Ceremonia del despertar 90 min",precio:5000,desc:"Restauración total cuerpo y mente"},
-{nombre:"Ritual limpia Metzli 90 min",precio:5000,desc:"Ritual azteca de limpieza energética"},
-{nombre:"Facial resiliencia natural 90 min",precio:5000,desc:"Tecnología avanzada + Kobido japonés"}
-],
-
-masajes:[
-{nombre:"Masaje relajante",precio60:2400,precio90:3300,desc:"Relajación profunda"},
-{nombre:"Tejido profundo",precio60:2800,precio90:3700,desc:"Alivio muscular"},
-{nombre:"Antiestrés",precio60:2600,precio90:3500,desc:"Revitalización total"},
-{nombre:"Piedras calientes",precio:3600,desc:"Terapia térmica profunda"}
-],
-
-faciales:[
-{nombre:"Facial personalizado",precio60:2600,precio90:3500,desc:"Adaptado a tu piel"},
-{nombre:"Anti-edad",precio60:3300,precio90:4500,desc:"Rejuvenecimiento inmediato"},
-{nombre:"Hydrafacial",precio60:4500,desc:"Tecnología avanzada"}
-],
-
-corporales:[
-{nombre:"Envoltura ESPA",precio:2800,desc:"Purificación corporal"},
-{nombre:"Tratamiento nutritivo",precio:2600,desc:"Hidratación profunda"}
-],
-
-mejoras:[
-{nombre:"Aromaterapia",precio:300,desc:"Relajación sensorial"},
-{nombre:"Piedras calientes",precio:300,desc:"Calor terapéutico"},
-{nombre:"Mascarilla 111skin",precio:500,desc:"Alta hidratación"}
-]
-
+renderCategorias()
 }
 
-// ================================
-// INIT
-// ================================
-window.onload = () => {
-
-    // Intro
-    setTimeout(()=>{
-        document.getElementById("intro").style.display="none"
-        document.getElementById("app").classList.remove("hidden")
-    },2000)
-
-    renderCategorias()
-}
-
-// ================================
 // CATEGORÍAS
-// ================================
+const categorias=[
+{nombre:"masajes",img:"imagenes/masajes.jpg"},
+{nombre:"faciales",img:"imagenes/faciales.jpg"},
+{nombre:"corporales",img:"imagenes/corporales.jpg"}
+{nombre:"corporales",img:"imagenes/mejoras.jpg"}
+]
+
 function renderCategorias(){
-
-    let html = ""
-
-    categorias.forEach(cat=>{
-        html += `
-        <div class="card" onclick="showServices('${cat.nombre}')">
-            <img src="${cat.img}">
-            <h3>${cat.nombre.toUpperCase()}</h3>
-        </div>`
-    })
-
-    document.getElementById("categorias").innerHTML = html
+let html=""
+categorias.forEach(c=>{
+html+=`
+<div class="card" onclick="showServices('${c.nombre}')">
+<img src="${c.img}">
+<h3>${c.nombre}</h3>
+</div>`
+})
+document.getElementById("categorias").innerHTML=html
 }
 
-// ================================
 // SERVICIOS
-// ================================
-function showServices(cat){
-
-    let html = ""
-
-    servicios[cat].forEach(s=>{
-
-        // 60 y 90
-        if(s.precio60 && s.precio90){
-
-            html += `
-            <div class="servicio-item">
-                <h3>${s.nombre}</h3>
-
-                <button class="btn agregar"
-                onclick="openModal('${s.nombre} 60 min',${s.precio60},'',\`${s.desc}\`)">
-                60 min $${s.precio60}
-                </button>
-
-                <button class="btn agregar"
-                onclick="openModal('${s.nombre} 90 min',${s.precio90},'',\`${s.desc}\`)">
-                90 min $${s.precio90}
-                </button>
-
-                <button class="btn detalle"
-                onclick="openModal('${s.nombre}',${s.precio60 || s.precio},'',\`${s.desc}\`)">
-                Detalle
-                </button>
-            </div>`
-        }
-
-        // 25 y 40
-        else if(s.precio25 && s.precio40){
-
-            html += `
-            <div class="servicio-item">
-                <h3>${s.nombre}</h3>
-
-                <button class="btn agregar"
-                onclick="openModal('${s.nombre} 25 min',${s.precio25},'',\`${s.desc}\`)">
-                25 min $${s.precio25}
-                </button>
-
-                <button class="btn agregar"
-                onclick="openModal('${s.nombre} 40 min',${s.precio40},'',\`${s.desc}\`)">
-                40 min $${s.precio40}
-                </button>
-
-                <button class="btn detalle"
-                onclick="openModal('${s.nombre}',${s.precio25},'',\`${s.desc}\`)">
-                Detalle
-                </button>
-            </div>`
-        }
-
-        // solo precio
-        else{
-
-            html += `
-            <div class="servicio-item">
-                <h3>${s.nombre}</h3>
-
-                <button class="btn agregar"
-                onclick="openModal('${s.nombre}',${s.precio},'',\`${s.desc}\`)">
-                $${s.precio}
-                </button>
-
-                <button class="btn detalle"
-                onclick="openModal('${s.nombre}',${s.precio},'',\`${s.desc}\`)">
-                Detalle
-                </button>
-            </div>`
-        }
-
-    })
-
-    document.getElementById("servicios").innerHTML = html
+const servicios={
+masajes:[
+{nombre:"Relajante",precio60:2000,precio90:3000,desc:"Relajación total"}
+],
+faciales:[
+{nombre:"Facial premium",precio60:2500,desc:"Limpieza profunda"}
+],
+corporales:[
+{nombre:"Envoltura",precio:2800,desc:"Hidratación"}
+]
 }
 
-// ================================
-// MODAL
-// ================================
-function openModal(nombre, precio, img, desc){
+function showServices(cat){
+let html=""
+servicios[cat].forEach(s=>{
 
-    currentItem = {nombre, precio}
+if(s.precio60 && s.precio90){
+html+=`
+<div class="servicio-item">
+<h3>${s.nombre}</h3>
+<button onclick="openModal('${s.nombre} 60',${s.precio60},'',\`${s.desc}\`)">60m</button>
+<button onclick="openModal('${s.nombre} 90',${s.precio90},'',\`${s.desc}\`)">90m</button>
+</div>`
+}else{
+html+=`
+<div class="servicio-item">
+<h3>${s.nombre}</h3>
+<button onclick="openModal('${s.nombre}',${s.precio},'',\`${s.desc}\`)">$${s.precio}</button>
+</div>`
+}
 
-    document.getElementById("modalTitle").innerText = nombre
-    document.getElementById("modalDesc").innerText = desc
-    document.getElementById("modalPrice").innerText = "$" + precio
+})
+document.getElementById("servicios").innerHTML=html
+}
 
-    document.getElementById("modalImg").src = img || "images/default.jpg"
-
-    document.getElementById("modalServicio").style.display = "flex"
+// MODAL SERVICIO
+function openModal(n,p,img,d){
+currentItem={nombre:n,precio:p}
+document.getElementById("modalTitle").innerText=n
+document.getElementById("modalDesc").innerText=d
+document.getElementById("modalPrice").innerText="$"+p
+document.getElementById("modalImg").src=img||"imagenes/default.jpg"
+document.getElementById("modalServicio").style.display="flex"
 }
 
 function closeModal(){
-    document.getElementById("modalServicio").style.display = "none"
+document.getElementById("modalServicio").style.display="none"
 }
 
-// ================================
-// AGREGAR DESDE MODAL
-// ================================
 function addFromModal(){
-    addToCart(currentItem.nombre, currentItem.precio)
-    closeModal()
+addToCart(currentItem.nombre,currentItem.precio)
+closeModal()
 }
 
-// ================================
 // CARRITO
-// ================================
-function addToCart(nombre, precio){
-    cart.push({nombre, precio})
-    updateCart()
-    recomendarMejoras(nombre)
+function addToCart(n,p){
+cart.push({nombre:n,precio:p})
+updateCart()
+recomendarMejoras(n)
 }
 
 function updateCart(){
+let lista=document.getElementById("cart")
+lista.innerHTML=""
+total=0
 
-    const lista = document.getElementById("cart")
-    lista.innerHTML = ""
-    total = 0
+cart.forEach((i,index)=>{
+total+=i.precio
+lista.innerHTML+=`<li>${i.nombre} $${i.precio}
+<button onclick="removeItem(${index})">X</button></li>`
+})
 
-    cart.forEach((item,i)=>{
-        total += item.precio
-
-        lista.innerHTML += `
-        <li class="item-carrito">
-            ${item.nombre} - $${item.precio}
-            <button onclick="removeItem(${i})">X</button>
-        </li>`
-    })
-
-    document.getElementById("total").innerText = total
+document.getElementById("total").innerText=total
 }
 
 function removeItem(i){
-    cart.splice(i,1)
-    updateCart()
+cart.splice(i,1)
+updateCart()
 }
 
-// ================================
 // CERTIFICADO
-// ================================
-function setCert(valor){
-    document.getElementById("certificadoCantidad").value = valor
+function setCert(v){
+document.getElementById("certificadoCantidad").value=v
 }
 
-// ================================
-// MEJORAS AUTOMÁTICAS
-// ================================
+function addCertificate(){
+let v=document.getElementById("certificadoCantidad").value
+if(!v)return
+addToCart("Certificado $"+v,parseFloat(v))
+}
+
+// MEJORAS
 function recomendarMejoras(nombre){
 
-if(sugerenciaMostrada) return
+if(sugerenciaMostrada)return
 
-let texto = nombre.toLowerCase()
-let html = ""
+let mejoras = nombre.toLowerCase().includes("facial")
+?[
+{nombre:"Mascarilla",precio:400},
+{nombre:"Jade",precio:300},
+{nombre:"111skin",precio:500}
+]
+:[
+{nombre:"Aromaterapia",precio:300},
+{nombre:"Piedras",precio:300},
+{nombre:"Cepillado",precio:300}
+]
 
-if(texto.includes("facial")){
+mejorasActuales=mejoras
 
-html = `
-<button class="boton-mejora" onclick="addToCart('Mascarilla 111skin',500); cerrarMejoras()">111skin $500</button>
-<button class="boton-mejora" onclick="addToCart('Rodillo jade',300); cerrarMejoras()">Jade $300</button>
-<button class="boton-mejora" onclick="addToCart('Mascarilla',400); cerrarMejoras()">Mascarilla $400</button>
-`
+let html=""
+mejoras.forEach((m,i)=>{
+html+=`<div class="mejora-card" onclick="selectMejora(${i})" id="m${i}">
+${m.nombre} $${m.precio}
+</div>`
+})
 
-}else{
+document.getElementById("opcionesMejoras").innerHTML=html
+document.getElementById("modalMejoras").style.display="flex"
 
-html = `
-<button class="boton-mejora" onclick="addToCart('Aromaterapia',300); cerrarMejoras()">Aromaterapia</button>
-<button class="boton-mejora" onclick="addToCart('Piedras calientes',300); cerrarMejoras()">Piedras</button>
-<button class="boton-mejora" onclick="addToCart('Cepillado',300); cerrarMejoras()">Cepillado</button>
-`
-
+sugerenciaMostrada=true
 }
 
-document.getElementById("opcionesMejoras").innerHTML = html
-document.getElementById("modalMejoras").style.display = "flex"
-
-sugerenciaMostrada = true
+function selectMejora(i){
+document.querySelectorAll(".mejora-card").forEach(e=>e.classList.remove("selected"))
+document.getElementById("m"+i).classList.add("selected")
+mejoraSeleccionada=mejorasActuales[i]
 }
 
 function cerrarMejoras(){
+if(mejoraSeleccionada){
+addToCart(mejoraSeleccionada.nombre,mejoraSeleccionada.precio)
+}
 document.getElementById("modalMejoras").style.display="none"
+mejoraSeleccionada=null
 sugerenciaMostrada=false
 }
 
-// ================================
 // PROPINA
-// ================================
 function toggleTip(){
-    let val = document.getElementById("tipOption").value
-    document.getElementById("tipAmount").style.display = val === "si" ? "block" : "none"
+let v=document.getElementById("tipOption").value
+document.getElementById("tipAmount").style.display=v==="si"?"block":"none"
 }
 
-// ================================
 // WHATSAPP
-// ================================
 function sendWhatsApp(){
 
-let nombre = document.getElementById("nombre").value
-let destinatario = document.getElementById("destinatario").value
-let telefono = document.getElementById("telefono").value
-let correo = document.getElementById("correo").value
+let n=document.getElementById("nombre").value
+let d=document.getElementById("destinatario").value
+let t=document.getElementById("telefono").value
+let c=document.getElementById("correo").value
 
-let mensaje = "✨ Solicitud Spa ✨%0A%0A"
+let msg="Spa:%0A"
 
-cart.forEach(s=>{
-mensaje += `${s.nombre} - $${s.precio}%0A`
-})
+cart.forEach(s=>msg+=`${s.nombre} $${s.precio}%0A`)
 
-mensaje += `%0ATotal: $${total}%0A`
-mensaje += `Cliente: ${nombre}%0A`
-mensaje += `Destinatario: ${destinatario}%0A`
-mensaje += `Tel: ${telefono}%0A`
-mensaje += `Correo: ${correo}%0A`
+msg+=`Total $${total}%0ACliente ${n}%0ADestinatario ${d}`
 
-// propina
-let tip = document.getElementById("tipOption").value
-if(tip === "si"){
-let monto = document.getElementById("tipAmount").value || 0
-mensaje += `Propina: $${monto}%0A`
-}else{
-mensaje += `Propina: No%0A`
-}
-
-let numero = "5215580952588"
-
-window.open(`https://wa.me/${numero}?text=${mensaje}`)
+window.open(`https://wa.me/5215586952588?text=${msg}`)
 }
