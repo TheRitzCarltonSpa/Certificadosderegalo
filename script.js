@@ -6,11 +6,11 @@ let sugerenciaMostrada = false;
    CONFIGURACIÓN DE CATEGORÍAS (EDITABLE)
 ================================ */
 const categoriasUI = [
-    { nombre: "Bienestar", key: "bienestar", img: "images/bienestar.jpg" },
-    { nombre: "Masajes", key: "masajes", img: "images/masajes.jpg" },
-    { nombre: "Faciales", key: "faciales", img: "images/faciales.jpg" },
-    { nombre: "Corporales", key: "corporales", img: "images/corporales.jpg" },
-    { nombre: "Mejoras", key: "mejoras", img: "images/mejoras.jpg" }
+    { nombre: "Bienestar", key: "bienestar", img: "imagenes/bienestar.jpg" },
+    { nombre: "Masajes", key: "masajes", img: "imagenes/masajes.jpg" },
+    { nombre: "Faciales", key: "faciales", img: "imagenes/faciales.jpg" },
+    { nombre: "Corporales", key: "corporales", img: "imagenes/corporales.jpg" },
+    { nombre: "Mejoras", key: "mejoras", img: "imagenes/mejoras.jpg" }
 ];
 
 /* ================================
