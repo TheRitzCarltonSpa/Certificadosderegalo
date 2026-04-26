@@ -1,63 +1,82 @@
 let cart = [];
 let total = 0;
 
-// 🔵 SPLASH
-setTimeout(()=>{
-    document.getElementById("splash").style.display="none";
-},2000);
-
-// 📂 CATEGORÍAS
-const categorias = [
-    "Bienestar","Masajes","Faciales","Corporales","Mejoras"
+// 📂 CONFIGURACIÓN (EDITABLE)
+const categoriasData = [
+    {
+        nombre: "Bienestar",
+        imagen: "imagenes/bienestar.jpg"
+    },
+    {
+        nombre: "Masajes",
+        imagen: "imagenes/masajes.jpg"
+    },
+    {
+        nombre: "Faciales",
+        imagen: "faciales.jpg"
+    },
+    {
+        nombre: "Corporales",
+        imagen: "corporales.jpg"
+    },
+    {
+        nombre: "Mejoras",
+        imagen: "mejoras.jpg"
+    }
 ];
 
-const tratamientos = 10;
+// GENERAR UI
+const container = document.getElementById("categorias");
 
-// GENERAR CATEGORÍAS
-const cont = document.getElementById("categorias");
+categoriasData.forEach(cat => {
 
-categorias.forEach(cat=>{
-    let div = document.createElement("div");
-    div.className="card";
-    div.innerHTML = `
-        <h3>${cat}</h3>
-        <button onclick="showTreatments('${cat}')">Ver</button>
+    let categoria = document.createElement("div");
+    categoria.className = "categoria";
+
+    categoria.innerHTML = `
+        <div class="categoria-header" style="background-image:url('${cat.imagen}')">
+            <h3>${cat.nombre}</h3>
+        </div>
+
+        <div class="tratamientos">
+            ${generarTratamientos(cat.nombre)}
+        </div>
     `;
-    cont.appendChild(div);
+
+    // CLICK DESPLEGAR
+    categoria.querySelector(".categoria-header").addEventListener("click", () => {
+        categoria.classList.toggle("active");
+    });
+
+    container.appendChild(categoria);
 });
 
-// MOSTRAR TRATAMIENTOS
-function showTreatments(cat){
+// GENERAR TRATAMIENTOS
+function generarTratamientos(cat){
     let html = "";
 
     for(let i=1;i<=10;i++){
         html += `
-        <div class="card">
-            <h4>${cat} ${i}</h4>
-            <button onclick="openUpgrade('${cat}', '${cat} ${i}', 500)">Agregar</button>
-            <button onclick="openDetail('${cat} ${i}')">Detalle</button>
+        <div class="tratamiento">
+            <span>${cat} ${i}</span>
+
+            <div>
+                <button onclick="openUpgrade('${cat}','${cat} ${i}',500)">Agregar</button>
+                <button onclick="openDetail('${cat} ${i}')">Detalle</button>
+            </div>
         </div>`;
     }
 
-    cont.innerHTML = html;
+    return html;
 }
 
-// 🛒 AGREGAR
+// 🛒 CARRITO
 function addToCart(name, price){
     cart.push({name,price});
     total += price;
     renderCart();
 }
 
-// 🛒 CERTIFICADO
-function addCertificate(){
-    let value = document.getElementById("certValue").value;
-    let qty = document.getElementById("certQty").value || 1;
-
-    addToCart("Certificado $" + value, value * qty);
-}
-
-// 🛒 RENDER
 function renderCart(){
     let div = document.getElementById("cart");
     div.innerHTML="";
@@ -71,11 +90,40 @@ function renderCart(){
     document.getElementById("total").innerText="Total: $" + total;
 }
 
-// ❌ ELIMINAR
 function removeItem(i){
     total -= cart[i].price;
     cart.splice(i,1);
     renderCart();
+}
+
+// 💎 MEJORAS
+function openUpgrade(cat,name,price){
+    const mejoras = {
+        "Masajes":["Aromaterapia","Piedras calientes","Aceites premium"],
+        "Faciales":["Colágeno","Oro","Vitamina C"],
+        "Corporales":["Exfoliación","Envoltura","Hidratación"]
+    };
+
+    let lista = mejoras[cat] || ["Upgrade básico","Upgrade medio","Upgrade premium"];
+
+    let div = document.getElementById("upgradeOptions");
+    div.innerHTML="";
+
+    lista.forEach(op=>{
+        div.innerHTML += `
+        <button onclick="selectUpgrade('${name}','${op}',${price})">${op}</button>`;
+    });
+
+    document.getElementById("upgradeModal").style.display="block";
+}
+
+function selectUpgrade(name,upgrade,price){
+    addToCart(name + " + " + upgrade, price + 200);
+    closeUpgrade();
+}
+
+function closeUpgrade(){
+    document.getElementById("upgradeModal").style.display="none";
 }
 
 // 🌑 MODAL DETALLE
@@ -86,52 +134,4 @@ function openDetail(text){
 
 function closeModal(){
     document.getElementById("modal").style.display="none";
-}
-
-// 💎 MODAL MEJORAS
-function openUpgrade(cat, name, price){
-    let options = ["Aromaterapia","Piedras calientes","Aceites premium"];
-
-    let div = document.getElementById("upgradeOptions");
-    div.innerHTML="";
-
-    options.forEach(op=>{
-        div.innerHTML += `<button onclick="selectUpgrade('${name}','${op}',${price})">${op}</button>`;
-    });
-
-    document.getElementById("upgradeModal").style.display="block";
-}
-
-// SELECCIONAR MEJORA
-function selectUpgrade(name, upgrade, price){
-    addToCart(name + " + " + upgrade, price + 200);
-    closeUpgrade();
-}
-
-function closeUpgrade(){
-    document.getElementById("upgradeModal").style.display="none";
-}
-
-// 💰 PROPINA
-function toggleTip(){
-    let val = document.getElementById("tipOption").value;
-    document.getElementById("tipAmount").style.display = val === "Si" ? "block":"none";
-}
-
-// 📲 WHATSAPP
-function sendWhatsApp(){
-    let nombre = document.getElementById("nombre").value;
-    let tel = document.getElementById("telefono").value;
-
-    let tip = document.getElementById("tipAmount").value || 0;
-
-    let msg = `Pedido Spa:\n`;
-    cart.forEach(i=>{
-        msg += `${i.name} - $${i.price}\n`;
-    });
-
-    msg += `Total: $${total}\nPropina: $${tip}`;
-
-    let url = `https://wa.me/52${tel}?text=${encodeURIComponent(msg)}`;
-    window.open(url);
 }
