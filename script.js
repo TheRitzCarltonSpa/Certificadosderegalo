@@ -1,84 +1,137 @@
-let carrito = [];
+let cart = [];
 let total = 0;
 
-function agregarCarrito(nombre, precio){
-    carrito.push({nombre, precio});
-    total += precio;
-    actualizarCarrito();
-}
+// 🔵 SPLASH
+setTimeout(()=>{
+    document.getElementById("splash").style.display="none";
+},2000);
 
-function actualizarCarrito(){
-    let lista = document.getElementById("listaCarrito");
-    lista.innerHTML = "";
+// 📂 CATEGORÍAS
+const categorias = [
+    "Bienestar","Masajes","Faciales","Corporales","Mejoras"
+];
 
-    carrito.forEach((item, index)=>{
-        let li = document.createElement("li");
-        li.innerHTML = `${item.nombre} - $${item.precio} 
-        <button onclick="eliminar(${index})">X</button>`;
-        lista.appendChild(li);
-    });
+const tratamientos = 10;
 
-    document.getElementById("total").innerText = total;
-}
+// GENERAR CATEGORÍAS
+const cont = document.getElementById("categorias");
 
-function eliminar(index){
-    total -= carrito[index].precio;
-    carrito.splice(index,1);
-    actualizarCarrito();
-}
+categorias.forEach(cat=>{
+    let div = document.createElement("div");
+    div.className="card";
+    div.innerHTML = `
+        <h3>${cat}</h3>
+        <button onclick="showTreatments('${cat}')">Ver</button>
+    `;
+    cont.appendChild(div);
+});
 
-function mostrarTratamientos(tipo){
-    let contenedor = document.getElementById("tratamientos");
-    contenedor.innerHTML = "";
+// MOSTRAR TRATAMIENTOS
+function showTreatments(cat){
+    let html = "";
 
     for(let i=1;i<=10;i++){
-        let div = document.createElement("div");
-        div.className="card";
-        div.innerHTML = `
-        <h3>${tipo} ${i}</h3>
-        <button onclick="abrirModal()">Detalle</button>
-        <button onclick="agregarCarrito('${tipo} ${i}',500)">Agregar</button>
-        `;
-        contenedor.appendChild(div);
+        html += `
+        <div class="card">
+            <h4>${cat} ${i}</h4>
+            <button onclick="openUpgrade('${cat}', '${cat} ${i}', 500)">Agregar</button>
+            <button onclick="openDetail('${cat} ${i}')">Detalle</button>
+        </div>`;
     }
+
+    cont.innerHTML = html;
 }
 
-function abrirModal(){
+// 🛒 AGREGAR
+function addToCart(name, price){
+    cart.push({name,price});
+    total += price;
+    renderCart();
+}
+
+// 🛒 CERTIFICADO
+function addCertificate(){
+    let value = document.getElementById("certValue").value;
+    let qty = document.getElementById("certQty").value || 1;
+
+    addToCart("Certificado $" + value, value * qty);
+}
+
+// 🛒 RENDER
+function renderCart(){
+    let div = document.getElementById("cart");
+    div.innerHTML="";
+
+    cart.forEach((item,i)=>{
+        div.innerHTML += `
+        <p>${item.name} - $${item.price}
+        <button onclick="removeItem(${i})">X</button></p>`;
+    });
+
+    document.getElementById("total").innerText="Total: $" + total;
+}
+
+// ❌ ELIMINAR
+function removeItem(i){
+    total -= cart[i].price;
+    cart.splice(i,1);
+    renderCart();
+}
+
+// 🌑 MODAL DETALLE
+function openDetail(text){
     document.getElementById("modal").style.display="block";
+    document.getElementById("modalText").innerText=text;
 }
 
-function cerrarModal(){
+function closeModal(){
     document.getElementById("modal").style.display="none";
 }
 
-function verDetalle(){
-    abrirModal();
-}
+// 💎 MODAL MEJORAS
+function openUpgrade(cat, name, price){
+    let options = ["Aromaterapia","Piedras calientes","Aceites premium"];
 
-function enviarWhatsApp(){
-    let nombre = document.getElementById("nombre").value;
-    let destinatario = document.getElementById("destinatario").value;
-    let correo = document.getElementById("correo").value;
-    let telefono = document.getElementById("telefono").value;
-    let propina = document.getElementById("propina").value;
+    let div = document.getElementById("upgradeOptions");
+    div.innerHTML="";
 
-    let mensaje = `SPA PREMIUM
-Nombre: ${nombre}
-Destinatario: ${destinatario}
-Correo: ${correo}
-Tel: ${telefono}
-
-Carrito:
-`;
-
-    carrito.forEach(item=>{
-        mensaje += `- ${item.nombre} $${item.precio}\n`;
+    options.forEach(op=>{
+        div.innerHTML += `<button onclick="selectUpgrade('${name}','${op}',${price})">${op}</button>`;
     });
 
-    let totalFinal = total + (total * propina/100);
+    document.getElementById("upgradeModal").style.display="block";
+}
 
-    mensaje += `Total: $${totalFinal}`;
+// SELECCIONAR MEJORA
+function selectUpgrade(name, upgrade, price){
+    addToCart(name + " + " + upgrade, price + 200);
+    closeUpgrade();
+}
 
-    let url = `https://wa.me/521XXXXXXXXXX?text=${encodeURIComponent(mensaje)}`;
+function closeUpgrade(){
+    document.getElementById("upgradeModal").style.display="none";
+}
+
+// 💰 PROPINA
+function toggleTip(){
+    let val = document.getElementById("tipOption").value;
+    document.getElementById("tipAmount").style.display = val === "Si" ? "block":"none";
+}
+
+// 📲 WHATSAPP
+function sendWhatsApp(){
+    let nombre = document.getElementById("nombre").value;
+    let tel = document.getElementById("telefono").value;
+
+    let tip = document.getElementById("tipAmount").value || 0;
+
+    let msg = `Pedido Spa:\n`;
+    cart.forEach(i=>{
+        msg += `${i.name} - $${i.price}\n`;
+    });
+
+    msg += `Total: $${total}\nPropina: $${tip}`;
+
+    let url = `https://wa.me/52${tel}?text=${encodeURIComponent(msg)}`;
     window.open(url);
 }
