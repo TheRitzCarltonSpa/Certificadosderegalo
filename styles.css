@@ -1,139 +1,62 @@
-body{
-margin:0;
-font-family:Georgia;
-background:#b2dafa;
+body {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    background: #40E0D0;
+    color: #fff;
+    text-align: center;
 }
 
-/* INTRO */
-#intro{
-position:fixed;
-width:100%;
-height:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-background:#b2dafa;
-z-index:9999;
-animation:fadeOut 2s forwards;
+.header {
+    padding: 20px;
 }
 
-.intro-img{
-width:200px;
+.logo {
+    width: 180px;
 }
 
-@keyframes fadeOut{
-to{opacity:0;visibility:hidden}
+h2 {
+    font-weight: 300;
+    letter-spacing: 2px;
 }
 
-/* HEADER */
-header{
-text-align:center;
-padding:20px;
+.card, .especial-card, .cert-card {
+    background: rgba(255,255,255,0.1);
+    margin: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
 }
 
-.logo{
-width:200px;
+button {
+    background: #fff;
+    color: #40E0D0;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-/* ESPECIAL */
-.especial{
-background:url("imagenes/especial.jpg") center/cover;
-padding:40px;
-color:white;
-text-align:center;
-border-radius:15px;
-width:80%;
-margin:auto;
+button:hover {
+    background: #e0f7f5;
 }
 
-/* CATEGORÍAS */
-.menu{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
+.modal {
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.7);
 }
 
-.card{
-width:160px;
-cursor:pointer;
-text-align:center;
-}
-
-.card img{
-width:100%;
-height:100px;
-object-fit:cover;
-border-radius:10px;
-}
-
-/* SERVICIOS */
-.servicios{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:15px;
-}
-
-.servicio-item{
-background:white;
-padding:15px;
-width:220px;
-border-radius:10px;
-}
-
-/* BOTONES */
-.btn{
-padding:8px;
-margin:5px;
-border:none;
-cursor:pointer;
-}
-
-.agregar{
-background:#c3b091;
-}
-
-.detalle{
-background:#e6cfa7;
-}
-
-/* CARRITO */
-.carrito{
-background:white;
-width:80%;
-margin:auto;
-padding:20px;
-border-radius:10px;
-}
-
-/* MODAL */
-.modal{
-display:none;
-position:fixed;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.7);
-justify-content:center;
-align-items:center;
-}
-
-.modal-content{
-background:white;
-padding:20px;
-border-radius:10px;
-text-align:center;
-}
-
-/* MEJORAS */
-.mejora-card{
-padding:10px;
-border-radius:8px;
-background:#eee;
-margin:5px;
-cursor:pointer;
-}
-
-.mejora-card.selected{
-border:2px solid gold;
+.modal-content {
+    background:#fff;
+    color:#000;
+    margin:15% auto;
+    padding:20px;
+    width:300px;
+    border-radius:10px;
 }
