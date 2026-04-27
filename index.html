@@ -50,18 +50,22 @@
 
         <h3>Certificado</h3>
 
-        <!-- 🔧 OPCIONES -->
-        <select id="certValue">
-            <option value="1000">$1000</option>
-            <option value="2000">$2000</option>
-            <option value="3000">$3000</option>
-        </select>
+        <!-- 💎 CERTIFICADO PREMIUM -->
+<div class="cert-options">
 
-        <input id="certQty" type="number" placeholder="Cantidad">
+    <button onclick="addCertificateQuick(2600)">
+        $2600
+    </button>
 
-        <button onclick="addCertificate()">Agregar</button>
-    </div>
-</section>
+    <button onclick="addCertificateQuick(3800)">
+        $3800
+    </button>
+
+    <button onclick="addCertificateQuick(7900)">
+        $7900
+    </button>
+
+</div>
 
 <!-- 🛒 CARRITO -->
 <section class="carrito">
