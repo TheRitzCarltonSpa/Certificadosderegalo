@@ -287,6 +287,25 @@ function closeRecommend(){
     document.getElementById("recommendModal").style.display="none";
 }
 
+// BOTONES RÁPIDOS
+function addCertificateQuick(value){
+    addToCart("Certificado $" + value, value);
+}
+
+// MONTO PERSONALIZADO
+function addCertificateCustom(){
+
+    let val = document.getElementById("certCustomAmount").value;
+
+    if(!val || val <= 0){
+        alert("Ingresa un monto válido");
+        return;
+    }
+
+    addToCart("Certificado $" + val, parseInt(val));
+
+    document.getElementById("certCustomAmount").value = "";
+}
 /* =========================
    🌑 MODAL
 ========================= */
