@@ -86,6 +86,19 @@ button {
     border-radius:10px;
 }
 
+.cert-bg {
+    position:relative;
+    overflow:hidden;
+}
+
+.cert-bg::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.2);
+    border-radius:15px;
+}
+
 /* DESPLEGABLE */
 .tratamientos {
     max-height:0;
