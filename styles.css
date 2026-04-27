@@ -140,6 +140,47 @@ button {
     margin:20px;
     padding:20px;
     border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ITEM */
+.cart-item {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+
+/* NOMBRE */
+.cart-name {
+    flex:1;
+    font-size:14px;
+}
+
+/* PRECIO */
+.cart-price {
+    font-weight:bold;
+    margin-left:10px;
+}
+
+/* BOTÓN ELIMINAR */
+.remove-btn {
+    margin-left:10px;
+    background:#ddd;
+    color:black;
+    border-radius:50%;
+    width:25px;
+    height:25px;
+    font-size:12px;
+    cursor:pointer;
+}
+
+/* TOTAL */
+.total-box {
+    margin-top:15px;
+    text-align:right;
+    font-size:18px;
 }
 
 /* CERTIFICADO */
