@@ -236,10 +236,21 @@ document.getElementById("montoPropina").style.display = mostrar ? "block" : "non
 }
 
 // 🌑 MODAL
-function detalle(t,d){
-document.getElementById("titulo").innerText = t
-document.getElementById("descripcion").innerText = d
-document.getElementById("modal").style.display = "flex"
+function detalle(t, d, img = null){
+
+    document.getElementById("titulo").innerText = t
+
+    // 🧠 Detecta si es imagen o texto
+    if(img){
+        document.getElementById("modalImage").style.backgroundImage = `url(${img})`
+        document.getElementById("modalImage").style.display = "block"
+        document.getElementById("descripcion").innerText = d
+    }else{
+        document.getElementById("modalImage").style.display = "none"
+        document.getElementById("descripcion").innerText = d
+    }
+
+    document.getElementById("modal").style.display = "flex"
 }
 
 function cerrar(){
