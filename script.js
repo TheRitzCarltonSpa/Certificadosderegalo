@@ -90,8 +90,17 @@ Object.keys(servicios).forEach(cat => {
     `;
 
     div.querySelector(".categoria-header").onclick = ()=>{
-        div.classList.toggle("active");
-    };
+
+    const content = div.querySelector(".tratamientos");
+
+    if(div.classList.contains("active")){
+        content.style.height = "0px";
+        div.classList.remove("active");
+    } else {
+        content.style.height = content.scrollHeight + "px";
+        div.classList.add("active");
+    }
+};
 
     categorias.appendChild(div);
 });
