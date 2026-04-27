@@ -305,10 +305,6 @@ function closeModal(){
     document.getElementById("modal").style.display="none";
 }
 
-function addCertificateQuick(value){
-    addToCart("Certificado $" + value, value);
-}
-
 /* =========================
    💰 PROPINA
 ========================= */
