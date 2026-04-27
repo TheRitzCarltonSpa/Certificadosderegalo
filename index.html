@@ -11,30 +11,36 @@
 
 <!-- 🔵 SPLASH -->
 <div id="splash">
-    <!-- 🔧 CAMBIAR LOGO -->
     <img src="imagenes/logo.png" alt="Logo">
 </div>
 
-<!-- 🧠 APP -->
 <div id="app" class="hidden">
 
 <header>
-    <!-- 🔧 CAMBIAR LOGO SUPERIOR -->
     <img src="imagenes/logo1.png" class="logo-top">
 </header>
 
-<!-- 🌟 ESPECIAL DEL MES -->
-<div class="especial-card">
+<!-- 🌟 ESPECIAL -->
+<section class="especial">
+    <div class="especial-card">
 
-    <img src="imagenes/especial.jpg" class="especial-img">
+        <img src="imagenes/especial.jpg" class="especial-img">
 
-    <div class="especial-overlay">
-        <h2>Especial del Mes</h2>
-        <button onclick="addToCart('Especial del Mes',5100)">Agregar</button>
-        <button onclick="openDetail('Experiencia premium','imagenes/especial mayo.png')">Detalle</button>
+        <div class="especial-overlay">
+            <h2>Especial del Mes</h2>
+
+            <button onclick="addToCart('Especial del Mes',1200)">Agregar</button>
+
+            <button onclick="openDetail(
+                'Experiencia premium relajante',
+                'imagenes/especial-detalle.jpg'
+            )">
+                Detalle
+            </button>
+        </div>
+
     </div>
-
-</div>
+</section>
 
 <!-- 🧴 CATEGORÍAS -->
 <section id="categorias" class="categorias-container"></section>
@@ -44,35 +50,21 @@
 
     <div class="cert-card">
 
-        <!-- IMAGEN DE FONDO -->
         <div class="cert-bg" style="background-image:url('imagenes/alberca.jpg')">
 
-            <!-- 💎 CONTENIDO SOBRE LA IMAGEN -->
             <div class="cert-overlay">
 
-                <h3>Certificado abierto</h3>
+                <h3>Certificado</h3>
 
-                <!-- INPUT PERSONALIZADO -->
                 <div class="cert-custom">
                     <input id="certCustomAmount" type="number" placeholder="$ Monto">
                     <button onclick="addCertificateCustom()">Agregar</button>
                 </div>
 
-                <!-- BOTONES RÁPIDOS -->
                 <div class="cert-options">
-
-                    <button onclick="addCertificateQuick(2600)">
-                        $2600
-                    </button>
-
-                    <button onclick="addCertificateQuick(3800)">
-                        $3800
-                    </button>
-
-                    <button onclick="addCertificateQuick(7900)">
-                        $7900
-                    </button>
-
+                    <button onclick="addCertificateQuick(2600)">$2600</button>
+                    <button onclick="addCertificateQuick(3800)">$3800</button>
+                    <button onclick="addCertificateQuick(7900)">$7900</button>
                 </div>
 
             </div>
@@ -82,7 +74,7 @@
     </div>
 
 </section>
-    
+
 <!-- 🛒 CARRITO -->
 <section class="carrito">
     <h2>Carrito</h2>
@@ -115,16 +107,14 @@
 
 </div>
 
-<!-- 🌑 MODAL DETALLE (ACTUALIZADO CON IMAGEN) -->
+<!-- 🌑 MODAL DETALLE -->
 <div id="modal" class="modal">
     <div class="modal-content">
 
         <span onclick="closeModal()">X</span>
 
-        <!-- 🔥 NUEVO: IMAGEN DINÁMICA -->
         <div id="modalImage" class="modal-img"></div>
 
-        <!-- TEXTO -->
         <p id="modalText"></p>
 
     </div>
