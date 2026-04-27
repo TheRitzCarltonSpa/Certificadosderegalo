@@ -1,33 +1,36 @@
-let cart = [];
-let total = 0;
+// 🧠 ESTADO GLOBAL
+let carrito = []
+let total = 0
+let sugerenciaMostrada = false
 
-// CONTEXTO GLOBAL
-window.lastCategory = null;
-window.lastName = null;
+// 💎 FORMATO MONEDA
+function formatPrice(num){
+    return Number(num).toLocaleString("es-MX")
+}
 
-/* =========================
-   🔵 SPLASH
-========================= */
-window.addEventListener("load", () => {
-    setTimeout(()=>{
-        document.getElementById("splash").classList.add("fade-out");
-        setTimeout(()=>{
-            document.getElementById("splash").style.display="none";
-            document.getElementById("app").classList.add("show");
-        },1000);
-    },1500);
-});
+// 🎁 CERTIFICADOS
+function seleccionarValor(valor){
+    document.getElementById("valorCertificado").value = valor
+}
 
-/* =========================
-   📦 SERVICIOS COMPLETOS
-========================= */
+function agregarCertificado(){
+    let valor = document.getElementById("valorCertificado").value
+    if(valor === ""){
+        alert("Ingrese un monto")
+        return
+    }
 
+    agregar("Certificado $" + valor, parseFloat(valor))
+    document.getElementById("valorCertificado").value = ""
+}
+
+// 🧾 SERVICIOS COMPLETOS
 const servicios = {
 
 bienestar:[
 {nombre:"Ceremonia del despertar 90 min",precio:5000,desc:"Ceremonia diseñada para restaurar la vitalidad, promover el bienestar integral y reconectar el cuerpo, mente y espiritu."},
-{nombre:"Ritual limpia Metzli 90 min",precio:5000,desc:"Inspirado en tradiciones Aztecas con salvia y piedras de sal."},
-{nombre:"Facial resilencia natural 90 min",precio:5000,desc:"Tecnología prebiótica inspirada en Kobido japonés."}
+{nombre:"Ritual limpia Metzli 90 min",precio:5000,desc:"Inspirado en tradiciones Aztecas y la luna llena."},
+{nombre:"Facial resilencia natural 90 min",precio:5000,desc:"Tecnología prebiótica y técnicas Kobido japones."}
 ],
 
 masajes:[
@@ -35,321 +38,252 @@ masajes:[
 {nombre:"Masaje relajante",precio60:2400,precio90:3300,desc:"Relajación profunda."},
 {nombre:"Masaje tejido profundo",precio60:2800,precio90:3700,desc:"Alivio muscular."},
 {nombre:"Masaje antiestrés",precio60:2600,precio90:3500,desc:"Revitalización."},
-{nombre:"Masaje recuperacion muscular",precio60:2800,precio90:3700,desc:"Para deportistas."},
+{nombre:"Masaje recuperacion muscular",precio60:2800,precio90:3700,desc:"Tensión deportiva."},
 {nombre:"Masaje para caballero",precio60:2900,precio90:3800,desc:"Incluye piedras calientes."},
 {nombre:"Masaje piedras calientes",precio:3600,desc:"Relajación profunda."},
 {nombre:"Masaje prenatal",precio60:2400,precio90:3300,desc:"Para embarazadas."}
 ],
 
 faciales:[
-{nombre:"Facial Personalizado",precio60:2600,precio90:3500,desc:"Adaptado a la piel."},
-{nombre:"Facial Anti-edad",precio60:3300,precio90:4500,desc:"Anti envejecimiento."},
-{nombre:"Facial Rejuvenecedor 90 min",precio:4000,desc:"Resultados inmediatos."},
-{nombre:"Hydrafacial",precio60:4500,desc:"Tecnología avanzada."},
-{nombre:"Facial Para caballero 60 min",precio:2600,desc:"Energía inmediata."},
-{nombre:"Facial Revitalizante",precio25:1200,precio40:1800,desc:"Rápido y eficaz."}
+{nombre:"Facial Personalizado",precio60:2600,precio90:3500,desc:"Adaptado a tu piel."},
+{nombre:"Facial Anti-edad",precio60:3300,precio90:4500,desc:"Reduce signos de edad."},
+{nombre:"Facial Rejuvenecedor 90 min",precio:4000,desc:"Piel luminosa."},
+{nombre:"Hydrafacial",precio60:4500,desc:"Resultados instantáneos."},
+{nombre:"Facial Para caballero 60 min",precio:2600,desc:"Limpieza profunda."},
+{nombre:"Facial Revitalizante",precio25:1200,precio40:1800,desc:"Tratamiento rápido."}
 ],
 
 corporales:[
-{nombre:"Envoltura corporal ESPA 60 min",precio:2800,desc:"Renueva la piel."},
-{nombre:"Tratamiento corporal equilibrante 60 min",precio:2600,desc:"Relajación total."},
-{nombre:"Tratamiento corporal nutritivo 60 min",precio:2600,desc:"Piel luminosa."},
-{nombre:"Power hour 60 min",precio:2400,desc:"Estimulación total."}
+{nombre:"Envoltura corporal ESPA 60 min",precio:2800,desc:"Renovación profunda."},
+{nombre:"Tratamiento equilibrante 60 min",precio:2600,desc:"Balance cuerpo mente."},
+{nombre:"Tratamiento nutritivo 60 min",precio:2600,desc:"Piel luminosa."},
+{nombre:"Power hour 60 min",precio:2400,desc:"Activación intensa."}
 ],
 
 mejoras:[
-{nombre:"Cepillado corporal",precio:300,desc:"Renueva piel"},
-{nombre:"Piedras calientes",precio:300,desc:"Relajación"},
-{nombre:"Mascarilla plástica",precio:400,desc:"Nutrición"},
-{nombre:"Aromaterapia",precio:300,desc:"Aceites"},
-{nombre:"Mascarilla 111skin",precio:500,desc:"Hidratación"},
-{nombre:"Exfoliación manos/pies/espalda",precio:450,desc:"Suavidad"},
-{nombre:"Balsamo cuello y escote",precio:300,desc:"Firmeza"},
-{nombre:"Parches ojos",precio:400,desc:"Mejora tono"},
-{nombre:"Limpieza facial express",precio:300,desc:"Revitaliza rostro"},
-{nombre:"Rodillo de jade",precio:300,desc:"Tonifica piel"},
-{nombre:"Balsamo muscular",precio:450,desc:"Recuperación"},
-{nombre:"Acondicionador cabello",precio:300,desc:"Cabello sano"},
-{nombre:"Balsamo reafirmante",precio:450,desc:"Hidratación profunda"}
+{nombre:"Cepillado corporal",precio:300},
+{nombre:"Piedras calientes",precio:300},
+{nombre:"Mascarilla plástica",precio:400},
+{nombre:"Aromaterapia",precio:300},
+{nombre:"Mascarilla 111skin",precio:500},
+{nombre:"Exfoliación",precio:450},
+{nombre:"Balsamo cuello",precio:300},
+{nombre:"Parches ojos",precio:400},
+{nombre:"Limpieza facial express",precio:300},
+{nombre:"Rodillo jade",precio:300},
+{nombre:"Balsamo muscular",precio:450},
+{nombre:"Acondicionador capilar",precio:300},
+{nombre:"Balsamo reafirmante",precio:450}
 ]
 
-};
-
-/* =========================
-   🧴 GENERAR UI
-========================= */
-
-const cont = document.getElementById("categorias");
-
-Object.keys(servicios).forEach(cat=>{
-
-    let div = document.createElement("div");
-    div.className = "categoria";
-
-    div.innerHTML = `
-        <div class="categoria-header" style="background-image:url('imagenes/${cat}.jpg')">
-            <h3>${cat.toUpperCase()}</h3>
-        </div>
-
-        <div class="tratamientos">
-            ${generarServicios(cat)}
-        </div>
-    `;
-
-    div.querySelector(".categoria-header").onclick = ()=>{
-
-        const content = div.querySelector(".tratamientos");
-
-        if(div.classList.contains("active")){
-            content.style.height="0px";
-            div.classList.remove("active");
-        } else {
-            content.style.height=content.scrollHeight+"px";
-            div.classList.add("active");
-        }
-    };
-
-    cont.appendChild(div);
-});
-
-/* =========================
-   🔥 GENERADOR DINÁMICO
-========================= */
-
-function generarServicios(cat){
-
-    return servicios[cat].map(serv=>{
-
-        let botones="";
-
-        if(serv.precio){
-            botones+=`
-            <button onclick="handleAdd('${cat}','${serv.nombre}',${serv.precio})">
-                $${serv.precio}
-            </button>`;
-        }
-
-        Object.keys(serv).forEach(k=>{
-            if(k.startsWith("precio") && k!=="precio"){
-                let dur=k.replace("precio","");
-                let val=serv[k];
-
-                botones+=`
-                <button onclick="handleAdd('${cat}','${serv.nombre} ${dur}min',${val})">
-                    ${dur}min $${val}
-                </button>`;
-            }
-        });
-
-        return `
-        <div class="tratamiento">
-            <div>
-                <strong>${serv.nombre}</strong>
-            </div>
-            <div>
-                ${botones}
-                <button onclick="openDetail(\`${serv.desc}\`)">Detalle</button>
-            </div>
-        </div>`;
-    }).join("");
 }
 
-/* =========================
-   🧠 CONTROL DE MEJORAS
-========================= */
+// 🧴 MOSTRAR SERVICIOS
+function mostrar(cat){
 
-function handleAdd(cat,name,price){
+let htmlArray = []
 
-    const conMejoras=["masajes","faciales","corporales"];
+servicios[cat].forEach(s=>{
 
-    if(conMejoras.includes(cat)){
-        openUpgrade(cat,name,price);
-    } else {
-        addToCart(name,price);
-    }
+if(s.precio60 && s.precio90){
+
+htmlArray.push(`
+<div class="card">
+<h3>${s.nombre}</h3>
+
+<button onclick="agregar('${s.nombre} 60 min',${s.precio60})">
+60 min $${formatPrice(s.precio60)}
+</button>
+
+<button onclick="agregar('${s.nombre} 90 min',${s.precio90})">
+90 min $${formatPrice(s.precio90)}
+</button>
+
+<button onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
+Detalle
+</button>
+
+</div>`)
+
+}else if(s.precio25 && s.precio40){
+
+htmlArray.push(`
+<div class="card">
+<h3>${s.nombre}</h3>
+
+<button onclick="agregar('${s.nombre} 25 min',${s.precio25})">
+25 min $${formatPrice(s.precio25)}
+</button>
+
+<button onclick="agregar('${s.nombre} 40 min',${s.precio40})">
+40 min $${formatPrice(s.precio40)}
+</button>
+
+<button onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
+Detalle
+</button>
+
+</div>`)
+
+}else{
+
+htmlArray.push(`
+<div class="card">
+<h3>${s.nombre}</h3>
+
+<button onclick="agregar('${s.nombre}',${s.precio})">
+$${formatPrice(s.precio)}
+</button>
+
+<button onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
+Detalle
+</button>
+
+</div>`)
 }
 
-/* =========================
-   🛒 CARRITO
-========================= */
+})
 
-function addToCart(name,price){
-    cart.push({name,price});
-    total+=price;
-    renderCart();
+document.getElementById("servicios").innerHTML = htmlArray.join("")
 }
 
-function renderCart(){
+// 💎 RECOMENDACIONES INTELIGENTES
+function recomendarMejoras(nombre){
 
-    let div = document.getElementById("cart");
-    div.innerHTML = "";
+if(sugerenciaMostrada) return
 
-    cart.forEach((item,i)=>{
+let texto = nombre.toLowerCase()
 
-        div.innerHTML += `
-        <div class="cart-item">
-            <span class="cart-name">${item.name}</span>
+if(!texto.includes("masaje") && !texto.includes("facial")) return
 
-            <span class="cart-price">$${item.price}</span>
+let opciones = ""
 
-            <button class="remove-btn" onclick="removeItem(${i})">×</button>
-        </div>`;
-    });
+if(texto.includes("facial")){
 
-    document.getElementById("total").innerText = "Total: $" + total;
+opciones = `
+<button onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">Mascarilla $500</button>
+<button onclick="agregar('Rodillo jade',300); cerrarMejoras()">Rodillo jade $300</button>
+<button onclick="agregar('Mascarilla plástica',400); cerrarMejoras()">Mascarilla $400</button>
+`
+
+}else{
+
+opciones = `
+<button onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
+<button onclick="agregar('Piedras calientes',300); cerrarMejoras()">Piedras $300</button>
+<button onclick="agregar('Cepillado corporal',300); cerrarMejoras()">Cepillado $300</button>
+`
 }
 
-function removeItem(i){
-    total-=cart[i].price;
-    cart.splice(i,1);
-    renderCart();
+document.getElementById("opcionesMejoras").innerHTML = opciones
+document.getElementById("modalMejoras").style.display = "flex"
+sugerenciaMostrada = true
 }
 
-/* =========================
-   💎 MEJORAS + RECOMENDACIÓN
-========================= */
-
-function openUpgrade(cat,name,price){
-
-    window.lastCategory=cat;
-    window.lastName=name;
-
-    let div=document.getElementById("upgradeOptions");
-    div.innerHTML="";
-
-    servicios.mejoras.slice(0,5).forEach(m=>{
-        div.innerHTML+=`
-        <button onclick="selectUpgrade('${name}','${m.nombre}',${price},${m.precio})">
-        ${m.nombre} +$${m.precio}
-        </button>`;
-    });
-
-    document.getElementById("upgradeModal").style.display="block";
+function cerrarMejoras(){
+document.getElementById("modalMejoras").style.display = "none"
+sugerenciaMostrada = false
 }
 
-function selectUpgrade(name,upgrade,price,extra){
-    addToCart(name+" + "+upgrade,price+extra);
-    closeUpgrade();
+// 🛒 AGREGAR
+function agregar(nombre,precio){
 
-    setTimeout(()=>{
-        showRecommendations(window.lastCategory,name);
-    },300);
+carrito.push({nombre,precio})
+actualizar()
+
+console.log("✔️ agregado:", nombre)
+
+// scroll UX
+document.querySelector(".carrito").scrollIntoView({
+behavior:"smooth"
+})
+
+recomendarMejoras(nombre)
 }
 
-function closeUpgrade(){
-    document.getElementById("upgradeModal").style.display="none";
-
-    if(window.lastCategory){
-        setTimeout(()=>{
-            showRecommendations(window.lastCategory,window.lastName);
-        },300);
-    }
+// ❌ ELIMINAR
+function eliminar(i){
+carrito.splice(i,1)
+actualizar()
 }
 
-/* =========================
-   💡 RECOMENDACIONES
-========================= */
+// 🔄 ACTUALIZAR CARRITO
+function actualizar(){
 
-const recomendaciones={
-    masajes:["Aromaterapia","Piedras calientes","Balsamo muscular"],
-    faciales:["Mascarilla 111skin","Parches ojos","Rodillo de jade"],
-    corporales:["Exfoliación","Balsamo reafirmante","Cepillado corporal"]
-};
+let lista = document.getElementById("lista")
+lista.innerHTML = ""
+total = 0
 
-function showRecommendations(cat,name){
+carrito.forEach((item,i)=>{
 
-    let list=recomendaciones[cat];
-    if(!list) return;
+total += item.precio
 
-    let div=document.getElementById("recommendOptions");
-    div.innerHTML="";
+lista.innerHTML += `
+<div class="item-carrito">
+<span>${item.nombre}</span>
+<span>$${formatPrice(item.precio)}</span>
+<button onclick="eliminar(${i})">X</button>
+</div>
+`
+})
 
-    list.forEach(n=>{
-        let item=servicios.mejoras.find(m=>m.nombre.includes(n));
-
-        if(item){
-            div.innerHTML+=`
-            <button onclick="addRecommended('${name}','${item.nombre}',${item.precio})">
-            + ${item.nombre} ($${item.precio})
-            </button>`;
-        }
-    });
-
-    document.getElementById("recommendModal").style.display="block";
+document.getElementById("total").innerText = "Total: $" + formatPrice(total)
 }
 
-function addRecommended(base,name,price){
-    addToCart(base+" + "+name,price);
-    closeRecommend();
+// 💰 PROPINA
+function togglePropina(mostrar){
+document.getElementById("montoPropina").style.display = mostrar ? "block" : "none"
 }
 
-function closeRecommend(){
-    document.getElementById("recommendModal").style.display="none";
+// 🌑 MODAL
+function detalle(t,d){
+document.getElementById("titulo").innerText = t
+document.getElementById("descripcion").innerText = d
+document.getElementById("modal").style.display = "flex"
 }
 
-// BOTONES RÁPIDOS
-function addCertificateQuick(value){
-    addToCart("Certificado $" + value, value);
+function cerrar(){
+document.getElementById("modal").style.display = "none"
 }
 
-// MONTO PERSONALIZADO
-function addCertificateCustom(){
+// 📲 WHATSAPP
+function enviar(){
 
-    let val = document.getElementById("certCustomAmount").value;
+let nombre = document.getElementById("nombre").value
+let destinatario = document.getElementById("destinatario").value
+let telefono = document.getElementById("telefono").value
+let correo = document.getElementById("correo").value
 
-    if(!val || val <= 0){
-        alert("Ingresa un monto válido");
-        return;
-    }
-
-    addToCart("Certificado $" + val, parseInt(val));
-
-    document.getElementById("certCustomAmount").value = "";
-}
-/* =========================
-   🌑 MODAL
-========================= */
-
-function openDetail(text, img){
-
-    document.getElementById("modal").style.display="block";
-    document.getElementById("modalText").innerText = text;
-
-    if(img){
-        document.getElementById("modalImage").style.backgroundImage = `url('${img}')`;
-    }
+if(!nombre || !telefono){
+alert("Completa nombre y teléfono")
+return
 }
 
-function closeModal(){
-    document.getElementById("modal").style.display="none";
+let mensaje = "Solicitud Spa%0A%0A"
+
+carrito.forEach(s=>{
+mensaje += `${s.nombre} $${formatPrice(s.precio)}%0A`
+})
+
+mensaje += `%0ATotal: $${formatPrice(total)}%0A`
+mensaje += `Cliente: ${nombre}%0A`
+mensaje += `Destinatario: ${destinatario}%0A`
+mensaje += `Tel: ${telefono}%0A`
+mensaje += `Correo: ${correo}%0A`
+
+// PROPINA
+let propinaSeleccion = document.querySelector('input[name="propina"]:checked')
+
+if(propinaSeleccion){
+if(propinaSeleccion.value==="si"){
+let monto = document.getElementById("propinaMonto").value || 0
+mensaje += `Propina: Sí $${monto}%0A`
+}else{
+mensaje += "Propina: No%0A"
+}
 }
 
-/* =========================
-   💰 PROPINA
-========================= */
+let numero = "5215580952588"
 
-function toggleTip(){
-    let val=document.getElementById("tipOption").value;
-    document.getElementById("tipAmount").style.display=val==="Si"?"block":"none";
-}
-
-/* =========================
-   📲 WHATSAPP
-========================= */
-
-function sendWhatsApp(){
-
-    let tel=document.getElementById("telefono").value;
-    let tip=document.getElementById("tipAmount").value||0;
-
-    let msg="Pedido Spa:\n\n";
-
-    cart.forEach(i=>{
-        msg+=`${i.name} - $${i.price}\n`;
-    });
-
-    msg+=`\nTotal: $${total}`;
-    msg+=`\nPropina: $${tip}`;
-
-    window.open(`https://wa.me/52${tel}?text=${encodeURIComponent(msg)}`);
+window.open(`https://wa.me/${numero}?text=${mensaje}`)
 }
