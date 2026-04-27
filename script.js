@@ -180,16 +180,23 @@ function addToCart(name,price){
 }
 
 function renderCart(){
-    let div=document.getElementById("cart");
-    div.innerHTML="";
+
+    let div = document.getElementById("cart");
+    div.innerHTML = "";
 
     cart.forEach((item,i)=>{
-        div.innerHTML+=`
-        <p>${item.name} - $${item.price}
-        <button onclick="removeItem(${i})">X</button></p>`;
+
+        div.innerHTML += `
+        <div class="cart-item">
+            <span class="cart-name">${item.name}</span>
+
+            <span class="cart-price">$${item.price}</span>
+
+            <button class="remove-btn" onclick="removeItem(${i})">×</button>
+        </div>`;
     });
 
-    document.getElementById("total").innerText="Total: $"+total;
+    document.getElementById("total").innerText = "Total: $" + total;
 }
 
 function removeItem(i){
