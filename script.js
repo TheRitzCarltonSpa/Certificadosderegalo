@@ -305,6 +305,15 @@ function closeModal(){
     document.getElementById("modal").style.display="none";
 }
 
+function addCertificateQuick(value){
+
+    let qty = prompt("Cantidad de certificados:", 1);
+
+    if(!qty || qty <= 0) return;
+
+    addToCart(`Certificado $${value} x${qty}`, value * qty);
+}
+
 /* =========================
    💰 PROPINA
 ========================= */
