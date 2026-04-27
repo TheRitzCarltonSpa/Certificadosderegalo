@@ -91,19 +91,27 @@
     <input id="correo" placeholder="Correo">
     <input id="telefono" placeholder="Teléfono">
 
-    <label>¿Agregar propina?</label>
-    <select id="tipOption" onchange="toggleTip()">
-        <option>No</option>
-        <option>Si</option>
-    </select>
+    <label>¿Desea incluir propina?</label>
 
-    <input id="tipAmount" placeholder="Propina" style="display:none">
+<div>
+<label><input type="radio" name="propina" value="si" onclick="togglePropina(true)"> Sí</label>
+<label><input type="radio" name="propina" value="no" onclick="togglePropina(false)"> No</label>
+</div>
+
+<div id="montoPropina" style="display:none;">
+<input type="number" id="propinaMonto" placeholder="¿Cuánto desea agregar?" min="0">
+</div>
+</div>
 
     <button onclick="sendWhatsApp()">Solicitar link de pago</button>
 </section>
-
+    
+<p class="nota-legal">
+Incluye IVA y cargo por servicio. Propina opcional.
+</p>
+    
 </div>
-
+    
 <!-- 🌑 MODAL DETALLE -->
 <div id="modal" class="modal">
     <div class="modal-content">
