@@ -11,31 +11,46 @@
 
 <!-- 🔵 SPLASH -->
 <div id="splash">
+    <!-- 🔧 CAMBIAR LOGO -->
     <img src="imagenes/logo.png" alt="Logo">
 </div>
 
+<!-- 🧠 APP -->
 <div id="app" class="hidden">
 
 <header>
+    <!-- 🔧 CAMBIAR LOGO SUPERIOR -->
     <img src="imagenes/logo1.png" class="logo-top">
 </header>
 
+<!-- 🌟 ESPECIAL DEL MES -->
 <section class="especial">
     <div class="especial-card" style="background-image:url('imagenes/especial.jpg')">
         <h2>Especial del Mes</h2>
+
+        <!-- 🔧 BOTÓN AGREGAR -->
         <button onclick="addToCart('Especial del Mes',1200)">Agregar</button>
-        <button onclick="openDetail('Experiencia premium relajante')">Detalle</button>
+
+        <!-- 🔥 NUEVO: DETALLE CON IMAGEN -->
+        <button onclick="openDetail('Experiencia premium relajante','imagenes/especial mayo.png')">
+        Detalle
+        </button>
     </div>
 </section>
 
+<!-- 🧴 CATEGORÍAS -->
 <section id="categorias" class="categorias-container"></section>
 
+<!-- 🎁 CERTIFICADO -->
 <section class="certificados">
     <div class="cert-card">
+
+        <!-- 🔧 CAMBIAR IMAGEN -->
         <div class="cert-bg" style="background-image:url('imagenes/alberca.jpg')"></div>
 
         <h3>Certificado</h3>
 
+        <!-- 🔧 OPCIONES -->
         <select id="certValue">
             <option value="1000">$1000</option>
             <option value="2000">$2000</option>
@@ -48,14 +63,17 @@
     </div>
 </section>
 
+<!-- 🛒 CARRITO -->
 <section class="carrito">
     <h2>Carrito</h2>
     <div id="cart"></div>
+
     <div class="total-box">
         <h3 id="total">Total: $0</h3>
     </div>
 </section>
 
+<!-- 📋 FORMULARIO -->
 <section class="formulario">
     <h2>Datos</h2>
 
@@ -77,14 +95,22 @@
 
 </div>
 
-<!-- 🌑 MODALES -->
+<!-- 🌑 MODAL DETALLE (ACTUALIZADO CON IMAGEN) -->
 <div id="modal" class="modal">
     <div class="modal-content">
+
         <span onclick="closeModal()">X</span>
+
+        <!-- 🔥 NUEVO: IMAGEN DINÁMICA -->
+        <div id="modalImage" class="modal-img"></div>
+
+        <!-- TEXTO -->
         <p id="modalText"></p>
+
     </div>
 </div>
 
+<!-- 💎 MODAL MEJORAS -->
 <div id="upgradeModal" class="modal">
     <div class="modal-content">
         <h3>Mejoras</h3>
@@ -93,7 +119,7 @@
     </div>
 </div>
 
-<!-- 💡 NUEVO MODAL RECOMENDACIONES -->
+<!-- 💡 MODAL RECOMENDACIONES -->
 <div id="recommendModal" class="modal">
     <div class="modal-content">
         <h3>✨ Recomendado para mejorar tu experiencia</h3>
