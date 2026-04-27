@@ -306,12 +306,7 @@ function closeModal(){
 }
 
 function addCertificateQuick(value){
-
-    let qty = prompt("Cantidad de certificados:", 1);
-
-    if(!qty || qty <= 0) return;
-
-    addToCart(`Certificado $${value} x${qty}`, value * qty);
+    addToCart("Certificado $" + value, value);
 }
 
 /* =========================
