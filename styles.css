@@ -67,6 +67,10 @@ body{
     z-index: 1;
 }
 
+section {
+    position: relative;
+}
+
 /* CERTIFICADO */
 .certificados{
     margin:20px;
