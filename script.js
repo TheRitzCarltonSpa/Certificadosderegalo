@@ -3,6 +3,14 @@ let carrito = []
 let total = 0
 let sugerenciaMostrada = false
 
+// 🎬 SPLASH CONTROL (UX PREMIUM)
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        document.getElementById("splash").style.display = "none"
+        document.getElementById("app").classList.remove("hidden")
+    }, 2500)
+})
+
 // 💎 FORMATO MONEDA
 function formatPrice(num){
     return Number(num).toLocaleString("es-MX")
@@ -24,7 +32,7 @@ function agregarCertificado(){
     document.getElementById("valorCertificado").value = ""
 }
 
-// 🧾 SERVICIOS COMPLETOS
+// 🧾 SERVICIOS
 const servicios = {
 
 bienestar:[
@@ -91,15 +99,15 @@ htmlArray.push(`
 <div class="card">
 <h3>${s.nombre}</h3>
 
-<button onclick="agregar('${s.nombre} 60 min',${s.precio60})">
+<button class="btn-gold" onclick="agregar('${s.nombre} 60 min',${s.precio60})">
 60 min $${formatPrice(s.precio60)}
 </button>
 
-<button onclick="agregar('${s.nombre} 90 min',${s.precio90})">
+<button class="btn-gold" onclick="agregar('${s.nombre} 90 min',${s.precio90})">
 90 min $${formatPrice(s.precio90)}
 </button>
 
-<button onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
+<button class="btn-detalle" onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
 Detalle
 </button>
 
@@ -111,15 +119,15 @@ htmlArray.push(`
 <div class="card">
 <h3>${s.nombre}</h3>
 
-<button onclick="agregar('${s.nombre} 25 min',${s.precio25})">
+<button class="btn-gold" onclick="agregar('${s.nombre} 25 min',${s.precio25})">
 25 min $${formatPrice(s.precio25)}
 </button>
 
-<button onclick="agregar('${s.nombre} 40 min',${s.precio40})">
+<button class="btn-gold" onclick="agregar('${s.nombre} 40 min',${s.precio40})">
 40 min $${formatPrice(s.precio40)}
 </button>
 
-<button onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
+<button class="btn-detalle" onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
 Detalle
 </button>
 
@@ -131,11 +139,11 @@ htmlArray.push(`
 <div class="card">
 <h3>${s.nombre}</h3>
 
-<button onclick="agregar('${s.nombre}',${s.precio})">
+<button class="btn-gold" onclick="agregar('${s.nombre}',${s.precio})">
 $${formatPrice(s.precio)}
 </button>
 
-<button onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
+<button class="btn-detalle" onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
 Detalle
 </button>
 
@@ -147,31 +155,33 @@ Detalle
 document.getElementById("servicios").innerHTML = htmlArray.join("")
 }
 
-// 💎 RECOMENDACIONES INTELIGENTES
+// 💎 RECOMENDACIONES
 function recomendarMejoras(nombre){
 
 if(sugerenciaMostrada) return
 
 let texto = nombre.toLowerCase()
 
-if(!texto.includes("masaje") && !texto.includes("facial")) return
+if(!texto.includes("masaje") && 
+   !texto.includes("facial") && 
+   !texto.includes("corporal")) return
 
 let opciones = ""
 
 if(texto.includes("facial")){
 
 opciones = `
-<button onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">Mascarilla $500</button>
-<button onclick="agregar('Rodillo jade',300); cerrarMejoras()">Rodillo jade $300</button>
-<button onclick="agregar('Mascarilla plástica',400); cerrarMejoras()">Mascarilla $400</button>
+<button class="btn-gold" onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">Mascarilla $500</button>
+<button class="btn-gold" onclick="agregar('Rodillo jade',300); cerrarMejoras()">Rodillo jade $300</button>
+<button class="btn-gold" onclick="agregar('Mascarilla plástica',400); cerrarMejoras()">Mascarilla $400</button>
 `
 
 }else{
 
 opciones = `
-<button onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
-<button onclick="agregar('Piedras calientes',300); cerrarMejoras()">Piedras $300</button>
-<button onclick="agregar('Cepillado corporal',300); cerrarMejoras()">Cepillado $300</button>
+<button class="btn-gold" onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
+<button class="btn-gold" onclick="agregar('Piedras calientes',300); cerrarMejoras()">Piedras $300</button>
+<button class="btn-gold" onclick="agregar('Cepillado corporal',300); cerrarMejoras()">Cepillado $300</button>
 `
 }
 
@@ -191,11 +201,9 @@ function agregar(nombre,precio){
 carrito.push({nombre,precio})
 actualizar()
 
-console.log("✔️ agregado:", nombre)
-
-// scroll UX
 document.querySelector(".carrito").scrollIntoView({
-behavior:"smooth"
+behavior:"smooth",
+block:"center"
 })
 
 recomendarMejoras(nombre)
@@ -207,7 +215,7 @@ carrito.splice(i,1)
 actualizar()
 }
 
-// 🔄 ACTUALIZAR CARRITO
+// 🔄 ACTUALIZAR
 function actualizar(){
 
 let lista = document.getElementById("lista")
@@ -235,26 +243,25 @@ function togglePropina(mostrar){
 document.getElementById("montoPropina").style.display = mostrar ? "block" : "none"
 }
 
-// 🌑 MODAL
+// 🌑 MODAL DETALLE
 function detalle(t, d, img = null){
 
-    document.getElementById("titulo").innerText = t
+document.getElementById("titulo").innerText = t
 
-    // 🧠 Detecta si es imagen o texto
-    if(img){
-        document.getElementById("modalImage").style.backgroundImage = `url(${img})`
-        document.getElementById("modalImage").style.display = "block"
-        document.getElementById("descripcion").innerText = d
-    }else{
-        document.getElementById("modalImage").style.display = "none"
-        document.getElementById("descripcion").innerText = d
-    }
+if(img){
+document.getElementById("modalImage").style.backgroundImage = `url(${img})`
+document.getElementById("modalImage").style.display = "block"
+}else{
+document.getElementById("modalImage").style.display = "none"
+}
 
-    document.getElementById("modal").style.display = "flex"
+document.getElementById("descripcion").innerText = d
+document.getElementById("modal").style.display = "flex"
 }
 
 function cerrar(){
 document.getElementById("modal").style.display = "none"
+document.getElementById("modalImage").style.backgroundImage = ""
 }
 
 // 📲 WHATSAPP
@@ -282,7 +289,6 @@ mensaje += `Destinatario: ${destinatario}%0A`
 mensaje += `Tel: ${telefono}%0A`
 mensaje += `Correo: ${correo}%0A`
 
-// PROPINA
 let propinaSeleccion = document.querySelector('input[name="propina"]:checked')
 
 if(propinaSeleccion){
@@ -295,6 +301,5 @@ mensaje += "Propina: No%0A"
 }
 
 let numero = "5215580952588"
-
 window.open(`https://wa.me/${numero}?text=${mensaje}`)
 }
