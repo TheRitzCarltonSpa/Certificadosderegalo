@@ -141,3 +141,20 @@ button {
     padding:20px;
     border-radius:20px;
 }
+
+/* CERTIFICADO */
+.cert-bg {
+    height:220px;
+    background-size:cover;
+    background-position:center;
+    border-radius:15px;
+}
+
+/* RECOMENDACIONES */
+#recommendOptions button {
+    display:block;
+    width:100%;
+    margin:10px 0;
+    background:#111;
+    color:white;
+    }
