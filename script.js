@@ -291,9 +291,14 @@ function closeRecommend(){
    🌑 MODAL
 ========================= */
 
-function openDetail(text){
+function openDetail(text, img){
+
     document.getElementById("modal").style.display="block";
-    document.getElementById("modalText").innerText=text;
+    document.getElementById("modalText").innerText = text;
+
+    if(img){
+        document.getElementById("modalImage").style.backgroundImage = `url('${img}')`;
+    }
 }
 
 function closeModal(){
