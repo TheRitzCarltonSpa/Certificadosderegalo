@@ -41,34 +41,46 @@
 
 <!-- 🎁 CERTIFICADO -->
 <section class="certificados">
+
     <div class="cert-card">
 
-        <!-- 🔧 CAMBIAR IMAGEN -->
-        <div class="cert-bg" style="background-image:url('imagenes/alberca.jpg')"></div>
+        <!-- IMAGEN DE FONDO -->
+        <div class="cert-bg" style="background-image:url('imagenes/alberca.jpg')">
 
-        <h3>Certificado</h3>
+            <!-- 💎 CONTENIDO SOBRE LA IMAGEN -->
+            <div class="cert-overlay">
 
-        <!-- 💎 CERTIFICADO PREMIUM -->
-<div class="cert-options">
+                <h3>Certificado abierto</h3>
 
-    <button onclick="addCertificateQuick(2600)">
-        $2600
-    </button>
+                <!-- INPUT PERSONALIZADO -->
+                <div class="cert-custom">
+                    <input id="certCustomAmount" type="number" placeholder="$ Monto">
+                    <button onclick="addCertificateCustom()">Agregar</button>
+                </div>
 
-    <button onclick="addCertificateQuick(3800)">
-        $3800
-    </button>
+                <!-- BOTONES RÁPIDOS -->
+                <div class="cert-options">
 
-    <button onclick="addCertificateQuick(7900)">
-        $7900
-    </button>
-</div>
+                    <button onclick="addCertificateQuick(2600)">
+                        $2600
+                    </button>
 
-<input id="certQty" type="number" placeholder="Cantidad">
+                    <button onclick="addCertificateQuick(3800)">
+                        $3800
+                    </button>
 
-<button onclick="addCertificate()">Agregar</button>
+                    <button onclick="addCertificateQuick(7900)">
+                        $7900
+                    </button>
 
-</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
     
 <!-- 🛒 CARRITO -->
