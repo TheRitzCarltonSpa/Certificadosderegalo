@@ -11,9 +11,10 @@
 
 <!-- 🔵 INTRO -->
 <div id="splash">
-    <img src="imagenes/logo.png">
+    <img src="imagenes/logo.png" alt="Logo">
 </div>
 
+<!-- 🧠 APP -->
 <div id="app" class="hidden">
 
 <header>
@@ -24,128 +25,168 @@
 <!-- 🌟 ESPECIAL -->
 <section class="especial">
 
-    <div class="especial-card">
+<div class="especial-card">
 
-        <img src="imagenes/especial.jpg" class="especial-img">
+    <!-- 🔧 CAMBIAR IMAGEN -->
+    <img src="imagenes/especial.jpg" class="especial-img">
 
-        <div class="especial-overlay">
-            <h2>Especial del Mes</h2>
-            <p>Vive una experiencia diseñada para reconectar cuerpo y mente</p>
+    <div class="especial-overlay">
+        <h2>Especial del Mes</h2>
+        <p>Vive una experiencia diseñada para reconectar cuerpo y mente</p>
 
-            <button class="btn-gold" onclick="addToCart('Especial del Mes',1200)">Agregar</button>
+        <button class="btn-gold" onclick="agregar('Especial del Mes',1200)">
+            Agregar
+        </button>
 
-            <button class="btn-detalle" onclick="detalle('Experiencia premium relajante','Vive una experiencia diseñada para reconectar cuerpo y mente','imagenes/especial mayo.png'
-)"
-                Detalle
-            </button>
-        </div>
-
+        <button class="btn-detalle"
+        onclick="detalle('Experiencia premium relajante','Vive una experiencia diseñada para reconectar cuerpo y mente','imagenes/especial mayo.png')">
+        Detalle
+        </button>
     </div>
+
+</div>
 
 </section>
 
 <!-- 🧴 CATEGORÍAS -->
 <section>
-    <h2 class="section-title">Selecciona tu experiencia</h2>
-    <div id="categorias" class="categorias-container"></div>
+<h2 class="section-title">Selecciona tu experiencia</h2>
+<div class="categorias-container">
+
+<!-- 🔧 CAMBIAR IMÁGENES -->
+<div class="categoria" onclick="mostrar('bienestar')">
+<img src="imagenes/bienestar.jpg">
+<p>Bienestar</p>
+</div>
+
+<div class="categoria" onclick="mostrar('masajes')">
+<img src="imagenes/masajes.jpg">
+<p>Masajes</p>
+</div>
+
+<div class="categoria" onclick="mostrar('faciales')">
+<img src="imagenes/facial.jpg">
+<p>Faciales</p>
+</div>
+
+<div class="categoria" onclick="mostrar('corporales')">
+<img src="imagenes/corporales.jpg">
+<p>Corporales</p>
+</div>
+
+<div class="categoria" onclick="mostrar('mejoras')">
+<img src="imagenes/mejoras.jpg">
+<p>Mejoras</p>
+</div>
+
+</div>
+</section>
+
+<!-- 🧾 SERVICIOS -->
+<section>
+<div id="servicios" class="servicios"></div>
 </section>
 
 <!-- 🎁 CERTIFICADO -->
 <section class="certificados">
 
-    <h2 class="section-title">Regala bienestar</h2>
+<h2 class="section-title">Regala bienestar</h2>
 
-    <div class="cert-bg" style="background-image:url('imagenes/alberca.jpg')">
+<div class="cert-bg" style="background-image:url('imagenes/alberca.jpg')">
 
-        <div class="cert-overlay">
+<div class="cert-overlay">
 
-            <h3>Certificado de regalo</h3>
+<h3>Certificado de regalo</h3>
 
-            <div class="cert-custom">
-                <input id="certCustomAmount" type="number" placeholder="$ Monto">
-                <button class="btn-gold" onclick="addCertificateCustom()">Agregar</button>
-            </div>
+<div class="cert-custom">
+<input id="valorCertificado" type="number" placeholder="$ Monto">
+<button class="btn-gold" onclick="agregarCertificado()">Agregar</button>
+</div>
 
-            <div class="cert-options">
-                <button class="btn-outline" onclick="addCertificateQuick(2600)">$2600</button>
-                <button class="btn-outline" onclick="addCertificateQuick(3800)">$3800</button>
-                <button class="btn-outline" onclick="addCertificateQuick(7900)">$7900</button>
-            </div>
+<div class="cert-options">
+<button class="btn-outline" onclick="seleccionarValor(2600)">$2600</button>
+<button class="btn-outline" onclick="seleccionarValor(3800)">$3800</button>
+<button class="btn-outline" onclick="seleccionarValor(7900)">$7900</button>
+</div>
 
-        </div>
-
-    </div>
+</div>
+</div>
 
 </section>
 
 <!-- 🛒 CARRITO -->
 <section class="carrito">
 
-    <h2>Servicios elegidos</h2>
+<h2>Servicios elegidos</h2>
 
-    <div id="cart"></div>
+<div id="lista"></div>
 
-    <div class="total-box">
-        <h3 id="total">Total: $0</h3>
-    </div>
+<div class="total-box">
+<h3 id="total">Total: $0</h3>
+</div>
 
 </section>
 
 <!-- 📋 FORMULARIO -->
 <section class="formulario">
 
-    <h2 class="section-title">Finaliza tu experiencia</h2>
+<h2 class="section-title">Finaliza tu experiencia</h2>
 
-    <input id="nombre" placeholder="Nombre">
-    <input id="destinatario" placeholder="Destinatario">
-    <input id="correo" placeholder="Correo electrónico">
-    <input id="telefono" placeholder="Teléfono">
+<input id="nombre" placeholder="Nombre">
+<input id="destinatario" placeholder="Destinatario">
+<input id="correo" placeholder="Correo electrónico">
+<input id="telefono" placeholder="Teléfono">
 
-    <!-- PROPINA -->
-    <div class="tip-box">
-        <p>¿Desea agregar propina?</p>
+<!-- 💰 PROPINA -->
+<div class="tip-box">
 
-        <label><input type="radio" name="tip" onclick="toggleTip(true)"> Sí</label>
-        <label><input type="radio" name="tip" onclick="toggleTip(false)"> No</label>
+<p>¿Desea agregar propina?</p>
 
-        <input id="tipAmount" placeholder="Monto de propina" style="display:none">
-    </div>
+<label><input type="radio" name="propina" value="si" onclick="togglePropina(true)"> Sí</label>
+<label><input type="radio" name="propina" value="no" onclick="togglePropina(false)"> No</label>
 
-    <button class="btn-gold full" onclick="sendWhatsApp()">
-        Solicitar link de pago
-    </button>
+<div id="montoPropina" style="display:none;">
+<input id="propinaMonto" type="number" placeholder="Monto de propina">
+</div>
 
-    <!-- NOTA LEGAL -->
-    <p class="nota-legal">
-        Todos los tratamientos incluyen 16% IVA y 15% cargo por servicio. La propina es opcional.
-    </p>
+</div>
+
+<button class="btn-gold full" onclick="enviar()">
+Solicitar link de pago
+</button>
+
+<p class="nota-legal">
+Todos los tratamientos incluyen 16% IVA y 15% cargo por servicio. La propina es opcional.
+</p>
 
 </section>
 
 </div>
 
-<!-- 🌑 MODAL -->
+<!-- 🌑 MODAL DETALLE -->
 <div id="modal" class="modal">
-    <div class="modal-content">
+<div class="modal-content">
 
-        <span onclick="closeModal()">X</span>
+<span onclick="cerrar()">X</span>
 
-        <div id="modalImage" class="modal-img"></div>
-        <p id="modalText"></p>
+<div id="modalImage" class="modal-img"></div>
+<h3 id="titulo"></h3>
+<p id="descripcion"></p>
 
-    </div>
+</div>
 </div>
 
-<!-- 💎 MODALES -->
-<div id="upgradeModal" class="modal">
-    <div class="modal-content">
-        <h3>Mejora tu experiencia</h3>
-        <p>Potencia tu tratamiento con una mejora exclusiva</p>
-        <div id="upgradeOptions"></div>
-        <button class="btn-outline" onclick="closeUpgrade()">Continuar sin mejora</button>
-    </div>
+<!-- 💎 MODAL MEJORAS -->
+<div id="modalMejoras" class="modal">
+<div class="modal-content">
+<h3 id="tituloMejoras">Mejora tu experiencia</h3>
+<p>Potencia tu tratamiento con una mejora exclusiva</p>
+<div id="opcionesMejoras"></div>
+<button class="btn-outline" onclick="cerrarMejoras()">Continuar sin mejora</button>
+</div>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
