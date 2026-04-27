@@ -24,19 +24,17 @@
 </header>
 
 <!-- 🌟 ESPECIAL DEL MES -->
-<section class="especial">
-    <div class="especial-card" style="background-image:url('imagenes/especial.jpg')">
+<div class="especial-card">
+
+    <img src="imagenes/especial.jpg" class="especial-img">
+
+    <div class="especial-overlay">
         <h2>Especial del Mes</h2>
-
-        <!-- 🔧 BOTÓN AGREGAR -->
-        <button onclick="addToCart('Especial del Mes',1200)">Agregar</button>
-
-        <!-- 🔥 NUEVO: DETALLE CON IMAGEN -->
-        <button onclick="openDetail('Experiencia premium relajante','imagenes/especial mayo.png')">
-        Detalle
-        </button>
+        <button onclick="addToCart('Especial del Mes',5100)">Agregar</button>
+        <button onclick="openDetail('Experiencia premium','imagenes/especial mayo.png')">Detalle</button>
     </div>
-</section>
+
+</div>
 
 <!-- 🧴 CATEGORÍAS -->
 <section id="categorias" class="categorias-container"></section>
