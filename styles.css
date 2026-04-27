@@ -216,12 +216,59 @@ button {
     margin-top:10px;
 }
 
+/* CONTENEDOR IMAGEN */
+.cert-bg {
+    height:300px;
+    background-size:cover;
+    background-position:center;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+}
+
+/* OVERLAY */
+.cert-overlay {
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    padding:20px;
+}
+
+/* INPUT + BOTÓN */
+.cert-custom {
+    display:flex;
+    gap:10px;
+    margin:10px 0;
+}
+
+.cert-custom input {
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    width:120px;
+}
+
+.cert-custom button {
+    background:white;
+    color:black;
+}
+
+/* BOTONES RÁPIDOS */
+.cert-options {
+    display:flex;
+    gap:10px;
+}
+
 .cert-options button {
     background:black;
     color:white;
-    padding:12px 20px;
+    padding:10px 15px;
     border-radius:10px;
-    cursor:pointer;
     transition:0.3s;
 }
 
