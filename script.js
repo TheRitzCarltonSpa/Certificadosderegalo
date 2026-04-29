@@ -36,7 +36,7 @@ bienestar:[
 masajes:[
 {nombre:"Tranquilidad para dos",precio60:5600,precio90:7400,desc:"Comparta una maravillosa experiencia de masaje lado a lado de una persona especial en nuestra cabina de parejas."},
 {nombre:"Masaje relajante",precio60:2400,precio90:3300,desc:"Masaje de presion suave para una relajación profunda."},
-{nombre:"Masaje tejido profundo",precio60:2800,precio90:3700,desc:{"Masaje de presion profunda para aliviar la tension muscular."},
+{nombre:"Masaje tejido profundo",precio60:2800,precio90:3700,desc:"Masaje de presion profunda para aliviar la tension muscular."},
 {nombre:"Masaje antiestrés",precio60:2600,precio90:3500,desc:"Masaje tradicional de presión moderada a firme, que deja una sensacion de revitalizacion y relajacion."},
 {nombre:"Masaje recuperacion muscular",precio60:2800,precio90:3700,desc:"Recargue su cuerpo con este masaje diseñado para aliviar la tensión acumulada en los músculos. Usando movimientos profundos y técnicas de estiramiento concentradas en áreas especificas para ayudar a aliviar las molestias comunes y la tensión relacionada con el deporte."},
 {nombre:"Masaje para caballero",precio60:2900,precio90:3800,desc:"Masaje cuerpo completo de presión moderada a fuerte, que incluye piedras calientes en zona de espalda, masaje facial y masaje capilar para un balance corporal relajante."},
