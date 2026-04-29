@@ -5,6 +5,18 @@ font-family:"Georgia", serif;
 background:#b2dafa;
 }
 
+/* IDIOMA */
+.lang-switch{
+position:fixed;
+top:10px;
+right:10px;
+z-index:9999;
+}
+.lang-switch button{
+margin:2px;
+padding:5px 10px;
+}
+
 /* 🎬 INTRO */
 #splash{
     position:fixed;
