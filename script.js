@@ -1,3 +1,60 @@
+// 🌍 IDIOMA
+const idioma = localStorage.getItem("idioma") || (navigator.language.startsWith("es") ? "es" : "en")
+
+const textos = {
+
+es:{
+especial:"Especial del Mes",
+agregar:"Agregar",
+detalle:"Detalle",
+carrito:"Carrito",
+nombre:"Nombre",
+destinatario:"Destinatario",
+correo:"Correo",
+telefono:"Teléfono",
+propina:"¿Desea agregar propina?",
+si:"Sí",
+no:"No",
+pago:"Solicitar link de pago"
+},
+
+en:{
+especial:"Monthly Special",
+agregar:"Add",
+detalle:"Details",
+carrito:"Cart",
+nombre:"Name",
+destinatario:"Recipient",
+correo:"Email",
+telefono:"Phone",
+propina:"Add tip?",
+si:"Yes",
+no:"No",
+pago:"Request payment link"
+}
+
+}
+
+function t(key){
+return textos[idioma][key] || key
+}
+
+function traducirUI(){
+
+document.querySelectorAll("[data-i18n]").forEach(el=>{
+el.innerText = t(el.dataset.i18n)
+})
+
+document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
+el.placeholder = t(el.dataset.i18nPlaceholder)
+})
+
+}
+
+function cambiarIdioma(lang){
+localStorage.setItem("idioma",lang)
+location.reload()
+}
 // 🧠 ESTADO GLOBAL
 let carrito = []
 let total = 0
@@ -303,3 +360,16 @@ mensaje += "Propina: No%0A"
 let numero = "5215580952588"
 window.open(`https://wa.me/${numero}?text=${mensaje}`)
 }
+
+window.addEventListener("load", ()=>{
+setTimeout(()=>{
+document.getElementById("splash").style.opacity="0"
+
+setTimeout(()=>{
+document.getElementById("splash").style.display="none"
+document.getElementById("app").classList.remove("hidden")
+traducirUI()
+},500)
+
+},1500)
+})
