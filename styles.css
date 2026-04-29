@@ -5,23 +5,6 @@ font-family:"Georgia", serif;
 background:#b2dafa;
 }
 
-/* IDIOMA */
-.lang-switch{
-position:absolute;
-top:20px;
-right:20px;
-}
-
-.lang-switch button{
-background:#ffffffcc;
-border:none;
-padding:6px 12px:
-margin-left:5px;
-border-radius:6px;
-cursor:pointer;
-font-weight:bold;
-}
-
 /* 🎬 INTRO */
 #splash{
     position:fixed;
