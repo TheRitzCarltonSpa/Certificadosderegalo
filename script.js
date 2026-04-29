@@ -1,61 +1,3 @@
-// 🌍 IDIOMA
-const idioma = localStorage.getItem("idioma") || (navigator.language.startsWith("es") ? "es" : "en")
-
-const textos = {
-
-es:{
-especial:"Especial del Mes",
-agregar:"Agregar",
-detalle:"Detalle",
-carrito:"Carrito",
-nombre:"Nombre",
-destinatario:"Destinatario",
-correo:"Correo",
-telefono:"Teléfono",
-propina:"¿Desea agregar propina?",
-si:"Sí",
-no:"No",
-pago:"Solicitar link de pago"
-},
-
-en:{
-especial:"Monthly Special",
-agregar:"Add",
-detalle:"Details",
-carrito:"Cart",
-nombre:"Name",
-destinatario:"Recipient",
-correo:"Email",
-telefono:"Phone",
-propina:"Add tip?",
-si:"Yes",
-no:"No",
-pago:"Request payment link"
-}
-
-}
-
-function t(key){
-return textos[idioma][key] || key
-}
-
-function traducirUI(){
-
-document.querySelectorAll("[data-i18n]").forEach(el=>{
-el.innerText = t(el.dataset.i18n)
-})
-
-document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
-el.placeholder = t(el.dataset.i18nPlaceholder)
-})
-
-}
-
-function cambiarIdioma(lang){
-localStorage.setItem("idioma",lang)
-location.reload()
-}
-// 🧠 ESTADO GLOBAL
 let carrito = []
 let total = 0
 let sugerenciaMostrada = false
@@ -88,6 +30,54 @@ function agregarCertificado(){
     agregar("Certificado $" + valor, parseFloat(valor))
     document.getElementById("valorCertificado").value = ""
 }
+
+/* 🌍 TRADUCCIONES */
+const traducciones={
+es:{
+especial:"Especial del Mes",
+agregar:"Agregar",
+detalle:"Detalle",
+carrito:"Carrito",
+datos:"Datos",
+propina:"¿Agregar propina?",
+pagar:"Solicitar link de pago"
+},
+en:{
+especial:"Monthly Special",
+agregar:"Add",
+detalle:"Details",
+carrito:"Cart",
+datos:"Customer Info",
+propina:"Add tip?",
+pagar:"Request payment link"
+}
+}
+
+/* 🌍 CAMBIO IDIOMA */
+function setLang(lang){
+idiomaActual=lang
+localStorage.setItem("lang",lang)
+
+document.querySelectorAll("[data-i18n]").forEach(el=>{
+let key=el.getAttribute("data-i18n")
+el.innerText=traducciones[lang][key]||el.innerText
+})
+
+renderCategorias()
+}
+
+/* 💾 LOAD */
+window.addEventListener("load",()=>{
+let saved=localStorage.getItem("lang")||"es"
+setLang(saved)
+
+setTimeout(()=>{
+document.getElementById("splash").style.display="none"
+document.getElementById("app").classList.remove("hidden")
+},2500)
+
+renderCategorias()
+})
 
 // 🧾 SERVICIOS
 const servicios = {
