@@ -422,17 +422,17 @@ let htmlArray = []
 servicios[cat].forEach(s=>{
 
 if(s.precio60 && s.precio90){
-if(s.precio60){
-html+=`
+
+htmlArray.push(`
 <div class="card">
 <h3>${s.nombre[idiomaActual]}</h3>
 
 <button onclick="agregar('${s.nombre[idiomaActual]} 60',${s.precio60})">
-60 min $${s.precio60}
+60 min $${formatPrice(s.precio60)}
 </button>
 
 <button onclick="agregar('${s.nombre[idiomaActual]} 90',${s.precio90})">
-90 min $${s.precio90}
+90 min $${formatPrice(s.precio90)}
 </button>
 
 <button onclick="detalle('${s.nombre[idiomaActual]}','${s.desc[idiomaActual]}')">
@@ -440,14 +440,37 @@ Detalle
 </button>
 
 </div>
-`
+`)
+
+}else if(s.precio25 && s.precio40){
+
+htmlArray.push(`
+<div class="card">
+<h3>${s.nombre[idiomaActual]}</h3>
+
+<button onclick="agregar('${s.nombre[idiomaActual]} 25',${s.precio25})">
+25 min $${formatPrice(s.precio25)}
+</button>
+
+<button onclick="agregar('${s.nombre[idiomaActual]} 40',${s.precio40})">
+40 min $${formatPrice(s.precio40)}
+</button>
+
+<button onclick="detalle('${s.nombre[idiomaActual]}','${s.desc[idiomaActual]}')">
+Detalle
+</button>
+
+</div>
+`)
+
 }else{
-html+=`
+
+htmlArray.push(`
 <div class="card">
 <h3>${s.nombre[idiomaActual]}</h3>
 
 <button onclick="agregar('${s.nombre[idiomaActual]}',${s.precio})">
-$${s.precio}
+$${formatPrice(s.precio)}
 </button>
 
 <button onclick="detalle('${s.nombre[idiomaActual]}','${s.desc[idiomaActual]}')">
@@ -455,13 +478,13 @@ Detalle
 </button>
 
 </div>
-`
+`)
 }
 
 })
 
 document.getElementById("servicios").innerHTML = htmlArray.join("")
-}
+
 
 // 💎 RECOMENDACIONES
 function recomendarMejoras(nombre){
