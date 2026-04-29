@@ -3,14 +3,6 @@ let carrito = []
 let total = 0
 let sugerenciaMostrada = false
 
-// 🎬 SPLASH CONTROL (UX PREMIUM)
-window.addEventListener("load", () => {
-    setTimeout(() => {
-        document.getElementById("splash").style.display = "none"
-        document.getElementById("app").classList.remove("hidden")
-    }, 2500)
-})
-
 // 💎 FORMATO MONEDA
 function formatPrice(num){
     return Number(num).toLocaleString("es-MX")
@@ -312,7 +304,6 @@ document.getElementById("splash").style.opacity="0"
 setTimeout(()=>{
 document.getElementById("splash").style.display="none"
 document.getElementById("app").classList.remove("hidden")
-traducirUI()
 },500)
 
 },1500)
