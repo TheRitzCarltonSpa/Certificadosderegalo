@@ -142,60 +142,40 @@ let htmlArray = []
 servicios[cat].forEach(s=>{
 
 if(s.precio60 && s.precio90){
-
-htmlArray.push(`
+if(s.precio60){
+html+=`
 <div class="card">
-<h3>${s.nombre}</h3>
+<h3>${s.nombre[idiomaActual]}</h3>
 
-<button class="btn-gold" onclick="agregar('${s.nombre} 60 min',${s.precio60})">
-60 min $${formatPrice(s.precio60)}
+<button onclick="agregar('${s.nombre[idiomaActual]} 60',${s.precio60})">
+60 min $${s.precio60}
 </button>
 
-<button class="btn-gold" onclick="agregar('${s.nombre} 90 min',${s.precio90})">
-90 min $${formatPrice(s.precio90)}
+<button onclick="agregar('${s.nombre[idiomaActual]} 90',${s.precio90})">
+90 min $${s.precio90}
 </button>
 
-<button class="btn-detalle" onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
+<button onclick="detalle('${s.nombre[idiomaActual]}','${s.desc[idiomaActual]}')">
 Detalle
 </button>
 
-</div>`)
-
-}else if(s.precio25 && s.precio40){
-
-htmlArray.push(`
-<div class="card">
-<h3>${s.nombre}</h3>
-
-<button class="btn-gold" onclick="agregar('${s.nombre} 25 min',${s.precio25})">
-25 min $${formatPrice(s.precio25)}
-</button>
-
-<button class="btn-gold" onclick="agregar('${s.nombre} 40 min',${s.precio40})">
-40 min $${formatPrice(s.precio40)}
-</button>
-
-<button class="btn-detalle" onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
-Detalle
-</button>
-
-</div>`)
-
+</div>
+`
 }else{
-
-htmlArray.push(`
+html+=`
 <div class="card">
-<h3>${s.nombre}</h3>
+<h3>${s.nombre[idiomaActual]}</h3>
 
-<button class="btn-gold" onclick="agregar('${s.nombre}',${s.precio})">
-$${formatPrice(s.precio)}
+<button onclick="agregar('${s.nombre[idiomaActual]}',${s.precio})">
+$${s.precio}
 </button>
 
-<button class="btn-detalle" onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
+<button onclick="detalle('${s.nombre[idiomaActual]}','${s.desc[idiomaActual]}')">
 Detalle
 </button>
 
-</div>`)
+</div>
+`
 }
 
 })
