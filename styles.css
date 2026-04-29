@@ -7,14 +7,19 @@ background:#b2dafa;
 
 /* IDIOMA */
 .lang-switch{
-position:fixed;
-top:10px;
-right:10px;
-z-index:9999;
+position:absolute;
+top:20px;
+right:20px;
 }
+
 .lang-switch button{
-margin:2px;
-padding:5px 10px;
+background:#ffffffcc;
+border:none;
+padding:6px 12px:
+margin-left:5px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
 }
 
 /* 🎬 INTRO */
