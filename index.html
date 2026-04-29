@@ -171,24 +171,36 @@ Solicitar link de pago
 </button>
 
 <p class="nota-legal">
-Todos los tratamientos incluyen IVA y cargo por servicio. La propina es opcional.
+Todos los tratamientos incluyen 16% IVA y 15% cargo por servicio. La propina es opcional.
 </p>
 
 </section>
 
 </div>
 
-<!-- 🌑 MODAL DETALLE -->
+<!-- 🌑 MODAL HERO FULL -->
 <div id="modal" class="modal">
-<div class="modal-content">
 
-<span class="cerrar" onclick="cerrar()">✕</span>
+    <!-- BOTÓN CERRAR -->
+    <span class="cerrar" onclick="cerrar()">✕</span>
 
-<div id="modalImage" class="modal-img"></div>
-<h3 id="titulo"></h3>
-<p id="descripcion"></p>
+    <!-- IMAGEN FULL -->
+    <div id="modalHero" class="modal-hero">
 
-</div>
+        <!-- OVERLAY CONTENIDO -->
+        <div class="modal-overlay-content">
+
+            <h2 id="titulo"></h2>
+            <p id="descripcion"></p>
+
+            <button class="btn-gold" onclick="cerrar()">
+                Entendido
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
 
 <!-- 💎 MODAL MEJORAS -->
