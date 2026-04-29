@@ -247,22 +247,17 @@ document.getElementById("montoPropina").style.display = mostrar ? "block" : "non
 // 🌑 MODAL DETALLE
 function detalle(t, d, img = null){
 
-document.getElementById("titulo").innerText = t
+    document.getElementById("titulo").innerText = t
+    document.getElementById("descripcion").innerText = d
 
-if(img){
-document.getElementById("modalImage").style.backgroundImage = `url(${img})`
-document.getElementById("modalImage").style.display = "block"
-}else{
-document.getElementById("modalImage").style.display = "none"
-}
+    // 🔥 HERO BACKGROUND
+    if(img){
+        document.getElementById("modalHero").style.backgroundImage = `url(${img})`
+    }else{
+        document.getElementById("modalHero").style.backgroundImage = "url('imagenes/especial.jpg')"
+    }
 
-document.getElementById("descripcion").innerText = d
-document.getElementById("modal").style.display = "flex"
-}
-
-function cerrar(){
-document.getElementById("modal").style.display = "none"
-document.getElementById("modalImage").style.backgroundImage = ""
+    document.getElementById("modal").style.display = "flex"
 }
 
 // 📲 WHATSAPP
