@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Ritz Carlton Spa Ciudad de México</title>
+<title>Spa Premium</title>
 <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body>
-    
+
 <!-- 🔵 INTRO -->
 <div id="splash">
-<img src="imagenes/logo1.png" alt="Logo">
+    <img src="imagenes/logo1.png" alt="Logo">
 </div>
 
 <!-- 🧠 APP -->
@@ -28,21 +27,22 @@
 
 <div class="especial-card">
 
- <!-- 🔧 CAMBIAR IMAGEN -->
-<img src="imagenes/especial.jpg" class="especial-img">
+    <!-- 🔧 CAMBIAR IMAGEN -->
+    <img src="imagenes/especial.jpg" class="especial-img">
 
     <div class="especial-overlay">
-     <h2>Especial del Mes</h2>
-    <p>Un momento compartido de relajación y conexión</p>
+        <h2>Especial del Mes</h2>
+        <p>Un momento compartido de relajación y conexión</p>
 
-    <button class="btn-gold" onclick="agregar('Especial del Mes',8960)">
-     Agregar
-     </button>
+        <button class="btn-gold" onclick="agregar('Especial del Mes',8960)">
+            Agregar
+        </button>
 
-<button class="btn-detalle"
-onclick="detalle('Ritual de bienestar para mamá y para mí','$8960','imagenes/especial-mayo.png')">
-    Detalle
-    </button>
+        <button class="btn-detalle"
+onclick="detalle('Ritual de bienestar para mamá y para mí','$8960',
+        'imagenes/especial-mayo.png')">
+        Detalle
+        </button>
     </div>
 
 </div>
@@ -52,7 +52,6 @@ onclick="detalle('Ritual de bienestar para mamá y para mí','$8960','imagenes/e
 <!-- 🧴 CATEGORÍAS -->
 <section>
 <h2 class="section-title">Selecciona tu experiencia</h2>
-
 <div class="categorias-container">
 
 <!-- 🔧 CAMBIAR IMÁGENES -->
@@ -77,7 +76,7 @@ onclick="detalle('Ritual de bienestar para mamá y para mí','$8960','imagenes/e
 </div>
 
 <div class="categoria" onclick="mostrar('mejoras')">
-<img src="imagenes/mejoras.jpg">
+<img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35">
 <p>Mejoras</p>
 </div>
 
@@ -100,17 +99,15 @@ onclick="detalle('Ritual de bienestar para mamá y para mí','$8960','imagenes/e
 
 <h3>Certificado de regalo</h3>
 
-<!-- INPUT + BOTÓN -->
 <div class="cert-custom">
 <input id="valorCertificado" type="number" placeholder="$ Monto">
 <button class="btn-gold" onclick="agregarCertificado()">Agregar</button>
 </div>
 
-<!-- BOTONES RÁPIDOS -->
 <div class="cert-options">
-<button class="btn-outline" onclick="agregar('Certificado $2600',2600)">$2600</button>
-<button class="btn-outline" onclick="agregar('Certificado $3800',3800)">$3800</button>
-<button class="btn-outline" onclick="agregar('Certificado $7900',7900)">$7900</button>
+<button class="btn-outline" onclick="seleccionarValor(2600)">$2600</button>
+<button class="btn-outline" onclick="seleccionarValor(3800)">$3800</button>
+<button class="btn-outline" onclick="seleccionarValor(7900)">$7900</button>
 </div>
 
 </div>
@@ -146,15 +143,8 @@ onclick="detalle('Ritual de bienestar para mamá y para mí','$8960','imagenes/e
 
 <p>¿Desea agregar propina?</p>
 
-<label>
-<input type="radio" name="propina" value="si" onclick="togglePropina(true)">
-Sí
-</label>
-
-<label>
-<input type="radio" name="propina" value="no" onclick="togglePropina(false)">
-No
-</label>
+<label><input type="radio" name="propina" value="si" onclick="togglePropina(true)"> Sí</label>
+<label><input type="radio" name="propina" value="no" onclick="togglePropina(false)"> No</label>
 
 <div id="montoPropina" style="display:none;">
 <input id="propinaMonto" type="number" placeholder="Monto de propina">
@@ -167,7 +157,7 @@ Solicitar link de pago
 </button>
 
 <p class="nota-legal">
-Todos los tratamientos incluyen IVA y cargo por servicio. La propina es opcional.
+Todos los tratamientos incluyen 16% IVA y 15% cargo por servicio. La propina es opcional.
 </p>
 
 </section>
@@ -178,9 +168,10 @@ Todos los tratamientos incluyen IVA y cargo por servicio. La propina es opcional
 <div id="modal" class="modal">
 <div class="modal-content">
 
-<span class="cerrar" onclick="cerrar()">✕</span>
+<span onclick="cerrar()">X</span>
 
-<div id="modalImage" class="modal-img"></div>
+<div id="modalImage" class="modal-img">
+</div>
 <h3 id="titulo"></h3>
 <p id="descripcion"></p>
 
@@ -190,20 +181,14 @@ Todos los tratamientos incluyen IVA y cargo por servicio. La propina es opcional
 <!-- 💎 MODAL MEJORAS -->
 <div id="modalMejoras" class="modal">
 <div class="modal-content">
-
 <h3 id="tituloMejoras">Mejora tu experiencia</h3>
 <p>Potencia tu tratamiento con una mejora exclusiva</p>
-
 <div id="opcionesMejoras"></div>
-
-<button class="btn-outline" onclick="cerrarMejoras()">
-Continuar sin mejora
-</button>
-
+<button class="btn-outline" onclick="cerrarMejoras()">Continuar sin mejora</button>
 </div>
 </div>
 
 <script src="script.js"></script>
 
 </body>
-</html>
+    </html>
