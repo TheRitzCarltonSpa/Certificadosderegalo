@@ -3,6 +3,14 @@ let carrito = []
 let total = 0
 let sugerenciaMostrada = false
 
+// 🎬 SPLASH CONTROL (UX PREMIUM)
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        document.getElementById("splash").style.display = "none"
+        document.getElementById("app").classList.remove("hidden")
+    }, 2500)
+})
+
 // 💎 FORMATO MONEDA
 function formatPrice(num){
     return Number(num).toLocaleString("es-MX")
@@ -79,6 +87,122 @@ mejoras:[
 
 }
 
+// 🧴 MOSTRAR SERVICIOS
+function mostrar(cat){
+
+let htmlArray = []
+
+servicios[cat].forEach(s=>{
+
+if(s.precio60 && s.precio90){
+
+htmlArray.push(`
+<div class="card">
+<h3>${s.nombre}</h3>
+
+<button class="btn-gold" onclick="agregar('${s.nombre} 60 min',${s.precio60})">
+60 min $${formatPrice(s.precio60)}
+</button>
+
+<button class="btn-gold" onclick="agregar('${s.nombre} 90 min',${s.precio90})">
+90 min $${formatPrice(s.precio90)}
+</button>
+
+<button class="btn-detalle" onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
+Detalle
+</button>
+
+</div>`)
+
+}else if(s.precio25 && s.precio40){
+
+htmlArray.push(`
+<div class="card">
+<h3>${s.nombre}</h3>
+
+<button class="btn-gold" onclick="agregar('${s.nombre} 25 min',${s.precio25})">
+25 min $${formatPrice(s.precio25)}
+</button>
+
+<button class="btn-gold" onclick="agregar('${s.nombre} 40 min',${s.precio40})">
+40 min $${formatPrice(s.precio40)}
+</button>
+
+<button class="btn-detalle" onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
+Detalle
+</button>
+
+</div>`)
+
+}else{
+
+htmlArray.push(`
+<div class="card">
+<h3>${s.nombre}</h3>
+
+<button class="btn-gold" onclick="agregar('${s.nombre}',${s.precio})">
+$${formatPrice(s.precio)}
+</button>
+
+<button class="btn-detalle" onclick="detalle(\`${s.nombre}\`, \`${s.desc}\`)">
+Detalle
+</button>
+
+</div>`)
+}
+
+})
+
+document.getElementById("servicios").innerHTML = htmlArray.join("")
+}
+
+// 💎 RECOMENDACIONES
+function recomendarMejoras(nombre){
+
+if(sugerenciaMostrada) return
+
+let texto = nombre.toLowerCase()
+
+if(!texto.includes("masaje") && 
+   !texto.includes("facial") && 
+   !texto.includes("corporal")) return
+
+let opciones = ""
+
+if(texto.includes("facial")){
+
+opciones = `
+<button class="btn-gold" onclick="agregar('Mascarilla 111skin',500); cerrarMejoras()">Mascarilla $500</button>
+<button class="btn-gold" onclick="agregar('Rodillo jade',300); cerrarMejoras()">Rodillo jade $300</button>
+<button class="btn-gold" onclick="agregar('Mascarilla plástica',400); cerrarMejoras()">Mascarilla $400</button>
+`
+
+}else{
+
+opciones = `
+<button class="btn-gold" onclick="agregar('Aromaterapia',300); cerrarMejoras()">Aromaterapia $300</button>
+<button class="btn-gold" onclick="agregar('Piedras calientes',300); cerrarMejoras()">Piedras $300</button>
+<button class="btn-gold" onclick="agregar('Cepillado corporal',300); cerrarMejoras()">Cepillado $300</button>
+`
+}
+
+document.getElementById("opcionesMejoras").innerHTML = opciones
+document.getElementById("modalMejoras").style.display = "flex"
+sugerenciaMostrada = true
+}
+
+function cerrarMejoras(){
+document.getElementById("modalMejoras").style.display = "none"
+sugerenciaMostrada = false
+}
+
+// 🛒 AGREGAR
+function agregar(nombre,precio){
+
+carrito.push({nombre,precio})
+actualizar()
+
+document.querySelector(".carrito").scrollIntoView({
 // 🧴 MOSTRAR SERVICIOS
 function mostrar(cat){
 
@@ -296,15 +420,3 @@ mensaje += "Propina: No%0A"
 let numero = "5215580952588"
 window.open(`https://wa.me/${numero}?text=${mensaje}`)
 }
-
-window.addEventListener("load", ()=>{
-setTimeout(()=>{
-document.getElementById("splash").style.opacity="0"
-
-setTimeout(()=>{
-document.getElementById("splash").style.display="none"
-document.getElementById("app").classList.remove("hidden")
-},500)
-
-},1500)
-})
