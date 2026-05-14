@@ -56,7 +56,7 @@ faciales:[
 {nombre:"Facial Personalizado",precio60:2600,precio90:3500,desc:"Este facial purifica, hidrata, ilumina y suaviza el cutis adaptandose a sus necesidades."},
 {nombre:"Facial Anti-edad",precio60:3300,precio90:4500,desc:"Tratamiento facial que combate al instante los signos del envejecimiento, suaviza las líneas de expresión y reactiva la luminosidad del cutis."},
 {nombre:"Facial Rejuvenecedor 90 min",precio:4000,desc:"Restaura la vitalidad y revela una piel brillante, lisa y de aspecto juvenil. Ideal para eventos especiales."},
-{nombre:"Hydrafacial",precio60:4500,desc:"Es un tratamiento no invasivo y no quirúrgico que ofrece resultados instantáneos."},
+{nombre:"Hydrafacial",precio:4500,desc:"Es un tratamiento no invasivo y no quirúrgico que ofrece resultados instantáneos."},
 {nombre:"Facial Para caballero 60 min",precio:2600,desc:"Limpia profundamente, hidrata y suaviza la piel, dejando el cutis con energía al instante."},
 {nombre:"Facial Revitalizante",precio25:1200,precio40:1800,desc:"Purifique, hidrate, ilumine y alise su cutis con este rápido y eficaz tratamiento facial."}
 ],
