@@ -4,35 +4,47 @@ font-family:"Georgia", serif;
 background:#b2dafa;
 }
 
-/* INTRO */
+/* INTRO PREMIUM */
 #splash{
 position:fixed;
 inset:0;
-background:#b2dafa;
+background:linear-gradient(135deg,#b2dafa,#8fc6f5,#6fb2ec);
 display:flex;
 justify-content:center;
 align-items:center;
 z-index:999;
-animation:fadeOut 1.5s ease 2.5s forwards;
+animation:fadeOut 1.5s ease 2.8s forwards;
 }
 
 #splash img{
-  width:120px;
-  height:auto;
-  animation:fadeInLogo 1.2s ease;
+width:220px;
+height:auto;
+animation:logoLuxury 2s ease;
+filter:
+drop-shadow(0 0 10px rgba(255,255,255,0.8))
+drop-shadow(0 0 25px rgba(255,255,255,0.5));
 }
-@keyframes fadeInLogo{
-  from{
-    opacity:0;
-    transform:scale(0.8);
-  }
-  to{
-    opacity:1;
-    transform:scale(1);}
+
+@keyframes logoLuxury{
+0%{
+opacity:0;
+transform:scale(0.6);
+}
+50%{
+opacity:1;
+transform:scale(1.08);
+}
+100%{
+opacity:1;
+transform:scale(1);
+}
 }
 
 @keyframes fadeOut{
-to{opacity:0;visibility:hidden;}
+to{
+opacity:0;
+visibility:hidden;
+}
 }
 
 .hidden{
@@ -74,15 +86,17 @@ overflow:hidden;
 
 .especial-img{
 width:100%;
-max-height:350px;
+height:450px;
 object-fit:cover;
+object-position:center;
+display:block;
 }
 
 .especial-card::before{
 content:"";
 position:absolute;
 inset:0;
-background:rgba(11,42,68,0.6);
+background:rgba(11,42,68,0.45);
 }
 
 .especial-overlay{
@@ -104,6 +118,199 @@ font-family:"Georgia", serif;
 }
 
 button:hover{
+transform:translateY(-2px);
+}
+
+.btn-gold{
+background:linear-gradient(135deg,#d4af37,#b8962e);
+color:white;
+}
+
+.btn-outline{
+background:white;
+border:1px solid #ccc;
+}
+
+.btn-detalle{
+background:#f5e6d3;
+color:#0b2a44;
+border:1px solid rgba(255,255,255,0.7);
+backdrop-filter:blur(4px);
+}
+
+.btn-detalle:hover{
+background:rgba(255,255,255,0.7);
+}
+
+.full{
+width:100%;
+}
+
+/* CATEGORIAS */
+.categorias-container{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+justify-content:center;
+}
+
+.categoria{
+text-align:center;
+cursor:pointer;
+transition:0.3s;
+}
+
+.categoria:hover{
+transform:scale(1.05);
+}
+
+.categoria img{
+width:180px;
+height:120px;
+object-fit:cover;
+border-radius:12px;
+}
+
+/* SERVICIOS */
+.servicios{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+justify-content:center;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+text-align:center;
+transition:0.3s;
+width:260px;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+/* CERTIFICADO */
+.cert-bg{
+position:relative;
+height:300px;
+background-size:cover;
+background-position:center;
+border-radius:20px;
+overflow:hidden;
+}
+
+.cert-overlay{
+position:absolute;
+bottom:20px;
+left:20px;
+background:rgba(255,255,255,0.95);
+padding:15px;
+border-radius:15px;
+width:260px;
+}
+
+.cert-custom{
+display:flex;
+gap:10px;
+margin:10px 0;
+}
+
+.cert-options{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+/* CARRITO */
+.carrito{
+background:white;
+padding:20px;
+border-radius:20px;
+}
+
+.item-carrito{
+display:flex;
+justify-content:space-between;
+border-bottom:1px solid #eee;
+padding:10px 0;
+}
+
+.item-carrito button{
+background:red;
+color:white;
+padding:5px 10px;
+border-radius:6px;
+}
+
+/* TOTAL */
+.total-box{
+text-align:right;
+margin-top:10px;
+}
+
+/* FORM */
+.formulario input{
+padding:10px;
+margin-bottom:10px;
+border-radius:8px;
+border:1px solid #ccc;
+width:100%;
+box-sizing:border-box;
+}
+
+.tip-box{
+margin:10px 0;
+}
+
+.nota-legal{
+font-size:12px;
+margin-top:10px;
+}
+
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(6px);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal-content{
+background:white;
+padding:20px;
+border-radius:20px;
+max-width:400px;
+width:90%;
+text-align:center;
+position:relative;
+}
+
+.modal-img{
+width:100%;
+height:350px;
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
+background-color:#eee;
+border-radius:12px;
+margin-bottom:15px;
+}
+
+.cerrar{
+position:absolute;
+top:15px;
+right:20px;
+cursor:pointer;
+font-size:18px;
+}button:hover{
 transform:translateY(-2px);
 }
 
