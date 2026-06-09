@@ -17,7 +17,7 @@ animation:fadeOut 1.5s ease 2.5s forwards;
 }
 
 #splash img{
-  width:120px;
+  width:240px;
   height:auto;
   animation:fadeInLogo 1.2s ease;
 }
